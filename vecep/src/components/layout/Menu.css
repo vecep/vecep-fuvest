@@ -1,0 +1,29 @@
+.Menu{
+    display: flex;
+    height: 70px;
+    align-items: center;
+    padding-left: 100px;
+    background-color: #ECECEC;
+}
+
+.Menu nav{
+    flex: 1;
+}
+
+.Menu ul {
+    list-style: none;
+    padding: 0;
+}
+
+.Menu li{
+    display: flex;
+}
+
+.Menu li a {
+    flex: 1;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: #1B4469;
+    font-size: 1.5rem;
+    transition: 0.8s;
+}
