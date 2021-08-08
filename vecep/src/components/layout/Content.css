@@ -1,8 +1,6 @@
 .Content {
-    display: flex;
-    flex: 1;
-    justify-content: center;
-    background-color: #dddddd;
-    color: #222831;
-    padding: 30px 50px 30px 100px;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  color: #222831;
 }
