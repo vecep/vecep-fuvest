@@ -1,0 +1,59 @@
+.side-menu{
+    display: flex;
+    height: calc(100% - 70px);
+    width: 250px;
+    align-items: left;
+    justify-content: center;
+    padding-left: 30px;
+    background-color: #E1E1E1;
+}
+
+.scroll{
+    overflow-y: scroll;
+    height:50%;
+    width: 95%;
+}
+
+.side-menu nav{
+    flex: 1;
+}
+
+.side-menu ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+.side-menu ul > hr {
+    width: 90%;
+}
+
+.side-menu li{
+    display: flex;
+    margin: 25px;
+}
+
+.side-menu li a {
+    flex: 1;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: black;
+    font-size: 1.5rem;
+    transition: 0.8s;
+}
+
+/* width */
+.scroll::-webkit-scrollbar {
+    width: 7px;
+  }
+  
+  /* Handle */
+  .scroll::-webkit-scrollbar-thumb {
+    background: #B5B5B5; 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  .scroll::-webkit-scrollbar-thumb:hover {
+    background: grey; 
+  }
