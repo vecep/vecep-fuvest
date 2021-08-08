@@ -4,6 +4,9 @@
   align-items: center;
   padding-left: 100px;
   background-color: #ececec;
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 
 .Menu nav {
