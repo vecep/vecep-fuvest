@@ -1,6 +1,8 @@
 .Menu{
     display: flex;
+    box-sizing: border-box;
     height: 70px;
+    width: 100%;
     align-items: center;
     padding-left: 100px;
     background-color: #ECECEC;
