@@ -1,6 +1,6 @@
 import './App.css'
 import React from "react"
-import { BrowserRouter as Router } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Menu from '../components/layout/Menu'
 import Content from '../components/layout/Content'
 import SideMenu from '../components/layout/SideMenu'
@@ -10,7 +10,7 @@ const App = props => (
         <Router>
             <Menu />
             <div className="side-menu-content"> 
-                <SideMenu />
+                <Route exact path={['/', '/Exercises']} component={SideMenu} />
                 <Content />
             </div>
         </Router>
