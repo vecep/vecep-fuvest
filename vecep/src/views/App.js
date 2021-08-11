@@ -10,7 +10,7 @@ const App = props => (
         <Router>
             <Menu />
             <div className="side-menu-content"> 
-                <Route exact path={['/', '/Exercises']} component={SideMenu} />
+                <Route exact path={['/Exercises']} component={SideMenu} />
                 <Content />
             </div>
         </Router>

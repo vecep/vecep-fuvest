@@ -9,6 +9,17 @@ const HomeContainer = styled.div`
   position: static;
   box-sizing: border-box;
 
+  a {
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    transition: 0.8s;
+
+    &:hover {
+      color: #282727;
+    }
+  }
+
   & > div {
     box-sizing: border-box;
     padding: 0 100px;
@@ -22,40 +33,35 @@ const HomeContainer = styled.div`
     padding-bottom: 50px;
 
     .text {
-      width: 50%;
       font-size: 1.5em;
 
       span {
         display: block;
         font-size: 1.2em;
-        margin-block-start: 0.83em;
         margin-block-end: 0.83em;
         margin-inline-start: 0px;
         margin-inline-end: 0px;
         font-weight: bold;
+      }
+
+      @media only screen and (max-width: 1100px) {
+        width: 100%;
       }
     }
 
     .image {
       display: flex;
       justify-content: center;
-      align-items: center;
-      width: 50%;
+      align-items: flex-start;
 
       img {
         transform: scaleX(-1);
-      }
-      
-      @media only screen and (max-width: 600px) {
-        img {
-          height: 500px;
-        }
+        height: 300px;
+        margin-left: 70px;
       }
 
-      @media only screen and (max-width: 1280px) {
-        img {
-          height: 500px;
-        }
+      @media only screen and (max-width: 1100px) {
+        display: none;
       }
     }
   }
@@ -112,6 +118,12 @@ const HomeContainer = styled.div`
       justify-content: space-between;
       align-items: center;
       width: 50%;
+
+      .about {
+        a:hover {
+          color: #48A7FF;
+        }
+      }
     }
 
     .social-media {
@@ -224,7 +236,7 @@ const StyledButton = withStyles({
     fontWeight: 'bold',
 
     '&:hover': {
-      background: 'linear-gradient(45deg, #48A7FF 30%, #21CBF3 90%)',
+      background: 'linear-gradient(45deg, #21f39f 30%, #21CBF3 90%)',
     }
   },
   label: {

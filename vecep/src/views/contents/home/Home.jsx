@@ -1,15 +1,15 @@
 import React from 'react'
-import logo from '../../images/blah.png'
+import { Link } from 'react-router-dom';
 import { Filter, HomeContainer, Practice, Results, Side, StyledButton } from './styles'
 import { Skeleton } from '@material-ui/lab'
+import HumaaanPNG from '../../../images/humaaan.png'
+import DiscordIcon from '../../../images/discord-icon.svg';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import TwitterIcon from '@material-ui/icons/Twitter';
-import DiscordIcon from '../../images/discord-icon.svg';
-import ScrollButton from '../../components/utils/scrollButton';
+import ScrollButton from '../../../components/utils/scrollButton';
 
 const Home = () => {
-
   const renderPage = () => (
     <HomeContainer>
       <div className="home-intro">
@@ -30,10 +30,11 @@ const Home = () => {
           </p>
         </div>
         <div className="image">
-          <img src={logo} alt="" className="home-info-image" />
+          <img src={HumaaanPNG} alt="" className="home-info-image" />
         </div>
       </div>
-      <StyledButton>Começe Já!</StyledButton>
+      
+      <StyledButton><Link to="/Exercises" draggable={false}>Comece Já!</Link></StyledButton>
 
       <div className="home-statistics">
         <span>+40<br />provas</span>
@@ -72,8 +73,8 @@ const Home = () => {
 
           <div className="about">
             <span>Sobre a Fuvest</span>
-            <span>Site do vestibular</span>
-            <span>Portal da USP</span>
+            <span><a href="https://www.fuvest.br/" target="_blank" rel="noreferrer">Site do vestibular</a></span>
+            <span><a href="https://www5.usp.br/" target="_blank" rel="noreferrer">Portal da USP</a></span>
           </div>
         </div>
 
@@ -81,10 +82,10 @@ const Home = () => {
           <div>
             <span>Acesse nossas redes</span>
             <div>
-              <FacebookIcon />
-              <img src={DiscordIcon} alt=""/>
+              <a href="https://www.facebook.com/matheus.siqueirasordi/" target="_blank" rel="noreferrer"><FacebookIcon /></a>
+              <a href="https://www.instagram.com/matheus_0110_/" target="_blank" rel="noreferrer"><img src={DiscordIcon} alt=""/></a>
               <TwitterIcon />
-              <InstagramIcon />
+              <a href="https://www.instagram.com/matheus_0110_/" target="_blank" rel="noreferrer"><InstagramIcon /></a>
             </div>
           </div>
         </div>

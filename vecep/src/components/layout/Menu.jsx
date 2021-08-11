@@ -7,7 +7,7 @@ const Menu = () => (
     <nav>
       <ul>
         <li>
-          <Link to="/Home">VECEP</Link>
+          <Link to="/">VECEP</Link>
         </li>
       </ul>
     </nav>
