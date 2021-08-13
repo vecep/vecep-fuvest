@@ -7,6 +7,8 @@ const Content = () => (
     <Switch>
       <Route exact path="/">
       </Route>
+      <Route exact path="/provas">
+      </Route>
     </Switch>
   </main>
 );
