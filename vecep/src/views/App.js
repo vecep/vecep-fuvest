@@ -5,7 +5,7 @@ import Menu from '../components/layout/Menu'
 import Content from '../components/layout/Content'
 import SideMenu from '../components/layout/SideMenu'
 
-const App = props => (
+const App = () => (
     <div className="App">
         <Router>
             <Menu />

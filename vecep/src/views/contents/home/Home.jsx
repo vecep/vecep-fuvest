@@ -14,19 +14,13 @@ const Home = () => {
     <HomeContainer>
       <div className="home-intro">
         <div className="text">
-          <span>Afinal... quem somos nós?!</span>
+          <span>Afinal... o que fazemos?!</span>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consectetur neque tempus,
-            elementum leo ut, gravida eros. Phasellus malesuada arcu elit, id hendrerit neque
-            convallis sed. Suspendisse condimentum lacinia nisl congue posuere. Nullam elementum leo
-            at rutrum imperdiet. Nam varius lacus nunc.
+            Somos uma ferramenta que auxilia você, vestibulando da Fuvest, a
+            colocar em prática os conteúdos estudados, por meio de questões específicas.      
           </p>
           <p>
-            Quisque feugiat libero et hendrerit auctor. Fusce venenatis nec lacus id lacinia.
-            Phasellus tempor finibus mauris id feugiat. Praesent ac lectus augue. Aenean non augue
-            purus. Proin ornare vestibulum nisl, vel rhoncus risus. Integer porttitor tincidunt
-            semper. In ante erat, malesuada id enim quis, lacinia volutpat velit. Phasellus ut aliquet
-            ante.
+            Nossa missão é facilitar ao máximo sua jornada em direção à aprovação! Aqui, você pode encontrar tudo relacionado às provas da USP, desde 2010.
           </p>
         </div>
         <div className="image">
@@ -67,7 +61,7 @@ const Home = () => {
         <div className="footer-info">
           <div className="contact">
             <span>Converse com a gente!</span>
-            <span>(19) 9 9999-9999</span>
+            <span>(19) 9 8244-9339</span>
             <span><b>vecep.fuvest@gmail.com</b></span>
           </div>
 

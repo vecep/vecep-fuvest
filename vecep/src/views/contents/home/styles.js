@@ -76,6 +76,14 @@ const HomeContainer = styled.div`
     padding: 70px 100px 50px 100px;
     background-color: #282727;
     color: white;
+
+    @media only screen and (max-width: 800px) {
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      height: 600px;
+      padding: 70px 100px 50px 100px;
+    }
     
     span {
       text-align: center;
@@ -108,14 +116,22 @@ const HomeContainer = styled.div`
     flex-direction: row;
     background-color: #282727;
     width: 100%;
-    height: 275px;
+    padding-top: 50px;
+    padding-bottom: 50px;
     margin-top: 50px;
     color: white;
+
+    @media only screen and (max-width: 820px) {
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+    }
 
     .footer-info {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+      display: flex;
       align-items: center;
       width: 50%;
 
@@ -123,6 +139,16 @@ const HomeContainer = styled.div`
         a:hover {
           color: #48A7FF;
         }
+
+        &:nth-child(2) {
+          margin-left: 17px;
+        }
+      }
+
+      @media only screen and (max-width: 820px) {
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
       }
     }
 
@@ -131,7 +157,13 @@ const HomeContainer = styled.div`
       justify-content: flex-end;
       align-items: center;
       width: 50%;
-      box-sizing: border-box;
+      margin-top: 45px;
+      
+      @media only screen and (max-width: 820px) {
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+      }
 
       div > div:last-of-type {
         display: inline-block;
@@ -161,7 +193,7 @@ const HomeContainer = styled.div`
     }
     
     span {
-      text-align: center;
+      text-align: left;
       font-size: 1em;
     }
   }
