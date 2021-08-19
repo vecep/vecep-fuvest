@@ -9,7 +9,7 @@ const Content = () => (
       <Route exact path="/">
       </Route>
       <Route exact path="/Exercises">
-      <Exercises/>
+        <Exercises/>
       </Route>
     </Switch>
   </main>

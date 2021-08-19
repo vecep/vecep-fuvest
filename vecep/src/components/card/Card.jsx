@@ -1,14 +1,7 @@
 import React, { useState } from 'react';
 import Radio from '@material-ui/core/Radio';
 import { withStyles } from '@material-ui/core/styles';
-import question_image from '../../images/question_image.png'
 import './Card.css';
-
-const mockedQuestions = ["necessidade de leis de proteção para todos que trabalham.", 
-    "existência de desigualdade entre homens e mulheres no mercado de trabalho.",
-    "permanência de preconceito racial na contratação de mulheres para determinadas profissões.",
-    "importância de campanhas dirigidas para a mulher trabalhadora.",
-    "discriminação de gênero que se manifesta na própria linguagem."]
 
 const OptionRadio = withStyles({
     root: {
@@ -22,46 +15,69 @@ const OptionRadio = withStyles({
     checked: {},
 })((props) => <Radio color="default" {...props} />);
 
-const Card = () => {
+const Card = ({ question, options, references, test }) => {
     const [selectedValue, setSelectedValue] = useState();
 
     const handleChange = (event) => {
         setSelectedValue(event.target.value);
     };
 
+    const handleAnswer = () => {
+        const correctAnswer = options.find(o => o.correct_answer === true);
+
+        const message = selectedValue === correctAnswer.id.toString() ? 'acertou' : 'errou';
+        window.alert(message);
+    }
+
     const renderOptions = () => (
-        mockedQuestions.map(q => 
-            <div className="options-container">
+        options.map(q => 
+            <div className="options-container" key={q.id}>
                 <OptionRadio
-                    checked={selectedValue === q}
+                    checked={selectedValue === q.id.toString()}
                     onChange={handleChange}
-                    value={q}
+                    value={q.id}
                 />
-                <span className="question">{q}</span>
+                <span className="question">{q.text}</span>
             </div>
         )
     );
 
+    const renderReferences = () => (
+        references.map(r => {
+            const renderImage = r.image_path && <img src={r.image_path} alt="" />;
+            const renderText = r.text && <span>{r.text}</span>;
+            const renderSource = r.source && <span className="source">{r.source}</span>;
+            const renderAuthor = r.author && <span className="author">{r.author}</span>;
+
+            return (    
+                <div className="reference" key={r.id}>
+                    {renderImage}
+                    {renderText}
+                    {renderSource}
+                    {renderAuthor}
+                    <hr />
+                </div>
+            )
+        })
+    );
+
     return (
         <div className="question-container">
-            <span>2019</span>
+            <span>{test.year}</span>
             <div className="card-container">
                 <div className="card-header">
                     <div className="card-content">
                         <div className="question-text">
-                            <p className="question-instruction-basic">Examine o anúncio.</p>
-                            <p className="question-instruction-text">No contexto do anúncio, a frase “A diferença tem que ser só uma letra” pressupõe a</p>
-                            
+                            <p className="question-instruction">{question.text}</p>              
                             {renderOptions()}
                         </div>
                         <div className="question-ref">
-                            <img src={question_image} alt="" />
-                            <span>Ministério Público do Trabalho no Rio Grande do Sul</span>
+                            {renderReferences()}
                         </div>
                     </div>
                 </div>
                 <div className="card-footer">
-                    <button className="answer">Responder</button>
+                    <button className="answer" onClick={handleAnswer}>Responder</button>
                 </div>
             </div>
         </div>
