@@ -7,7 +7,7 @@ const Exercises = () => {
 	const filter = location.pathname.match(/[^/]\w+$/g);
 
 	return (
-		<div className="Content">
+		<div>
 			<div>Exercicios<br/>Filtro: {filter}</div>
 		</div> 
 	);

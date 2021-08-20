@@ -1,11 +1,5 @@
-.App {
+.app {
   display: flex;
   flex-direction: column;
   height: 100vh;
-}
-
-.side-menu-content {
-  display: flex;
-  flex-direction: row;
-  margin-top: 70px;
 }

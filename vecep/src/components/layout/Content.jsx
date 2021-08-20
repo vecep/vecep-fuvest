@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import Exercises from '../../views/contents/exercises/Exercises';
 
 const Content = () => (
-	<main className="Content">
+	<div className="content">
 		<Switch>
 			<Route exact path="/">
 			</Route>
@@ -12,6 +12,6 @@ const Content = () => (
 				<Exercises />
 			</Route>
 		</Switch>
-	</main>
+	</div>
 );
 export default Content;
