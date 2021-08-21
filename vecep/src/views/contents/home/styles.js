@@ -127,6 +127,10 @@ const HomeContainer = styled.div`
       justify-content: space-around;
     }
 
+    .footer-topic {
+      font-size: 1.5em;
+    }
+
     .footer-info {
       display: flex;
       flex-direction: row;
@@ -135,7 +139,7 @@ const HomeContainer = styled.div`
       align-items: center;
       width: 50%;
 
-      .about {
+      .footer-content {
         a:hover {
           color: #48A7FF;
         }
@@ -152,25 +156,32 @@ const HomeContainer = styled.div`
       }
     }
 
-    .social-media {
+    .footer-social-media {
       display: flex;
       justify-content: flex-end;
       align-items: center;
       width: 50%;
-      margin-top: 45px;
       
       @media only screen and (max-width: 820px) {
         flex-direction: row;
         justify-content: center;
         width: 100%;
       }
+      
+      .icons {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
 
-      div > div:last-of-type {
-        display: inline-block;
+        margin-top: 1.5rem;
         
-        svg, img {
+        svg {
           font-size: 2rem;
-          margin: 1.5rem 1.5rem 0 0;
+          transition: fill 1.3s;
+
+          &:hover {
+            fill: #48A7FF;
+          }
         }
       }
     }
@@ -183,18 +194,9 @@ const HomeContainer = styled.div`
         font-size: 1.125rem;
       }
 
-      span:first-child {
-        font-size: 1.5em;
-      }
-
       span:nth-child(2) {
         margin-top: 1.5rem;
       }
-    }
-    
-    span {
-      text-align: left;
-      font-size: 1em;
     }
   }
 `;
