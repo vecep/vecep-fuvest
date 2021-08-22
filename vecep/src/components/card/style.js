@@ -159,6 +159,16 @@ margin-top: 60px;
     &:disabled {
       cursor: not-allowed;
     }
+
+    &:disabled {
+      background: #1B4469;
+      border-radius: 0 0 20px 20px;
+      transition: 0.5s;
+
+      &:hover {
+        background: grey;
+      }
+    }
   }
 }
 `;
