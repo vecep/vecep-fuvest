@@ -2,7 +2,7 @@ import './App.css';
 import React from 'react';
 import { BrowserRouter as Router} from 'react-router-dom';
 import Menu from '../components/layout/menu/Menu';
-import Content from '../components/layout/Content';
+import Content from '../components/layout/content/Content';
 
 const App = () => (
 	<div className="app">
