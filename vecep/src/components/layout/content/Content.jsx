@@ -1,10 +1,10 @@
-import './Content.css';
+import ContentContainer from './style.js';
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Exercises from '../../views/contents/exercises/Exercises';
+import Exercises from '../../../views/contents/exercises/Exercises';
 
 const Content = () => (
-	<div className="content">
+	<ContentContainer>
 		<Switch>
 			<Route exact path="/">
 			</Route>
@@ -12,6 +12,6 @@ const Content = () => (
 				<Exercises />
 			</Route>
 		</Switch>
-	</div>
+	</ContentContainer>
 );
 export default Content;
