@@ -22,23 +22,115 @@ margin-top: 60px;
   }
 }
 
-.correct {
-  color: green;
-}
-
-.wrong {
-  color: red;
-}
-
-.card-header {
+.card-body {
   background: #ECECEC;
   border-top: 40px solid transparent;
   width: 65vw;
   height: 50vh;
-  text-align: left;
   padding: 0 10px 10px 40px;
   border-radius: 20px 20px 0 0;
   display: flex;
+  
+  .card-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    overflow: auto;
+    width: 100%;
+
+    &::-webkit-scrollbar {
+      width: 7px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #B5B5B5; 
+      border-radius: 10px;
+
+      &:hover {
+        background: #C5C5C5; 
+      }
+    }
+
+    &::-webkit-scrollbar-track {
+      background: grey;
+      border-radius: 20px;
+    }
+
+    .question-container {
+      overflow-wrap: break-word;
+      width: 60%;
+      height: 100%;
+
+      p {
+        font-size: 0.5em;
+        font-weight: bold;
+        margin-bottom: 50px;
+      }
+      
+      .options-container {
+        display: flex;
+        align-items: center;
+        margin-left: 10px;
+        margin-bottom: 15px;
+
+        span:nth-child(2) {
+          font-size: 1rem;
+          margin-left: 10px;
+        }
+
+        svg {
+          width: 1.1rem;
+          height: 1.1rem;
+        }
+
+        .correct {
+        color: green;
+        }
+
+        .wrong {
+          color: red;
+        }
+      }
+    }
+
+    .reference-container { 
+      margin: 0 30px 0 15px;
+      width: 40%;
+    
+      .reference {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        margin-bottom: 15px;
+
+        span {
+          font-size: 0.5em;
+        }
+
+        p {
+          font-size: 0.5em;
+          text-align: justify;
+        }
+
+        img {
+          min-width: 100px;
+          min-height: 100px;
+          width: 100%;
+          height: 50%;
+        }
+
+        hr {
+          width: 100%;
+        }
+
+        .source {
+          margin-top: 10px;
+          font-size: 0.5em;
+          font-weight: bold;
+        }
+      }
+    }
+  }
 }
 
 .card-footer {
@@ -49,115 +141,25 @@ margin-top: 60px;
   height: 40px;
   border-radius: 0 0 20px 20px;
   transition: 0.5s;
-}
 
-
-.card-footer:hover {
-  background: #369bf7
-}
-
-.answer {
-  border: none;
-  background-color: transparent;
-  font-size: 1rem;
-  cursor: pointer;
-  display: inline-block;
-  color: white;
-  font-weight: bold;
-  width: 100%;
-}
-
-.card-content {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  overflow: auto;
-  width: 100%;
-}
-
-.question-text {
-  overflow-wrap: break-word;
-  width: 60%;
-  height: 100%;
-}
-
-.question-instruction {
-  font-size: 0.5em;
-  font-weight: bold;
-  margin-bottom: 50px;
-}
-
-.options-container {
-  display: flex;
-  align-items: center;
-  margin-bottom: 15px;
-
-  span {
-    font-size: 1rem;
-    margin-left: 10px;
+  &:hover {
+    background: #369bf7
   }
-}
 
-.options-container svg {
-  width: 1rem;
-}
+  .answer-button {
+    border: none;
+    background-color: transparent;
+    font-size: 1rem;
+    cursor: pointer;
+    display: inline-block;
+    color: white;
+    font-weight: bold;
+    width: 100%;
 
-.question-ref { 
-  margin: 0 30px 0 15px;
-  width: 40%;
-}
-
-.reference {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  margin-bottom: 15px;
-}
-
-.source {
-  margin-top: 10px;
-  font-size: 0.5em;
-  font-weight: bold;
-}
-
-.source {
-  font-size: 0.5em;
-}
-
-.reference > span {
-  font-size: 0.5em;
-}
-
-.reference > img {
-  min-width: 100px;
-  min-height: 100px;
-  width: 100%;
-  height: 50%;
-}
-
-.reference > hr {
-  width: 100%;
-}
-  
-/* width */
-.card-content::-webkit-scrollbar {
-  width: 7px;
-}
-
-/* handle */
-.card-content::-webkit-scrollbar-thumb {
-  background: #B5B5B5; 
-  border-radius: 10px;
-}
-
-/* background */
-.card-content::-webkit-scrollbar-track {
-  background: grey;
-  border-radius: 20px;
-}
-
-.card-content::-webkit-scrollbar-thumb:hover {
-  background: grey; 
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
 }
 `;
 
