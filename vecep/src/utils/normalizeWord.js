@@ -1,1 +1,1 @@
-export const normalizeWord = (word) => word.normalize('NFD').replace(/\p{Diacritic}/gu, '');
+export const normalizeWord = (word) => word.normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase();

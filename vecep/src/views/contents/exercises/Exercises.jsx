@@ -7,11 +7,12 @@ import referencias from '../../../Mock/referencias.json';
 import referencias_exercicios from '../../../Mock/referencias-exercicios.json';
 import provas from '../../../Mock/provas.json';
 import ExercisesContainer from './style';
+import { normalizeWord } from '../../../utils/normalizeWord';
 
 const Exercises = () => {
 	const location = useLocation();
 
-	const filter = location.pathname.match(/[^/]\w+$/g);
+	const [filter] = location.pathname.match(/[^/ ]\w+$/g);
 
 	const generateCards = () => (
 		exercicios.map(question => {
@@ -19,13 +20,17 @@ const Exercises = () => {
 			const question_references = referencias_exercicios.filter(qr => qr.question_id === question.id);
 			const references = question_references.map(qr => referencias.find(r => r.id === qr.reference_id));
 			const options = alternativas.filter(a => a.question_id === question.id);
+
+			const [question_subject] = normalizeWord(question.subject).match(/[^/ ]\w+$/g);
 		
-			return <Card question={question} options={options} references={references} key={question.id} test={test} />;
+			if (question_subject === filter) {
+				return <Card question={question} options={options} references={references} key={question.id} test={test} />;
+			}
 		}));
 
 	return (
 		<ExercisesContainer>
-			<div>Exercicios</div><div>Filtro: {filter}</div>
+			{console.log('Filtro: ' + filter)}
 			{generateCards()}
 		</ExercisesContainer>
 	);
