@@ -258,24 +258,28 @@ const Filter = styled.div`
 `;
 
 const StyledButton = withStyles({
-  root: {
-    background: 'linear-gradient(45deg, #21CBF3 30%, #48A7FF 90%)',
-    borderRadius: 2,
-    color: 'white',
-    height: 37,
-    width: 205,
-    padding: '0 30px',
-    boxSizing: 'border-box',
-    boxShadow: '0 3px 5px 2px rgba(27, 68, 105, .3)',
-    fontWeight: 'bold',
+	root: {
+		background: 'linear-gradient(45deg, #21CBF3 30%, #48A7FF 90%)',
+		borderRadius: 2,
+		color: 'white',
+		width: 205,
+		padding: 0,
+		boxSizing: 'border-box',
+		boxShadow: '0 3px 5px 2px rgba(27, 68, 105, .3)',
+		fontWeight: 'bold',
 
-    '&:hover': {
-      background: 'linear-gradient(45deg, #21f39f 30%, #21CBF3 90%)',
-    }
-  },
-  label: {
-    textTransform: 'capitalize',
-  },
+		'&:hover': {
+			background: 'linear-gradient(45deg, #21f39f 30%, #21CBF3 90%)',
+		},
+
+		'& span, a': {
+			width: '100%',
+			lineHeight: 2.5,
+		},
+	},
+	label: {
+		textTransform: 'capitalize',
+	},
 })(Button);
 
 export { HomeContainer, StyledButton, Side, Results, Practice, Filter };
