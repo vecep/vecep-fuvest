@@ -52,7 +52,7 @@ const Card = ({ question, options, references, test }) => {
 					value={o.id}
 					disabled={answered}
 				/>
-				<span className={answered && showAnswer(o)}>{o.text}</span>
+				<span className={answered ? showAnswer(o) : ''}>{o.text}</span>
 			</div>
 		))
 	);
