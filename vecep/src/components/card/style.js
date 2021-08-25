@@ -5,7 +5,7 @@ display: flex;
 flex-direction: column;
 font-size: 2em;
 color: black;
-margin-top: 60px;
+margin-top: 40px;
 
 .card-info {
   display: flex;
@@ -23,13 +23,14 @@ margin-top: 60px;
 }
 
 .card-body {
+  display: flex;
   background: #ECECEC;
   border-top: 40px solid transparent;
   width: 65vw;
   height: 50vh;
   padding: 0 10px 10px 40px;
   border-radius: 20px 20px 0 0;
-  display: flex;
+  box-sizing: border-box;
   
   .card-content {
     display: flex;

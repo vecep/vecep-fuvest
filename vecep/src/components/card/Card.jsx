@@ -9,7 +9,7 @@ const OptionRadio = withStyles({
 		color: 'black',
 		padding: 0,
 		transition: 'color .5s',
-        
+
 		'&$checked': {
 			color: '#48A7FF',
 		},
@@ -79,13 +79,13 @@ const Card = ({ question, options, references, test }) => {
 	return (
 		<CardContainer>
 			<div className="card-info">
-				<span>{question.subject} - {question.genre}</span>
+				<span>{question.subject} - {question.topic}</span>
 				<span>{test.year}</span>
 			</div>
 			<div className="card-body">
 				<div className="card-content">
 					<div className="question-container">
-						<p>{question.text}</p>              
+						<p>{question.text}</p>
 						{renderOptions()}
 					</div>
 					<div className="reference-container">

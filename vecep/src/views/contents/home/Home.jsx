@@ -22,7 +22,7 @@ const Home = () => (
 				<span>Afinal... o que fazemos?!</span>
 				<p>
 					Somos uma ferramenta que auxilia você, vestibulando da Fuvest, a
-					colocar em prática os conteúdos estudados, por meio de questões específicas.      
+					colocar em prática os conteúdos estudados, por meio de questões específicas.
 				</p>
 				<p>
 					Nossa missão é facilitar ao máximo sua jornada em direção à aprovação! Aqui, você pode encontrar tudo relacionado às provas da USP, desde 2010.
