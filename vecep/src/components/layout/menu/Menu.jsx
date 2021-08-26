@@ -22,7 +22,7 @@ const Menu = () => {
 	return (
 		<Navbar>
 			<Link to="/home" draggable="false">VECEP</Link>
-			
+
 			<div className="dropdown-container">
 				<div className="dropdown">
 					<Link to="/exercicios" draggable="false">Exercícios</Link>

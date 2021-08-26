@@ -5,8 +5,7 @@
     },
     "extends": [
         "eslint:recommended",
-        "plugin:react/recommended",
-        "prettier"
+        "plugin:react/recommended"
     ],
     "parserOptions": {
         "ecmaFeatures": {
@@ -16,8 +15,7 @@
         "sourceType": "module"
     },
     "plugins": [
-        "react",
-        "prettier"
+        "react"
     ],
     "rules": {
         "indent": [
@@ -37,11 +35,19 @@
             "always"
         ],
         "eol-last": [
-            "error", "always"
+            "error",
+            "always"
         ],
         "no-trailing-spaces": [
-            "error", "always"
+            "error",
+            {
+                "skipBlankLines": false,
+                "ignoreComments": false
+            }
         ],
-        "prettier/prettier": "error"
+        "no-multiple-empty-lines": [
+            "error",
+            {"max": 1}
+        ]
     }
 }
