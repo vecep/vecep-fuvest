@@ -35,7 +35,19 @@
             "always"
         ],
         "eol-last": [
-            "error", "always"
+            "error",
+            "always"
+        ],
+        "no-trailing-spaces": [
+            "error",
+            {
+                "skipBlankLines": false,
+                "ignoreComments": false
+            }
+        ],
+        "no-multiple-empty-lines": [
+            "error",
+            {"max": 1}
         ]
     }
 }
