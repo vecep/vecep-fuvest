@@ -1,20 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { TestsContainer, ViewButton, SimulationButton } from './styles';
 import provas from '../../../Mock/provas.json';
+import TextField from '@material-ui/core/TextField';
+import { StyledAutocomplete } from '../../../components/utils/autocomplete/style';
+import { TestsContainer, ViewButton, SimulationButton } from './styles';
 
 const Tests = () => {
-	const provasb = () => (
-		provas.map(p => <div key={p.id} className="row"><span>{p.year} - {p.stage}ª Fase</span><ViewButton><Link>Visualizar Prova</Link></ViewButton> <SimulationButton><Link>Fazer Simulado</Link></SimulationButton></div>)
+	const [selectedStage, setSelectedStage] = useState();
+
+	const filteredProvas = provas.filter(p => selectedStage != null ? p.stage === selectedStage : true);
+
+	const renderProvas = () => (
+		filteredProvas.map(p =>
+			<div key={p.id} className="row">
+				<span>{p.year} - {p.stage}ª Fase</span>
+				<ViewButton>
+					<Link to="#">Visualizar Prova</Link>
+				</ViewButton>
+				<SimulationButton>
+					<Link to="#">Fazer Simulado</Link>
+				</SimulationButton>
+			</div>
+		)
 	);
+
 	return(
 		<TestsContainer>
-			<select id="filter">
-				<option value="1"></option>
-				<option value="2">Primeira Fase</option>
-				<option value="3">Segunda Fase</option>
-			</select>
-			{provasb()}
+			<StyledAutocomplete
+				className="topic-filter"
+				options={[0, 1]}
+				getOptionLabel={o => o.toString()}
+				onChange={(_, value) => setSelectedStage(value)}
+				renderInput={params => <TextField {...params} label="Pesquise por fase..." variant="outlined" />}
+			/>
+			{renderProvas()}
 		</TestsContainer>
 	);
 };
