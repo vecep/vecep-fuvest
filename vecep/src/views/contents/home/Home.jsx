@@ -1,6 +1,5 @@
 import React from 'react';
-import { Filter, HomeContainer, Practice, Results, Side } from './styles';
-import { Skeleton } from '@material-ui/lab';
+import { HomeContainer} from './styles';
 import { SvgIcon } from '@material-ui/core';
 import ScrollButton from '../../../components/utils/scrollButton';
 import FacebookIcon from '@material-ui/icons/Facebook';
@@ -8,6 +7,7 @@ import InstagramIcon from '@material-ui/icons/Instagram';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import HomeIntro from './components/homeIntro';
 import HomeStatistics from './components/homeStatistics';
+import HomeFeature from './components/homeFeature';
 
 const DiscordIcon = () => (
 	<SvgIcon width="32" height="32" viewBox="0 0 71 55" fill="white" xmlns="http://www.w3.org/2000/svg">
@@ -19,26 +19,7 @@ const Home = () => (
 	<HomeContainer>
 		<HomeIntro />
 		<HomeStatistics />
-		<div className="feature-grid">
-			<Side>
-				<span className="title">Separamos os conteúdos bonitinhos, pra você...</span>
-				<Skeleton variant="rect" className="side"/>
-			</Side>
-
-			<Results>
-				<span className="title">Veja seus resultados</span>
-				<Skeleton variant="rect" className="results"/>
-			</Results>
-			<Practice>
-				<span className="title">Pratique, pratique, pratique!</span>
-				<Skeleton variant="rect" className="practice" />
-			</Practice>
-
-			<Filter>
-				<span className="title">Filtre para achar o que você precisa!</span>
-				<Skeleton variant="rect" className="filter" />
-			</Filter>
-		</div>
+		<HomeFeature />
 
 		<div className="home-footer">
 			<div className="footer-info">

@@ -24,26 +24,6 @@ const HomeContainer = styled.div`
     padding-right: 100px;
   }
 
-  .feature-grid {
-    display: grid;
-    justify-items: stretch;
-    align-items: stretch;
-    grid-template-rows: 17em 17em;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-areas:
-      'side results practice'
-      'side filter filter';
-    gap: 5em;
-    margin-bottom: 100px;
-
-    .title {
-      display: block;
-      font-size: 1.2em;
-      margin-block-end: 0.83em;
-      font-weight: bold;
-    }
-  }
-
   .home-footer {
     display: flex;
     flex-direction: row;
@@ -134,60 +114,4 @@ const HomeContainer = styled.div`
   }
 `;
 
-const Side = styled.div`
-  grid-row: side-start / side-end;
-	grid-column: side-start / side-end;
-  
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  .side {
-    width: 100%;
-    height: 100%;
-  }
-`;
-
-const Results = styled.div`
-  grid-row: results-start / results-end;
-	grid-column: results-start / results-end;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  .results {
-    width: 100%;
-    height: 100%;
-  }
-`;
-
-const Practice = styled.div`
-  grid-row: practice-start / practice-end;
-	grid-column: practice-start / practice-end;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  .practice {
-    width: 100%;
-    height: 100%;
-  }
-`;
-
-const Filter = styled.div`
-  grid-row: filter-start / filter-end;
-	grid-column: filter-start / filter-end;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  .filter {
-    width: 100%;
-    height: 100%;
-  }
-`;
-
-export { HomeContainer, Side, Results, Practice, Filter };
+export { HomeContainer };
