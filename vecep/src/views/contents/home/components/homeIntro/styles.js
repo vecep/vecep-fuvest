@@ -62,6 +62,11 @@ const StyledButton = withStyles({
 		'& span, a': {
 			width: '100%',
 			lineHeight: 2.5,
+			fontSize: '1rem',
+
+			'&:hover': {
+				color: '#282727',
+			}
 		},
 	},
 	label: {
