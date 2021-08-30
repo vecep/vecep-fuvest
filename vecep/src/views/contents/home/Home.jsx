@@ -1,13 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Filter, HomeContainer, Practice, Results, Side, StyledButton } from './styles';
+import { Filter, HomeContainer, Practice, Results, Side } from './styles';
 import { Skeleton } from '@material-ui/lab';
 import { SvgIcon } from '@material-ui/core';
 import ScrollButton from '../../../components/utils/scrollButton';
-import HumaaanPNG from '../../../images/humaaan.png';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import TwitterIcon from '@material-ui/icons/Twitter';
+import HomeIntro from './components/homeIntro';
 
 const DiscordIcon = () => (
 	<SvgIcon width="32" height="32" viewBox="0 0 71 55" fill="white" xmlns="http://www.w3.org/2000/svg">
@@ -17,25 +16,7 @@ const DiscordIcon = () => (
 
 const Home = () => (
 	<HomeContainer>
-		<div className="home-intro">
-			<div className="text">
-				<span>Afinal... o que fazemos?!</span>
-				<p>
-					Somos uma ferramenta que auxilia você, vestibulando da Fuvest, a
-					colocar em prática os conteúdos estudados, por meio de questões específicas.
-				</p>
-				<p>
-					Nossa missão é facilitar ao máximo sua jornada em direção à aprovação! Aqui, você pode encontrar tudo relacionado às provas da USP, desde 2010.
-				</p>
-			</div>
-			<div className="image">
-				<img src={HumaaanPNG} alt="" className="home-info-image" />
-			</div>
-		</div>
-
-		<StyledButton>
-			<Link to="/exercicios" draggable={false}>Comece Já!</Link>
-		</StyledButton>
+		<HomeIntro />
 
 		<div className="home-statistics">
 			<span>+40<br />provas</span>
