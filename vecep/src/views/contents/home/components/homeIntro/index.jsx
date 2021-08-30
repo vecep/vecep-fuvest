@@ -1,10 +1,10 @@
 import React from 'react';
 import HumaaanPNG from '../../../../../images/humaaan.png';
 import { Link } from 'react-router-dom';
-import { HomeIntroContainer, Intro, Text, Title, Image, StyledButton } from './styles';
+import { Container, Intro, Text, Title, Image, StyledButton } from './styles';
 
 const HomeIntro = () => (
-	<HomeIntroContainer>
+	<Container>
 		<Intro>
 			<Text>
 				<Title>Afinal... o que fazemos?!</Title>
@@ -22,7 +22,7 @@ const HomeIntro = () => (
 		<StyledButton>
 			<Link to="/exercicios" draggable={false}>Comece Já!</Link>
 		</StyledButton>
-	</HomeIntroContainer>
+	</Container>
 );
 
 export default HomeIntro;

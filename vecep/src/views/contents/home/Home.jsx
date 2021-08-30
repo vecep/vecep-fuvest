@@ -7,6 +7,7 @@ import FacebookIcon from '@material-ui/icons/Facebook';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import HomeIntro from './components/homeIntro';
+import HomeStatistics from './components/homeStatistics';
 
 const DiscordIcon = () => (
 	<SvgIcon width="32" height="32" viewBox="0 0 71 55" fill="white" xmlns="http://www.w3.org/2000/svg">
@@ -17,13 +18,7 @@ const DiscordIcon = () => (
 const Home = () => (
 	<HomeContainer>
 		<HomeIntro />
-
-		<div className="home-statistics">
-			<span>+40<br />provas</span>
-			<span>+3600<br />questões</span>
-			<span>+117.000<br />candidatos</span>
-		</div>
-
+		<HomeStatistics />
 		<div className="feature-grid">
 			<Side>
 				<span className="title">Separamos os conteúdos bonitinhos, pra você...</span>
