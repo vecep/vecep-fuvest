@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Card from '../../../components/card';
 import TextField from '@material-ui/core/TextField';
-import { ExercisesContainer, StyledAutocomplete } from './style';
+import { ExercisesContainer, Header, FilterContainer, SubjectTitle, StyledAutocomplete } from './styles';
 import { normalizeWord } from '../../../utils/normalizeWord';
 
 import alternativas from '../../../Mock/alternativas.json';
@@ -48,9 +48,10 @@ const Exercises = () => {
 
 	return (
 		<ExercisesContainer>
-			<div className="filter-container">
-				<span>{subjectTitle}</span>
-				<div className="filters">
+			<Header>
+				<SubjectTitle>{subjectTitle}</SubjectTitle>
+
+				<FilterContainer>
 					<StyledAutocomplete
 						className="topic-filter"
 						options={distinctTopics}
@@ -64,8 +65,8 @@ const Exercises = () => {
 						onChange={(_, value) => setSelectedYear(value)}
 						renderInput={params => <TextField {...params} label="Ano" variant="outlined" />}
 					/>
-				</div>
-			</div>
+				</FilterContainer>
+			</Header>
 
 			{renderCards()}
 		</ExercisesContainer>

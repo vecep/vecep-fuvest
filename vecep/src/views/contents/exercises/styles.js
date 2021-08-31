@@ -8,32 +8,33 @@ flex-direction: column;
 align-items: center;
 margin-bottom: 50px;
 width: 65vw;
+`;
 
-.filter-container {
-  display: flex;
+const Header = styled.div`
+	display: flex;
 	justify-content: space-between;
 	align-items: flex-end;
   width: 100%;
-  margin-top: 45px;
+  margin: 45px 0 20px 0;
+`;
 
-	& > span {
-		font-size: 2em;
-		font-weight: 500;
+const FilterContainer = styled.div`
+	display: flex;
+	justify-content: flex-end;
+
+	.topic-filter {
+		width: 250px;
+		margin-right: 25px;
 	}
 
-	.filters {
-		display: flex;
-
-		.topic-filter {
-			width: 250px;
-			margin-right: 25px;
-		}
-
-		.year-filter {
-			width: 125px;
-		}
+	.year-filter {
+		width: 125px;
 	}
-}
+`;
+
+const SubjectTitle = styled.span`
+	font-size: 2em;
+	font-weight: 500;
 `;
 
 const StyledAutocomplete = withStyles({
@@ -66,4 +67,4 @@ const StyledAutocomplete = withStyles({
 	}
 })(Autocomplete);
 
-export { ExercisesContainer, StyledAutocomplete };
+export { ExercisesContainer, Header, FilterContainer, SubjectTitle, StyledAutocomplete };
