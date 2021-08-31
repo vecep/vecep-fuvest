@@ -1,4 +1,4 @@
-import ContentContainer from './style.js';
+import ContentContainer from './styles.js';
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Exercises from '../../../views/contents/exercises';
@@ -16,4 +16,5 @@ const Content = () => (
 		</Switch>
 	</ContentContainer>
 );
+
 export default Content;
