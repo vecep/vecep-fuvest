@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Navbar from './style';
+import { Navbar, DropdownContainer, DropdownItem, DropdownContent } from './styles';
 import { normalizeWord } from '../../../utils/normalizeWord';
-import './style.js';
+import './styles.js';
 
 // mocked database select
 // SELECT DISTINCT subject FROM questions
@@ -23,27 +23,27 @@ const Menu = () => {
 		<Navbar>
 			<Link to="/home" draggable="false">VECEP</Link>
 
-			<div className="dropdown-container">
-				<div className="dropdown">
+			<DropdownContainer>
+				<DropdownItem>
 					<Link to="/exercicios" draggable="false">Exercícios</Link>
 
-					<div className="dropdown-content">
+					<DropdownContent>
 						{renderDropdownItems(mocked_subjects, '/exercicios')}
-					</div>
-				</div>
+					</DropdownContent>
+				</DropdownItem>
 
-				<div className="dropdown">
+				<DropdownItem>
 					<Link to="/provas" draggable="false">Provas</Link>
 
-					<div className="dropdown-content">
+					<DropdownContent>
 						{renderDropdownItems(mocked_years, '/provas')}
-					</div>
-				</div>
+					</DropdownContent>
+				</DropdownItem>
 
-				<div className="dropdown">
+				<DropdownItem>
 					<Link to="/resultados" draggable="false">Seus resultados</Link>
-				</div>
-			</div>
+				</DropdownItem>
+			</DropdownContainer>
 		</Navbar>
 	);
 };
