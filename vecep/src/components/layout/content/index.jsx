@@ -1,9 +1,9 @@
-import ContentContainer from './style.js';
+import ContentContainer from './styles.js';
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Exercises from '../../../views/contents/exercises/Exercises';
-import Home from '../../../views/contents/home/Home.jsx';
-import Tests from '../../../views/contents/tests/Tests.jsx';
+import Exercises from '../../../views/contents/exercises';
+import Home from '../../../views/contents/home';
+import Tests from '../../../views/contents/tests/Tests';
 
 const Content = () => (
 	<ContentContainer>
@@ -20,4 +20,5 @@ const Content = () => (
 		</Switch>
 	</ContentContainer>
 );
+
 export default Content;

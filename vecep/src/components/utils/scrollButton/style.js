@@ -8,7 +8,7 @@ const Button = withStyles({
 		zIndex: '1',
 		cursor: 'pointer',
 		marginLeft: '95%',
-		color: '#48A7FF',
+		color: '#48A7FF'
 	}
 })(IconButton);
 
