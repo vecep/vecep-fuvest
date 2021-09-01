@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const Container = styled.div`
 	display: flex;
 	flex-direction: column;
-	overflow-y: scroll;
+	overflow-y: auto;
 	height: 50vh;
 	width: 50%;
 
