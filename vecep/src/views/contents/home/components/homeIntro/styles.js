@@ -29,8 +29,8 @@ const Title = styled.span`
 	display: block;
 	font-size: 1.2em;
 	margin-block-end: 0.83em;
-	margin-inline-start: 0px;
-	margin-inline-end: 0px;
+	margin-inline-start: 0;
+	margin-inline-end: 0;
 	font-weight: bold;
 `;
 

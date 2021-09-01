@@ -14,7 +14,7 @@ const StyledAutocomplete = withStyles({
 		},
 
 		'& .MuiOutlinedInput-notchedOutline': {
-			borderWidth: '0px'
+			borderWidth: '0'
 		},
 
 		'&.Mui-focused': {
