@@ -9,6 +9,7 @@ const Navbar = styled.nav`
 	background-color: #ececec;
 	top: 0;
 	width: 100%;
+	margin-bottom: 45px;
 
 	& > a {
 		margin-left: 100px;
