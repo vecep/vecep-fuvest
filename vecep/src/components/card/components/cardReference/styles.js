@@ -1,0 +1,64 @@
+import styled from 'styled-components';
+
+const Container = styled.div`
+	display: flex;
+	flex-direction: column;
+	overflow-y: scroll;
+	height: 50vh;
+	width: 50%;
+
+	&::-webkit-scrollbar {
+		width: 7px;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background: #b5b5b5;
+		border-radius: 10px;
+
+		&:hover {
+			background: #c5c5c5;
+		}
+	}
+
+	&::-webkit-scrollbar-track {
+		background: grey;
+		border-radius: 20px;
+	}
+`;
+
+const Reference = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	margin-bottom: 15px;
+	margin-right: 15px;
+
+	img {
+		min-width: 100px;
+		min-height: 100px;
+		width: 100%;
+	}
+`;
+
+const Text = styled.p`
+	font-size: 0.5em;
+	text-align: justify;
+	word-break: break-word;
+	line-height: 1.3em;
+`;
+
+const Label = styled.span`
+	font-size: 0.5em;
+
+	&.source {
+		margin-top: 10px;
+		font-weight: bold;
+	}
+
+	&.separator {
+		width: 100%;
+		text-align: center;
+	}
+`;
+
+export { Container, Reference, Text, Label };
