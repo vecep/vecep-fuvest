@@ -4,7 +4,7 @@ import HomeIntro from './components/homeIntro';
 import HomeStatistics from './components/homeStatistics';
 import HomeFeature from './components/homeFeature';
 import HomeFooter from './components/homeFooter';
-import { HomeContainer} from './styles';
+import { HomeContainer } from './styles';
 
 const Home = () => (
 	<HomeContainer>

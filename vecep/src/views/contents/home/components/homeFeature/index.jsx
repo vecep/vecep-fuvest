@@ -6,12 +6,12 @@ const HomeFeature = () => (
 	<Container>
 		<Section placement="side">
 			<Title>Separamos os conteúdos bonitinhos, pra você...</Title>
-			<Skeleton variant="rect" className="skeleton"/>
+			<Skeleton variant="rect" className="skeleton" />
 		</Section>
 
 		<Section placement="results">
 			<Title>Veja seus resultados</Title>
-			<Skeleton variant="rect" className="skeleton"/>
+			<Skeleton variant="rect" className="skeleton" />
 		</Section>
 
 		<Section placement="practice">

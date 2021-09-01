@@ -3,19 +3,19 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import styled from 'styled-components';
 
 const ExercisesContainer = styled.div`
-display: flex;
-flex-direction: column;
-align-items: center;
-margin-bottom: 50px;
-width: 65vw;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 50px;
+	width: 65vw;
 `;
 
 const Header = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-end;
-  width: 100%;
-  margin: 45px 0 20px 0;
+	width: 100%;
+	margin: 45px 0 20px 0;
 `;
 
 const FilterContainer = styled.div`
@@ -46,7 +46,7 @@ const StyledAutocomplete = withStyles({
 		'& input': {
 			height: '15px',
 			color: '#4d4d4d',
-			fontWeight: 'bold',
+			fontWeight: 'bold'
 		},
 
 		'& .MuiOutlinedInput-notchedOutline': {
@@ -61,9 +61,9 @@ const StyledAutocomplete = withStyles({
 			},
 
 			'& label': {
-				color: 'grey',
+				color: 'grey'
 			}
-		},
+		}
 	}
 })(Autocomplete);
 

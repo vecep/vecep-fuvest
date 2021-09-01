@@ -17,10 +17,14 @@ const HomeFooter = () => (
 			<Content>
 				<Title>Sobre a Fuvest</Title>
 				<Span>
-					<a href="https://www.fuvest.br/" target="_blank" rel="noopener noreferrer">Site do vestibular</a>
+					<a href="https://www.fuvest.br/" target="_blank" rel="noopener noreferrer">
+						Site do vestibular
+					</a>
 				</Span>
 				<Span>
-					<a href="https://www5.usp.br/" target="_blank" rel="noopener noreferrer">Portal da USP</a>
+					<a href="https://www5.usp.br/" target="_blank" rel="noopener noreferrer">
+						Portal da USP
+					</a>
 				</Span>
 			</Content>
 		</Info>
@@ -29,10 +33,34 @@ const HomeFooter = () => (
 			<Content>
 				<Title>Acesse nossas redes</Title>
 				<IconsContainer>
-					<a href="https://www.facebook.com/matheus.siqueirasordi/" target="_blank" rel="noopener noreferrer"><FacebookIcon /></a>
-					<a href="https://www.instagram.com/matheus_0110_/" target="_blank" rel="noopener noreferrer"><DiscordIcon /></a>
-					<a href="https://www.instagram.com/matheus_0110_/" target="_blank" rel="noopener noreferrer"><TwitterIcon /></a>
-					<a href="https://www.instagram.com/matheus_0110_/" target="_blank" rel="noopener noreferrer"><InstagramIcon /></a>
+					<a
+						href="https://www.facebook.com/matheus.siqueirasordi/"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<FacebookIcon />
+					</a>
+					<a
+						href="https://www.instagram.com/matheus_0110_/"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<DiscordIcon />
+					</a>
+					<a
+						href="https://www.instagram.com/matheus_0110_/"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<TwitterIcon />
+					</a>
+					<a
+						href="https://www.instagram.com/matheus_0110_/"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<InstagramIcon />
+					</a>
 				</IconsContainer>
 			</Content>
 		</SocialMedia>

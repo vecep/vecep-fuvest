@@ -28,7 +28,7 @@ const CardReferences = ({ references }) => {
 };
 
 CardReferences.propTypes = {
-	references: PropTypes.array.isRequired,
+	references: PropTypes.array.isRequired
 };
 
 export default CardReferences;

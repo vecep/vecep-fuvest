@@ -9,18 +9,21 @@ const HomeIntro = () => (
 			<Text>
 				<Title>Afinal... o que fazemos?!</Title>
 				<p>
-					Somos uma ferramenta que auxilia você, vestibulando da Fuvest, a
-					colocar em prática os conteúdos estudados, por meio de questões específicas.
+					Somos uma ferramenta que auxilia você, vestibulando da Fuvest, a colocar em prática os
+					conteúdos estudados, por meio de questões específicas.
 				</p>
 				<p>
-					Nossa missão é facilitar ao máximo sua jornada em direção à aprovação! Aqui, você pode encontrar tudo relacionado às provas da USP, desde 2010.
+					Nossa missão é facilitar ao máximo sua jornada em direção à aprovação! Aqui, você pode
+					encontrar tudo relacionado às provas da USP, desde 2010.
 				</p>
 			</Text>
 			<Image src={HumaaanPNG} alt="" />
 		</Intro>
 
 		<StyledButton>
-			<Link to="/exercicios" draggable={false}>Comece Já!</Link>
+			<Link to="/exercicios" draggable={false}>
+				Comece Já!
+			</Link>
 		</StyledButton>
 	</Container>
 );

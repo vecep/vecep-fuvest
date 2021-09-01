@@ -4,7 +4,7 @@ import AnswerButton from './styles';
 
 const CardAnswerButton = ({ selectedAnswer, setAnswered, answered }) => {
 	const handleAnswers = () => {
-		if(selectedAnswer) {
+		if (selectedAnswer) {
 			setAnswered(true);
 		} else {
 			window.alert('Selecione uma alternativa.');
@@ -21,7 +21,7 @@ const CardAnswerButton = ({ selectedAnswer, setAnswered, answered }) => {
 CardAnswerButton.propTypes = {
 	selectedAnswer: PropTypes.func,
 	setAnswered: PropTypes.func.isRequired,
-	answered: PropTypes.bool.isRequired,
+	answered: PropTypes.bool.isRequired
 };
 
 export default CardAnswerButton;

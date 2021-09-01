@@ -12,7 +12,9 @@ const Card = ({ question, options, references, test }) => {
 	return (
 		<Container>
 			<InfoContainer>
-				<Info>{question.subject} - {question.topic}</Info>
+				<Info>
+					{question.subject} - {question.topic}
+				</Info>
 				<Info bold>{test.year}</Info>
 			</InfoContainer>
 
@@ -29,7 +31,11 @@ const Card = ({ question, options, references, test }) => {
 			</Content>
 
 			<Footer>
-				<CardAnswerButton selectedAnswer={selectedAnswer} setAnswered={setAnswered} answered={answered} />
+				<CardAnswerButton
+					selectedAnswer={selectedAnswer}
+					setAnswered={setAnswered}
+					answered={answered}
+				/>
 			</Footer>
 		</Container>
 	);
@@ -39,7 +45,7 @@ Card.propTypes = {
 	question: PropTypes.object.isRequired,
 	options: PropTypes.array.isRequired,
 	references: PropTypes.array.isRequired,
-	test: PropTypes.object.isRequired,
+	test: PropTypes.object.isRequired
 };
 
 export default Card;
