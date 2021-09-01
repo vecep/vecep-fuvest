@@ -3,18 +3,20 @@ import { Button } from '@material-ui/core';
 import styled from 'styled-components';
 
 const TestsContainer = styled.div`
-& > div > span {
-    font-size: 1.7rem;
-    margin-right: 8vw;
-    vertical-align: middle;
-}
-.row {
-    margin-bottom: 20px;
-}
-a{
-    text-decoration: none;
-    color: black;
-}
+	a{
+		text-decoration: none;
+		color: black;
+	}
+`;
+
+const Row = styled.div`
+	margin-bottom: 20px;
+`;
+
+const Label = styled.span`
+	font-size: 1.7rem;
+	margin-right: 8vw;
+	vertical-align: middle;
 `;
 
 const ViewButton = withStyles({
@@ -27,19 +29,19 @@ const ViewButton = withStyles({
 		margin: '0 20px',
 
 		'&:hover': {
-			background: '#ECECEC',
+			background: '#ECECEC'
 		},
 
 		'& span, a': {
 			width: '100%',
 			lineHeight: 2.3,
 			color: '#707070',
-			fontSize: '1rem',
-		},
+			fontSize: '1rem'
+		}
 	},
 	label: {
-		textTransform: 'capitalize',
-	},
+		textTransform: 'capitalize'
+	}
 })(Button);
 
 const SimulationButton = withStyles({
@@ -51,19 +53,19 @@ const SimulationButton = withStyles({
 		fontWeight: 'bold',
 
 		'&:hover': {
-			background: '#488eff',
+			background: '#488eff'
 		},
 
 		'& span, a': {
 			width: '100%',
 			lineHeight: 2.3,
 			color: '#ECECEC',
-			fontSize: '1rem',
-		},
+			fontSize: '1rem'
+		}
 	},
 	label: {
-		textTransform: 'capitalize',
-	},
+		textTransform: 'capitalize'
+	}
 })(Button);
 
-export { TestsContainer, ViewButton, SimulationButton };
+export { TestsContainer, Row, Label, ViewButton, SimulationButton };

@@ -10,7 +10,7 @@ const StyledAutocomplete = withStyles({
 		'& input': {
 			height: '15px',
 			color: '#4d4d4d',
-			fontWeight: 'bold',
+			fontWeight: 'bold'
 		},
 
 		'& .MuiOutlinedInput-notchedOutline': {
@@ -25,9 +25,9 @@ const StyledAutocomplete = withStyles({
 			},
 
 			'& label': {
-				color: 'grey',
+				color: 'grey'
 			}
-		},
+		}
 	}
 })(Autocomplete);
 
