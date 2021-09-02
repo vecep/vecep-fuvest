@@ -1,11 +1,11 @@
 import React from 'react';
-import NotFoundContainer from './style';
+import { Container, Title, Message } from './style';
 
 const NotFound = () => (
-	<NotFoundContainer>
-		<h1>404</h1>
-		<span>Ops... não pudemos encontrar essa página.</span>
-	</NotFoundContainer>
+	<Container>
+		<Title>404</Title>
+		<Message>Ops... não pudemos encontrar essa página.</Message>
+	</Container>
 );
 
 export default NotFound;
