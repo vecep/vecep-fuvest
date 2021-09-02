@@ -2,43 +2,84 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import provas from '../../../Mock/provas.json';
 import TextField from '@material-ui/core/TextField';
+import {
+	TestsContainer,
+	Filter,
+	Sort,
+	Row,
+	Label,
+	SortButton,
+	ViewButton,
+	SimulationButton
+} from './styles';
 import { StyledAutocomplete } from '../../../components/utils/autocomplete/style';
-import { TestsContainer, Row, Label, ViewButton, SimulationButton } from './styles';
+import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 
 const Tests = () => {
 	const [selectedStage, setSelectedStage] = useState();
+	const [sortType, setSortType] = useState('desc');
 
-	const filteredProvas = provas.filter((p) =>
-		selectedStage != null ? p.stage === selectedStage : true
+	const filteredTests = provas.filter((p) => (selectedStage ? p.stage === selectedStage : true));
+
+	const orderedTests = filteredTests.sort((a, b) =>
+		sortType === 'desc' ? b.year - a.year : a.year - b.year
 	);
 
 	const renderProvas = () =>
-		filteredProvas.map((p) => (
+		orderedTests.map((p) => (
 			<Row key={p.id}>
 				<Label>
 					{p.year} - {p.stage}ª Fase
 				</Label>
 
 				<ViewButton>
-					<Link to="#">Visualizar Prova</Link>
+					<Link to="#" draggable={false}>
+						Visualizar Prova
+					</Link>
 				</ViewButton>
 
 				<SimulationButton>
-					<Link to="#">Fazer Simulado</Link>
+					<Link to="#" draggable={false}>
+						Fazer Simulado
+					</Link>
 				</SimulationButton>
 			</Row>
 		));
 
+	const renderSort = () => (
+		<Sort>
+			<SortButton
+				className="button"
+				onClick={() => setSortType('asc')}
+				selected={sortType === 'asc'}
+			>
+				<ArrowDropUpIcon />
+			</SortButton>
+			<SortButton
+				className="button"
+				onClick={() => setSortType('desc')}
+				selected={sortType === 'desc'}
+			>
+				<ArrowDropDownIcon />
+			</SortButton>
+		</Sort>
+	);
+
 	return (
 		<TestsContainer>
-			<StyledAutocomplete
-				options={[0, 1]}
-				getOptionLabel={(o) => o.toString()}
-				onChange={(_, value) => setSelectedStage(value)}
-				renderInput={(params) => (
-					<TextField {...params} label="Pesquise por fase..." variant="outlined" />
-				)}
-			/>
+			<Filter>
+				{renderSort()}
+				<StyledAutocomplete
+					className="filter"
+					options={[1, 2]}
+					getOptionLabel={(o) => `${o.toString()}ª Fase`}
+					onChange={(_, value) => setSelectedStage(value)}
+					renderInput={(params) => (
+						<TextField {...params} label="Pesquise por fase..." variant="outlined" />
+					)}
+				/>
+			</Filter>
 			{renderProvas()}
 		</TestsContainer>
 	);

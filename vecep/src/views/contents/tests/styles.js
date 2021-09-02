@@ -1,6 +1,7 @@
 import { withStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
 import styled from 'styled-components';
+import IconButton from '@material-ui/core/IconButton';
 
 const TestsContainer = styled.div`
 	a{
@@ -9,8 +10,28 @@ const TestsContainer = styled.div`
 	}
 `;
 
+const Filter = styled.div`
+	display: flex;
+	align-items: center;
+	
+	.filter {
+		width: 100%;
+	}
+`;
+
+const Sort = styled.div`
+	display: flex;
+	flex-direction: column;
+	margin-right: 15px;
+
+	.button {
+		width: 25px;
+		height: 25px;
+	}
+`;
+
 const Row = styled.div`
-	margin-bottom: 20px;
+	margin: 25px 0 25px 0;
 `;
 
 const Label = styled.span`
@@ -18,6 +39,15 @@ const Label = styled.span`
 	margin-right: 8vw;
 	vertical-align: middle;
 `;
+
+const SortButton = withStyles({
+	root: {
+		width: 25,
+		height: 25,
+
+		color: props => props.selected && '#48A7FF'
+	}
+})(IconButton);
 
 const ViewButton = withStyles({
 	root: {
@@ -34,7 +64,7 @@ const ViewButton = withStyles({
 
 		'& span, a': {
 			width: '100%',
-			lineHeight: 2.3,
+			lineHeight: 2,
 			color: '#707070',
 			fontSize: '1rem'
 		}
@@ -58,7 +88,7 @@ const SimulationButton = withStyles({
 
 		'& span, a': {
 			width: '100%',
-			lineHeight: 2.3,
+			lineHeight: 2,
 			color: '#ECECEC',
 			fontSize: '1rem'
 		}
@@ -68,4 +98,4 @@ const SimulationButton = withStyles({
 	}
 })(Button);
 
-export { TestsContainer, Row, Label, ViewButton, SimulationButton };
+export { TestsContainer, Filter, Sort, Row, Label, SortButton, ViewButton, SimulationButton };
