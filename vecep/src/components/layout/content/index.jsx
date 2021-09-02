@@ -1,10 +1,10 @@
 import ContentContainer from './styles.js';
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import Exercises from '../../../views/contents/exercises/Exercises';
-import Home from '../../../views/contents/home/Home';
+import Exercises from '../../../views/contents/exercises/';
+import Home from '../../../views/contents/home/';
 import Tests from '../../../views/contents/tests/';
-import NotFound from '../../../views/contents/not-found/NotFound';
+import NotFound from '../../../views/contents/not-found/';
 
 const Content = () => (
 	<ContentContainer>
