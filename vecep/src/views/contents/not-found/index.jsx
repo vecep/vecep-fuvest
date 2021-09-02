@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Title, Message } from './style';
+import { Container, Title, Message } from './styles';
 
 const NotFound = () => (
 	<Container>

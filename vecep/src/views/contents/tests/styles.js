@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import IconButton from '@material-ui/core/IconButton';
 
 const TestsContainer = styled.div`
-	a{
+	a {
 		text-decoration: none;
 		color: black;
 	}
@@ -13,7 +13,7 @@ const TestsContainer = styled.div`
 const Filter = styled.div`
 	display: flex;
 	align-items: center;
-	
+
 	.filter {
 		width: 100%;
 	}
@@ -45,7 +45,7 @@ const SortButton = withStyles({
 		width: 25,
 		height: 25,
 
-		color: props => props.selected && '#48A7FF'
+		color: (props) => props.selected && '#48A7FF'
 	}
 })(IconButton);
 
