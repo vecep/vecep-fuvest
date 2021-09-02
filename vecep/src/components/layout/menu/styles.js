@@ -9,6 +9,7 @@ const Navbar = styled.nav`
 	background-color: #ececec;
 	top: 0;
 	width: 100%;
+	margin-bottom: 45px;
 
 	& > a {
 		margin-left: 100px;
@@ -30,7 +31,7 @@ const DropdownContent = styled.div`
 	display: none;
 	position: absolute;
 	background: #f1f1f1;
-	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 	min-width: 120px;
 	z-index: 3;
 	text-align: center;

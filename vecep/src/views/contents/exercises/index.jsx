@@ -2,13 +2,8 @@ import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Card from '../../../components/card';
 import TextField from '@material-ui/core/TextField';
-import {
-	ExercisesContainer,
-	Header,
-	FilterContainer,
-	SubjectTitle,
-	StyledAutocomplete
-} from './styles';
+import { ExercisesContainer, Header, FilterContainer, SubjectTitle } from './styles';
+import { StyledAutocomplete } from '../../../components/utils/autocomplete/style';
 import { normalizeWord } from '../../../utils/normalizeWord';
 
 import alternativas from '../../../Mock/alternativas.json';
