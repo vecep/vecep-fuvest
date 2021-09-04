@@ -1,0 +1,35 @@
+{
+	"env": {
+		"browser": true,
+		"es2021": true
+	},
+	"extends": ["eslint:recommended", "plugin:react/recommended"],
+	"parserOptions": {
+		"ecmaFeatures": {
+			"jsx": true
+		},
+		"ecmaVersion": 12,
+		"sourceType": "module"
+	},
+	"plugins": ["react"],
+	"rules": {
+		"indent": ["error", "tab"],
+		"linebreak-style": ["error", "unix"],
+		"quotes": ["error", "single"],
+		"semi": ["error", "always"],
+		"eol-last": ["error", "always"],
+		"no-trailing-spaces": [
+			"error",
+			{
+				"skipBlankLines": false,
+				"ignoreComments": false
+			}
+		],
+		"no-multiple-empty-lines": ["error", { "max": 1 }],
+		"max-len": ["error", { "code": 100, "tabWidth": 2 }],
+		"comma-dangle": ["error", "never"],
+		"object-curly-spacing": ["error", "always"],
+		"array-bracket-spacing": ["error", "never"],
+		"computed-property-spacing": ["error", "never"]
+	}
+}

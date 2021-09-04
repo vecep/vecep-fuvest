@@ -1,0 +1,32 @@
+[
+	{
+		"id": 1,
+		"text": "necessidade de leis de proteção para todos que trabalham.",
+		"correct_answer": false,
+		"question_id": 1
+	},
+	{
+		"id": 2,
+		"text": "existência de desigualdade entre homens e mulheres no mercado de trabalho.",
+		"correct_answer": true,
+		"question_id": 1
+	},
+	{
+		"id": 3,
+		"text": "permanência de preconceito racial na contratação de mulheres para determinadas profissões.",
+		"correct_answer": false,
+		"question_id": 1
+	},
+	{
+		"id": 4,
+		"text": "importância de campanhas dirigidas para a mulher trabalhadora.",
+		"correct_answer": false,
+		"question_id": 1
+	},
+	{
+		"id": 5,
+		"text": "discriminação de gênero que se manifesta na própria linguagem.",
+		"correct_answer": false,
+		"question_id": 1
+	}
+]
