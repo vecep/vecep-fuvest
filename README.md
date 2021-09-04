@@ -45,7 +45,7 @@ In order to contribute to Vecep - Fuvest, make sure you'll stick to the followin
 
 ## 🤝 Contributors
 
-Hey, check our Github!
+Hey, check out our Github!
 
 <table>
   <tr>
