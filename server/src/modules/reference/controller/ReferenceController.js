@@ -1,50 +1,60 @@
-const db = require('../../../database/connection');
+const service = require('../service/ReferenceService');
 
-exports.post = (req, res) => {
+exports.post = async (req, res, next) => {
   const reference = req.body;
 
-  db.insert(reference).table("reference")
-    .then(([id]) =>
-      res.status(200).json({ id, ...reference })
-    )
-    .catch((err) => console.log(err));
+  try {
+    await service.post(reference);
+    res.status(200).send();
+    next();
+  } catch (err) {
+    res.status(500) && next(err);
+  }
 }
 
-exports.get = (_, res) => {
-  db.select('*').table('reference')
-    .then((data) => {
-      res.status(200).json({ data })
-    })
-    .catch((err) => console.log(err));
+exports.get = async (_, res, next) => {
+  try {
+    const data = await service.get();
+    res.status(200).json(data)
+    next();
+  } catch (err) {
+    res.status(500) && next(err);
+  }
 }
 
-exports.getOneById = (req, res) => {
+exports.getOneById = async (req, res, next) => {
   const { id } = req.params;
 
-  db.select('*').table('reference').where({ id })
-    .then(([data]) => {
-      res.status(200).json({ ...data })
-    })
-    .catch((err) => console.log(err));
+  try {
+    const data = await service.getOneById(id);
+    res.status(200).json(data)
+    next();
+  } catch (err) {
+    res.status(500) && next(err);
+  }
 }
 
-exports.put = (req, res) => {
-  const { text, author, source, image_path } = req.body;
+exports.put = async (req, res, next) => {
+  const data = req.body;
   const { id } = req.params;
 
-  db.update({ id, text, author, source, image_path }).table('reference').where({ id })
-    .then(() => {
-      res.status(200).json({ message: 'Referência atualizada com sucesso!' })
-    })
-    .catch((err) => console.log(err));
+  try {
+    await service.put(id, data);
+    res.status(200).send();
+    next();
+  } catch (err) {
+    res.status(500) && next(err);
+  }
 }
 
-exports.delete = (req, res) => {
+exports.delete = async (req, res, next) => {
   const { id } = req.params;
 
-  db.delete().table("reference").where({ id })
-    .then(() => {
-      res.status(204).json({ message: "Referência excluída com sucesso!" })
-    })
-    .catch((err) => console.log(err));
+  try {
+    await service.delete(id);
+    res.status(204).send();
+    next();
+  } catch (err) {
+    res.status(500) && next(err);
+  }
 }
