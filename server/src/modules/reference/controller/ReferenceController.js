@@ -23,7 +23,7 @@ exports.getOneById = (req, res) => {
 
   db.select('*').table('reference').where({ id })
     .then(([data]) => {
-      res.status(200).json({ data })
+      res.status(200).json({ ...data })
     })
     .catch((err) => console.log(err));
 }
