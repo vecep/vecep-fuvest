@@ -4,8 +4,8 @@ exports.post = (req, res) => {
   const reference = req.body;
 
   db.insert(reference).table("reference")
-    .then(() =>
-      res.status(200).json({ reference })
+    .then(([id]) =>
+      res.status(200).json({ id, ...reference })
     )
     .catch((err) => console.log(err));
 }

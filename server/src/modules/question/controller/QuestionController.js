@@ -1,17 +1,17 @@
 const db = require('../../../database/connection');
 
 exports.post = (req, res) => {
-  const test = req.body;
+  const question = req.body;
 
-  db.insert(test).table("test")
+  db.insert(question).table("question")
     .then(([id]) => {
-      res.status(200).json({ id, ...test })
+      res.status(200).json({ id, ...question })
     })
     .catch((err) => console.log(err));
 }
 
 exports.get = (_, res) => {
-  db.select('*').table('test')
+  db.select('*').table('question')
     .then((data) => {
       res.status(200).json({ data })
     })
@@ -21,7 +21,7 @@ exports.get = (_, res) => {
 exports.getOneById = (req, res) => {
   const { id } = req.params;
 
-  db.select('*').table('test').where({ id })
+  db.select('*').table('question').where({ id })
     .then(([data]) => {
       res.status(200).json({ data })
     })
@@ -29,12 +29,12 @@ exports.getOneById = (req, res) => {
 }
 
 exports.put = (req, res) => {
-  const { year, stage } = req.body;
+  const { text, subject, topic, test_id } = req.body;
   const { id } = req.params;
 
-  db.update({ id, year, stage }).table('test').where({ id })
+  db.update({ id, text, subject, topic, test_id }).table('question').where({ id })
     .then(() => {
-      res.status(200).json({ message: 'Prova atualizada com sucesso!' })
+      res.status(200).json({ message: 'Questão atualizada com sucesso!' })
     })
     .catch((err) => console.log(err));
 }
@@ -42,9 +42,9 @@ exports.put = (req, res) => {
 exports.delete = (req, res) => {
   const { id } = req.params;
 
-  db.delete().table("test").where({ id })
+  db.delete().table("question").where({ id })
     .then(() => {
-      res.status(204).json({ message: "Prova excluída com sucesso!" })
+      res.status(204).json({ message: "Questão excluída com sucesso!" })
     })
     .catch((err) => console.log(err));
 }
