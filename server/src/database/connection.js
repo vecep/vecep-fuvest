@@ -1,11 +1,16 @@
-var knex = require('knex')({
-  client: 'mysql2',
-  connection: {
-      host : 'localhost',
-      user : 'root',
-      password : 'password',
-      database : 'vecep'
-   }
+import { createConnection } from 'mysql2';
+import dbConfig from './db.config.js';
+
+const connection = createConnection({
+   host: dbConfig.HOST,
+   user: dbConfig.USER,
+   password: dbConfig.PASSWORD,
+   database: dbConfig.DB
 });
 
-module.exports = knex;
+connection.connect(err => {
+   if (err) throw err;
+   console.log('Successfully connected to the database.');
+})
+
+export default connection;
