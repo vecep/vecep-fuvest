@@ -1,6 +1,6 @@
-const model = require('../model/TestModel');
+import * as model from '../model/TestModel.js';
 
-exports.post = async test => {
+export const post = async test => {
   try {
     await model.post(test);
   } catch (err) {
@@ -8,7 +8,7 @@ exports.post = async test => {
   }
 }
 
-exports.get = async () => {
+export const get = async () => {
   try {
     return await model.get();
   } catch (err) {
@@ -16,7 +16,7 @@ exports.get = async () => {
   }
 }
 
-exports.getOneById = async id => {
+export const getOneById = async id => {
   try {
     return await model.getOneById(id);
   } catch (err) {
@@ -24,7 +24,7 @@ exports.getOneById = async id => {
   }
 }
 
-exports.put = async (id, data) => {
+export const put = async (id, data) => {
   try {
     await model.put(id, data);
   } catch (err) {
@@ -32,9 +32,9 @@ exports.put = async (id, data) => {
   }
 }
 
-exports.delete = async id => {
+export const destroy = async id => {
   try {
-    await model.delete(id);
+    await model.destroy(id);
   } catch (err) {
     throw new Error(err.message);
   }

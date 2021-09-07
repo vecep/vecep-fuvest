@@ -1,6 +1,7 @@
-const service = require('../service/TestService');
+import * as service from '../service/TestService.js';
 
-exports.post = async (req, res, next) => {
+
+export const post = async (req, res, next) => {
   const test = req.body;
 
   try {
@@ -12,7 +13,7 @@ exports.post = async (req, res, next) => {
   }
 }
 
-exports.get = async (_, res, next) => {
+export const get = async (_, res, next) => {
   try {
     const data = await service.get();
     res.status(200).json(data)
@@ -22,7 +23,7 @@ exports.get = async (_, res, next) => {
   }
 }
 
-exports.getOneById = async (req, res, next) => {
+export const getOneById = async (req, res, next) => {
   const { id } = req.params;
 
   try {
@@ -34,7 +35,7 @@ exports.getOneById = async (req, res, next) => {
   }
 }
 
-exports.put = async (req, res, next) => {
+export const put = async (req, res, next) => {
   const data = req.body;
   const { id } = req.params;
 
@@ -47,11 +48,11 @@ exports.put = async (req, res, next) => {
   }
 }
 
-exports.delete = async (req, res, next) => {
+export const destroy = async (req, res, next) => {
   const { id } = req.params;
 
   try {
-    await service.delete(id);
+    await service.destroy(id);
     res.status(204).send();
     next();
   } catch (err) {

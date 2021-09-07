@@ -1,16 +1,35 @@
-const db = require('../../../database/connection');
+import db from '../../../database/connection.js';
 
-exports.post = test =>
-  db.insert(test).table('test');
+export const post = async (test) => {
+  const sql = 'INSERT INTO test (year, stage) VALUES (?, ?)';
+  const { year, stage } = test;
 
-exports.get = () =>
-  db.select('*').table('test');
+  return db.promise().query(sql, [year, stage]);
+}
 
-exports.getOneById = id =>
-  db.select('*').table('test').where({ id });
+export const get = async () => {
+  const sql = 'SELECT * FROM test';
+  const [rows] = await db.promise().query(sql);
 
-exports.put = (id, data) =>
-  db.update({ id, ...data }).table('test').where({ id });
+  return rows;
+}
 
-exports.delete = id =>
-  db.delete().table('test').where({ id });
+export const getOneById = async id => {
+  const sql = 'SELECT * FROM test WHERE id = ?';
+  const [row] = await db.promise().query(sql, id);
+
+  return row;
+}
+
+export const put = async (id, data) => {
+  const sql = 'UPDATE test SET year = ?, stage = ? WHERE id = ?';
+  const { year, stage } = data;
+
+  return db.promise().query(sql, [year, stage, id]);
+}
+
+export const destroy = async id => {
+  const sql = 'DELETE FROM test WHERE id = ?';
+
+  return db.promise().query(sql, id);
+}
