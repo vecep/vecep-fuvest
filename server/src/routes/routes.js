@@ -4,6 +4,7 @@ const TestController = require('../modules/test/controller/TestController');
 const ReferenceController = require('../modules/reference/controller/ReferenceController');
 const QuestionController = require('../modules/question/controller/QuestionController');
 const OptionController = require('../modules/option/controller/OptionController');
+const ExerciseController = require('../modules/exercise/controller/ExerciseController');
 
 router.post('/api/test', TestController.post);
 router.get('/api/tests', TestController.get);
@@ -28,5 +29,9 @@ router.get('/api/options', OptionController.get);
 router.get('/api/option/:id', OptionController.getOneById);
 router.put('/api/option/:id', OptionController.put);
 router.delete('/api/option/:id', OptionController.delete);
+
+router.post('/api/exercise', ExerciseController.post);
+router.get('/api/exercises', ExerciseController.get);
+router.delete('/api/exercise/:id', ExerciseController.delete);
 
 module.exports = router;
