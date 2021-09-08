@@ -3,7 +3,7 @@ const router = express.Router();
 import * as TestController from '../modules/test/controller/TestController.js';
 import * as ReferenceController from '../modules/reference/controller/ReferenceController.js';
 import * as QuestionController from '../modules/question/controller/QuestionController.js';
-// const OptionController = require('../modules/option/controller/OptionController');
+import * as OptionController from '../modules/option/controller/OptionController.js';
 // const ExerciseController = require('../modules/exercise/controller/ExerciseController');
 
 router.post('/api/test', TestController.post);
@@ -24,11 +24,11 @@ router.get('/api/question/:id', QuestionController.getOneById);
 router.put('/api/question/:id', QuestionController.put);
 router.delete('/api/question/:id', QuestionController.destroy);
 
-// router.post('/api/option', OptionController.post);
-// router.get('/api/options', OptionController.get);
-// router.get('/api/option/:id', OptionController.getOneById);
-// router.put('/api/option/:id', OptionController.put);
-// router.delete('/api/option/:id', OptionController.delete);
+router.post('/api/option', OptionController.post);
+router.get('/api/options', OptionController.get);
+router.get('/api/option/:id', OptionController.getOneById);
+router.put('/api/option/:id', OptionController.put);
+router.delete('/api/option/:id', OptionController.destroy);
 
 // router.post('/api/exercise', ExerciseController.post);
 // router.get('/api/exercises', ExerciseController.get);
