@@ -1,16 +1,38 @@
-const db = require('../../../database/connection');
+import db from '../../../database/connection.js';
 
-exports.post = reference =>
-  db.insert(reference).table('reference');
+export const post = async (reference) => {
+  const sql = 'INSERT INTO reference (text, author, source, image_path) VALUES (?, ?, ?, ?)';
+  const { text, author, source, image_path } = reference;
 
-exports.get = () =>
-  db.select('*').table('reference');
+  return db.promise().query(sql, [text, author, source, image_path]);
+}
 
-exports.getOneById = id =>
-  db.select('*').table('reference').where({ id });
+export const get = async () => {
+  const sql = 'SELECT * FROM reference';
+  const [rows] = await db.promise().query(sql);
 
-exports.put = (id, data) =>
-  db.update({ id, ...data }).table('reference').where({ id });
+  return rows;
+}
 
-exports.delete = id =>
-  db.delete().table('reference').where({ id });
+export const getOneById = async id => {
+  const sql = 'SELECT * FROM reference WHERE id = ?';
+  const [row] = await db.promise().query(sql, id);
+
+  return row;
+}
+
+export const put = async (id, data) => {
+  const sql = `UPDATE reference SET
+    text = ?, author = ?, source = ?, image_path = ?
+    WHERE id = ?`;
+
+  const { text, author, source, image_path } = data;
+
+  return db.promise().query(sql, [text, author, source, image_path, id]);
+}
+
+export const destroy = async id => {
+  const sql = 'DELETE FROM reference WHERE id = ?';
+
+  return db.promise().query(sql, id);
+}
