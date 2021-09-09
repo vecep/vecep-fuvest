@@ -1,16 +1,38 @@
-const db = require('../../../database/connection');
+import db from '../../../database/connection.js';
 
-exports.post = option =>
-  db.insert(option).table('option');
+export const post = async (option) => {
+	const sql = `INSERT INTO \`option\` (text, correct_answer, question_id)
+  VALUES (?, ?, ?)`;
+	const { text, correct_answer, question_id } = option;
 
-exports.get = () =>
-  db.select('*').table('option');
+	return db.promise().query(sql, [text, correct_answer, question_id]);
+};
 
-exports.getOneById = id =>
-  db.select('*').table('option').where({ id });
+export const get = async () => {
+	const sql = 'SELECT * FROM `option`';
+	const [rows] = await db.promise().query(sql);
 
-exports.put = (id, data) =>
-  db.update({ id, ...data }).table('option').where({ id });
+	return rows;
+};
 
-exports.delete = id =>
-  db.delete().table('option').where({ id });
+export const getOneById = async (id) => {
+	const sql = 'SELECT * FROM `option` WHERE id = ?';
+	const [row] = await db.promise().query(sql, id);
+
+	return row;
+};
+
+export const put = async (id, data) => {
+	const sql = `UPDATE \`option\` SET
+  text = ?, correct_answer = ?, question_id = ?
+  WHERE id = ?`;
+	const { text, correct_answer, question_id } = data;
+
+	return db.promise().query(sql, [text, correct_answer, question_id, id]);
+};
+
+export const destroy = async (id) => {
+	const sql = 'DELETE FROM `option` WHERE id = ?';
+
+	return db.promise().query(sql, id);
+};

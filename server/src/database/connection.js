@@ -1,11 +1,12 @@
-var knex = require('knex')({
-  client: 'mysql2',
-  connection: {
-      host : 'localhost',
-      user : 'root',
-      password : 'password',
-      database : 'vecep'
-   }
-});
+import { createPool } from 'mysql2';
+import dbConfig from './db.config.js';
 
-module.exports = knex;
+export default connectionPool = createPool({
+	host: dbConfig.HOST,
+	user: dbConfig.USER,
+	password: dbConfig.PASSWORD,
+	database: dbConfig.DB,
+	waitForConnections: true,
+	connectionLimit: 10,
+	queueLimit: 0
+});
