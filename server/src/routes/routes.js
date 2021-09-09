@@ -1,10 +1,11 @@
 import express from 'express';
-const router = express.Router();
 import * as TestController from '../modules/test/controller/TestController.js';
 import * as ReferenceController from '../modules/reference/controller/ReferenceController.js';
 import * as QuestionController from '../modules/question/controller/QuestionController.js';
 import * as OptionController from '../modules/option/controller/OptionController.js';
 import * as ExerciseController from '../modules/exercise/controller/ExerciseController.js';
+
+const router = express.Router();
 
 router.post('/api/test', TestController.post);
 router.get('/api/tests', TestController.get);

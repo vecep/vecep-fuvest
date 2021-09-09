@@ -1,7 +1,7 @@
 import { createPool } from 'mysql2';
 import dbConfig from './db.config.js';
 
-const connection = createPool({
+export default connectionPool = createPool({
    host: dbConfig.HOST,
    user: dbConfig.USER,
    password: dbConfig.PASSWORD,
@@ -10,5 +10,3 @@ const connection = createPool({
    connectionLimit: 10,
    queueLimit: 0
 });
-
-export default connection;
