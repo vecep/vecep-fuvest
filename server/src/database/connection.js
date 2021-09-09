@@ -1,16 +1,14 @@
-import { createConnection } from 'mysql2';
+import { createPool } from 'mysql2';
 import dbConfig from './db.config.js';
 
-const connection = createConnection({
+const connection = createPool({
    host: dbConfig.HOST,
    user: dbConfig.USER,
    password: dbConfig.PASSWORD,
-   database: dbConfig.DB
+   database: dbConfig.DB,
+   waitForConnections: true,
+   connectionLimit: 10,
+   queueLimit: 0
 });
-
-connection.connect(err => {
-   if (err) throw err;
-   console.log('Successfully connected to the database.');
-})
 
 export default connection;

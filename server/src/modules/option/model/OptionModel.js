@@ -1,9 +1,9 @@
 import db from '../../../database/connection.js';
 
-export const post = async (test) => {
+export const post = async (option) => {
   const sql = `INSERT INTO \`option\` (text, correct_answer, question_id)
   VALUES (?, ?, ?)`;
-  const { text, correct_answer, question_id } = test;
+  const { text, correct_answer, question_id } = option;
 
   return db.promise().query(sql, [text, correct_answer, question_id]);
 }

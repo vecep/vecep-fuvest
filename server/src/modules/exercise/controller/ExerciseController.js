@@ -1,6 +1,6 @@
-const service = require('../service/ExerciseService');
+import * as service from '../service/ExerciseService.js';
 
-exports.post = async (req, res, next) => {
+export const post = async (req, res, next) => {
   const exercises = req.body;
 
   try {
@@ -12,7 +12,7 @@ exports.post = async (req, res, next) => {
   }
 }
 
-exports.get = async (_, res, next) => {
+export const get = async (_, res, next) => {
   try {
     const data = await service.get();
     res.status(200).json(data);
@@ -22,11 +22,11 @@ exports.get = async (_, res, next) => {
   }
 }
 
-exports.delete = async (req, res, next) => {
+export const destroy = async (req, res, next) => {
   const { id } = req.params;
 
   try {
-    await service.delete(id);
+    await service.destroy(id);
     res.status(204).send();
     next();
   } catch (err) {

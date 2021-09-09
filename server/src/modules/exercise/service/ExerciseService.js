@@ -1,6 +1,6 @@
-const model = require('../model/ExerciseModel');
+import * as model from '../model/ExerciseModel.js';
 
-exports.post = async exercises => {
+export const post = async exercises => {
   try {
     await model.post(exercises);
   } catch (err) {
@@ -8,9 +8,9 @@ exports.post = async exercises => {
   }
 }
 
-exports.get = async () => {
+export const get = async () => {
   try {
-    const [data] = await model.get();
+    const data = await model.get();
 
     const parsedData = data.map(d => {
       return ({
@@ -26,9 +26,9 @@ exports.get = async () => {
   }
 }
 
-exports.delete = async id => {
+export const destroy = async id => {
   try {
-    await model.delete(id);
+    await model.destroy(id);
   } catch (err) {
     throw new Error(err.message);
   }
