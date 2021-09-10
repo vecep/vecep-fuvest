@@ -20,7 +20,7 @@ The project is still under the development stage and its future updates will be 
 - [x] Project setup
 - [x] Frontend main pages
 - [x] Database structure
-- [ ] Backend core
+- [x] Backend core
 - [ ] Client/Server integration
 - [ ] Populate database
 - [ ] Carry out front
@@ -33,7 +33,6 @@ This project runs on:
 * [NodeJS](https://nodejs.org/en/about/)
 * [ExpressJS](https://expressjs.com/pt-br/)
 * [MySQL](https://www.mysql.com/why-mysql/)
-* [Knex](https://knexjs.org/)
 
 ## 📫 Contributing **(currently restricted)**
 In order to contribute to Vecep - Fuvest, make sure you'll stick to the following steps:
