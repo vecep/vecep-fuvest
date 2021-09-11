@@ -70,6 +70,8 @@ export const get = async () => {
     GROUP BY q.id;
   `;
 
+	await db.promise().execute('SET SESSION group_concat_max_len = 60000');
+
 	const [data] = await db.promise().query(sql);
 
 	return data;
