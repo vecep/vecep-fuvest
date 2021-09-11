@@ -1,63 +1,66 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Card from '../../../components/card';
 import TextField from '@material-ui/core/TextField';
 import { ExercisesContainer, Header, FilterContainer, SubjectTitle } from './styles';
 import { StyledAutocomplete } from '../../../components/utils/autocomplete/style';
 import { normalizeWord } from '../../../utils/normalizeWord';
-
-import alternativas from '../../../Mock/alternativas.json';
-import exercicios from '../../../Mock/exercicios.json';
-import referencias from '../../../Mock/referencias.json';
-import referencias_exercicios from '../../../Mock/referencias-exercicios.json';
-import provas from '../../../Mock/provas.json';
+import Axios from 'axios';
 
 const Exercises = () => {
 	const location = useLocation();
 
+	const [exercises, setExercises] = useState([]);
 	const [selectedYear, setSelectedYear] = useState();
 	const [selectedTopic, setSelectedTopic] = useState();
+	const [years, setYears] = useState([]);
+	const [filter, setFilter] = useState();
 
-	const filter = location.pathname.split('/').pop();
+	useEffect(async () => {
+		const { data: exercises } = await Axios.get('http://localhost:3001/api/exercises');
+		const { data: tests } = await Axios.get('http://localhost:3001/api/tests');
 
-	const filteredQuestions = exercicios.filter(({ subject, topic, test_id }) => {
-		const { year: questionTestYear } = provas.find(({ id }) => id === test_id);
+		const distinctYears = [...new Set(tests.map(t => t.year))];
 
-		const filterBySubject = filter === normalizeWord(subject) || filter === 'exercicios';
+		setExercises(exercises);
+		setYears(distinctYears);
+	}, []);
+
+	useEffect(() => {
+		const filter = location.pathname.split('/').pop();
+		setFilter(filter);
+	}, [location]);
+
+	const filteredExercises = exercises.filter(exercise => {
+		const { test, question } = exercise;
+
+		const filterBySubject = filter === normalizeWord(question.subject) || filter === 'exercicios';
 		const filterByTopic = selectedTopic
-			? topic.toLowerCase() === selectedTopic.toLowerCase()
+			? question.topic.toLowerCase() === selectedTopic.toLowerCase()
 			: true;
-		const filterByYear = selectedYear ? questionTestYear === selectedYear : true;
+		const filterByYear = selectedYear ? test.year === selectedYear : true;
 
 		return filterBySubject && filterByTopic && filterByYear;
 	});
 
-	const distinctSubjects = [...new Set(filteredQuestions.map((fq) => fq.subject))];
-	const distinctTopics = [...new Set(exercicios.map((e) => e.topic))];
-	const distinctYears = [...new Set(provas.map((t) => t.year))];
+	const distinctSubjects = [...new Set(filteredExercises.map((fe) => fe.question.subject))];
+	const distinctTopics = [...new Set(exercises.map((e) => e.question.topic))];
 
 	const subjectTitle = distinctSubjects.some((c) => c !== distinctSubjects[0])
 		? 'Geral'
 		: distinctSubjects.shift();
 
 	const renderCards = () =>
-		filteredQuestions.map((question) => {
-			const test = provas.find((p) => p.id === question.test_id);
-			const question_references = referencias_exercicios.filter(
-				(qr) => qr.question_id === question.id
-			);
-			const references = question_references.map((qr) =>
-				referencias.find((r) => r.id === qr.reference_id)
-			);
-			const options = alternativas.filter((a) => a.question_id === question.id);
+		filteredExercises.map((exercise) => {
+			const { test, question, options, references } = exercise;
 
 			return (
 				<Card
 					question={question}
 					options={options}
 					references={references}
-					key={question.id}
 					test={test}
+					key={question.id}
 				/>
 			);
 		});
@@ -78,7 +81,7 @@ const Exercises = () => {
 					/>
 					<StyledAutocomplete
 						className="year-filter"
-						options={distinctYears}
+						options={years}
 						getOptionLabel={(o) => o.toString()}
 						onChange={(_, value) => setSelectedYear(value)}
 						renderInput={(params) => <TextField {...params} label="Ano" variant="outlined" />}
