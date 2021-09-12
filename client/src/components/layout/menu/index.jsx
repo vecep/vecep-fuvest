@@ -1,30 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, DropdownContainer, DropdownItem, DropdownContent } from './styles';
 import { normalizeWord } from '../../../utils/normalizeWord';
+import { AppContext } from '../../../contexts/store';
 import './styles.js';
 
-// mocked database select
-// SELECT DISTINCT subject FROM questions
-const mocked_subjects = [
-	'Biologia',
-	'Conhecimentos Gerais',
-	'Física',
-	'Geografia',
-	'História',
-	'Inglês',
-	'Língua Portuguesa',
-	'Matemática',
-	'Química'
-].sort();
-
-// SELECT DISTINCT year FROM test
-const mocked_years = ['2020', '2019', '2018', '2017', '2016', '2015'];
-
 const Menu = () => {
+	const { contextYears } = useContext(AppContext);
+	const { contextSubjects } = useContext(AppContext);
+
 	const renderDropdownItems = (items, root_path) => {
 		return items.map((i) => (
-			<Link to={`${root_path}/${normalizeWord(i.toLowerCase())}`} key={i} draggable="false">
+			<Link
+				to={`${root_path}/${normalizeWord(i.toString().toLowerCase())}`}
+				key={i}
+				draggable="false"
+			>
 				{i}
 			</Link>
 		));
@@ -42,7 +33,7 @@ const Menu = () => {
 						Exercícios
 					</Link>
 
-					<DropdownContent>{renderDropdownItems(mocked_subjects, '/exercicios')}</DropdownContent>
+					<DropdownContent>{renderDropdownItems(contextSubjects, '/exercicios')}</DropdownContent>
 				</DropdownItem>
 
 				<DropdownItem>
@@ -50,7 +41,7 @@ const Menu = () => {
 						Provas
 					</Link>
 
-					<DropdownContent>{renderDropdownItems(mocked_years, '/provas')}</DropdownContent>
+					<DropdownContent>{renderDropdownItems(contextYears, '/provas')}</DropdownContent>
 				</DropdownItem>
 
 				<DropdownItem>
@@ -62,4 +53,5 @@ const Menu = () => {
 		</Navbar>
 	);
 };
+
 export default Menu;

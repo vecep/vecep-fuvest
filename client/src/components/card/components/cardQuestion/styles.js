@@ -6,6 +6,7 @@ const QuestionContainer = styled.div`
 	overflow-wrap: break-word;
 	height: 100%;
 	margin-right: 35px;
+	width: fit-content;
 `;
 
 const Text = styled.p`

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { QuestionContainer, Text, OptionsContainer, Option, Label } from './styles';
 
 const CardQuestion = ({ text, options, selectedAnswer, setSelectedAnswer, answered }) => {
-	const correctAnswer = options.find((o) => o.correct_answer === true);
+	const correctAnswer = options.find((o) => o.correct_answer === 1);
 
 	const answerColor = (option) => {
 		if (option.id === correctAnswer.id) {

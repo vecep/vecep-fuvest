@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import provas from '../../../Mock/provas.json';
 import TextField from '@material-ui/core/TextField';
 import {
 	TestsContainer,
@@ -15,12 +14,20 @@ import {
 import { StyledAutocomplete } from '../../../components/utils/autocomplete/style';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import Axios from 'axios';
 
 const Tests = () => {
+	const [tests, setTests] = useState([]);
 	const [selectedStage, setSelectedStage] = useState();
 	const [sortType, setSortType] = useState('desc');
 
-	const filteredTests = provas.filter((p) => (selectedStage ? p.stage === selectedStage : true));
+	useEffect(async () => {
+		const { data: tests } = await Axios.get('http://localhost:3001/api/tests');
+
+		setTests(tests);
+	}, []);
+
+	const filteredTests = tests.filter((p) => (selectedStage ? p.stage === selectedStage : true));
 
 	const orderedTests = filteredTests.sort((a, b) =>
 		sortType === 'desc' ? b.year - a.year : a.year - b.year

@@ -1,63 +1,80 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import Card from '../../../components/card';
 import TextField from '@material-ui/core/TextField';
 import { ExercisesContainer, Header, FilterContainer, SubjectTitle } from './styles';
 import { StyledAutocomplete } from '../../../components/utils/autocomplete/style';
 import { normalizeWord } from '../../../utils/normalizeWord';
-
-import alternativas from '../../../Mock/alternativas.json';
-import exercicios from '../../../Mock/exercicios.json';
-import referencias from '../../../Mock/referencias.json';
-import referencias_exercicios from '../../../Mock/referencias-exercicios.json';
-import provas from '../../../Mock/provas.json';
+import { AppContext } from '../../../contexts/store';
+import Axios from 'axios';
 
 const Exercises = () => {
 	const location = useLocation();
 
+	const { contextYears } = useContext(AppContext);
+
+	const [exercises, setExercises] = useState([]);
 	const [selectedYear, setSelectedYear] = useState();
 	const [selectedTopic, setSelectedTopic] = useState();
+	const [filter, setFilter] = useState();
+	const [filteredTopics, setFilteredTopics] = useState();
+	const [subjectTitle, setSubjectTitle] = useState();
+	const [filteredExercises, setFilteredExercises] = useState([]);
 
-	const filter = location.pathname.split('/').pop();
+	useEffect(async () => {
+		const { data: exercises } = await Axios.get('http://localhost:3001/api/exercises');
 
-	const filteredQuestions = exercicios.filter(({ subject, topic, test_id }) => {
-		const { year: questionTestYear } = provas.find(({ id }) => id === test_id);
+		setExercises(exercises);
+		setFilteredExercises(exercises);
+	}, []);
 
-		const filterBySubject = filter === normalizeWord(subject) || filter === 'exercicios';
-		const filterByTopic = selectedTopic
-			? topic.toLowerCase() === selectedTopic.toLowerCase()
-			: true;
-		const filterByYear = selectedYear ? questionTestYear === selectedYear : true;
+	useEffect(() => {
+		const filter = location.pathname.split('/').pop();
+		setFilter(filter);
+	}, [location]);
 
-		return filterBySubject && filterByTopic && filterByYear;
-	});
+	useEffect(() => {
+		const filteredExercises = exercises.filter(exercise => {
+			const { test, question } = exercise;
 
-	const distinctSubjects = [...new Set(filteredQuestions.map((fq) => fq.subject))];
-	const distinctTopics = [...new Set(exercicios.map((e) => e.topic))];
-	const distinctYears = [...new Set(provas.map((t) => t.year))];
+			const filterBySubject = filter === normalizeWord(question.subject) || filter === 'exercicios';
+			const filterByTopic = selectedTopic
+				? question.topic.toLowerCase() === selectedTopic.toLowerCase()
+				: true;
+			const filterByYear = selectedYear ? test.year === selectedYear : true;
 
-	const subjectTitle = distinctSubjects.some((c) => c !== distinctSubjects[0])
-		? 'Geral'
-		: distinctSubjects.shift();
+			return filterBySubject && filterByTopic && filterByYear;
+		});
+
+		setFilteredExercises(filteredExercises);
+	}, [selectedYear, selectedTopic, filter]);
+
+	useEffect(() => {
+		const filteredSubjects = [...new Set(filteredExercises.map(fe => fe.question.subject))];
+		const subjectTitle = filteredSubjects.some((c) => c !== filteredSubjects[0])
+			? null
+			: filteredSubjects.shift();
+
+		const sameSubjectExercises = exercises.filter(e =>
+			subjectTitle ? e.question.subject === subjectTitle : true
+		);
+		const filteredTopics = [...new Set(sameSubjectExercises.map(e => e.question.topic))];
+
+		setFilteredTopics(filteredTopics);
+		setSubjectTitle(subjectTitle);
+	}, [filteredExercises]);
 
 	const renderCards = () =>
-		filteredQuestions.map((question) => {
-			const test = provas.find((p) => p.id === question.test_id);
-			const question_references = referencias_exercicios.filter(
-				(qr) => qr.question_id === question.id
-			);
-			const references = question_references.map((qr) =>
-				referencias.find((r) => r.id === qr.reference_id)
-			);
-			const options = alternativas.filter((a) => a.question_id === question.id);
+		filteredExercises.map((exercise) => {
+			const { test, question, options, references } = exercise;
 
 			return (
 				<Card
 					question={question}
 					options={options}
 					references={references}
-					key={question.id}
 					test={test}
+					key={question.id}
 				/>
 			);
 		});
@@ -65,12 +82,12 @@ const Exercises = () => {
 	return (
 		<ExercisesContainer>
 			<Header>
-				<SubjectTitle>{subjectTitle}</SubjectTitle>
+				<SubjectTitle>{subjectTitle || 'Geral'}</SubjectTitle>
 
 				<FilterContainer>
 					<StyledAutocomplete
 						className="topic-filter"
-						options={distinctTopics}
+						options={filteredTopics}
 						onChange={(_, value) => setSelectedTopic(value)}
 						renderInput={(params) => (
 							<TextField {...params} label="Pesquise por tema..." variant="outlined" />
@@ -78,7 +95,7 @@ const Exercises = () => {
 					/>
 					<StyledAutocomplete
 						className="year-filter"
-						options={distinctYears}
+						options={contextYears}
 						getOptionLabel={(o) => o.toString()}
 						onChange={(_, value) => setSelectedYear(value)}
 						renderInput={(params) => <TextField {...params} label="Ano" variant="outlined" />}
