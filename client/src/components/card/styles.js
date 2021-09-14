@@ -22,7 +22,7 @@ const Info = styled.span`
 const Content = styled.div`
 	display: flex;
 	justify-content: space-between;
-	background: #ececec;
+	background: #f0f0f0;
 	border-top: 40px solid transparent;
 	width: 65vw;
 	height: 50vh;
@@ -30,6 +30,7 @@ const Content = styled.div`
 	border-radius: 20px 20px 0 0;
 	box-sizing: border-box;
 	height: fit-content;
+	text-align: justify;
 `;
 
 const Footer = styled.div`
