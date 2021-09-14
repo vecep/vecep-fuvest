@@ -21,7 +21,6 @@ const Container = styled.div`
 	}
 
 	&::-webkit-scrollbar-track {
-		background: grey;
 		border-radius: 20px;
 	}
 `;

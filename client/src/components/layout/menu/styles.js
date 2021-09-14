@@ -2,14 +2,15 @@ import styled from 'styled-components';
 
 const Navbar = styled.nav`
 	display: flex;
-	position: relative;
-	height: 70px;
+	position: sticky;
+	height: 60px;
 	justify-content: space-between;
 	align-items: center;
-	background-color: #ececec;
+	background-color: #282727;
 	top: 0;
 	width: 100%;
 	margin-bottom: 45px;
+	z-index: 9999;
 
 	& > a {
 		margin-left: 100px;
@@ -17,8 +18,13 @@ const Navbar = styled.nav`
 
 	a {
 		text-decoration: none;
-		color: #1b4469;
-		font-size: 1.5rem;
+		color: white;
+		font-size: 1.3rem;
+		transition: color 0.5s;
+
+		&:hover {
+			color: #48a7ff;
+		}
 	}
 `;
 
@@ -33,7 +39,6 @@ const DropdownContent = styled.div`
 	background: #f1f1f1;
 	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 	min-width: 120px;
-	z-index: 3;
 	text-align: center;
 	border-radius: 10px;
 	left: 50%;

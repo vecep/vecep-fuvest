@@ -11,7 +11,6 @@ const QuestionContainer = styled.div`
 
 const Text = styled.p`
 	font-size: 0.5em;
-	font-weight: bold;
 	margin-bottom: 50px;
 `;
 

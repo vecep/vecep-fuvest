@@ -15,7 +15,7 @@ const AnswerButton = styled.button`
 	}
 
 	&:disabled {
-		background: #1b4469;
+		background: #282727;
 		border-radius: 0 0 20px 20px;
 		transition: 0.5s;
 
