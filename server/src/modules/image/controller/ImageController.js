@@ -1,10 +1,10 @@
 import * as service from '../service/ImageService.js';
 
 export const post = async (req, res, next) => {
-	const image = req.body;
+	const data = req.body;
 
 	try {
-		await service.post(image);
+		await service.post(data);
 		res.status(200).send();
 		next();
 	} catch (err) {

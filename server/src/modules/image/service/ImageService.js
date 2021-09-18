@@ -1,10 +1,19 @@
 import * as model from '../model/ImageModel.js';
+import cloudinary from '../../../../utils/cloudinary.js';
+import dotenv from 'dotenv';
 
-export const post = async (image) => {
+dotenv.config();
+
+export const post = async (data) => {
 	try {
-		await model.post(image);
+		const { description, image } = data;
+		const { secure_url: url } = await cloudinary.v2.uploader.upload(image, {
+			upload_preset: process.env.CLOUDINARY_UPLOAD_PRESET
+		});
+
+		await model.post({ description, image_path: url });
 	} catch (err) {
-		throw new Error(err.message);
+		throw new Error(err);
 	}
 };
 
