@@ -23,6 +23,7 @@
     "prettier": "^2.4.0"
   },
   "devDependencies": {
-    "eslint": "^7.32.0"
+    "eslint": "^7.32.0",
+    "ngrok": "^4.2.2"
   }
 }
