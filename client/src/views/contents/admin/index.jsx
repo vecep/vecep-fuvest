@@ -8,7 +8,6 @@ const Admin = () => {
 	const handleFileInputChange = e => {
 		const file = e.target.files[0];
 		setSelectedFile(file);
-		console.log(file);
 		setPreviewSource(URL.createObjectURL(file));
 	};
 
@@ -22,7 +21,7 @@ const Admin = () => {
 			uploadImage(reader.result);
 		};
 		reader.onerror = () => {
-			console.error('AHHHHHHHH!!');
+			console.error('Ocorreu um erro ao enviar a imagem.');
 		};
 	};
 
