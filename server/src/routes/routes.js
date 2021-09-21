@@ -4,6 +4,8 @@ import * as ReferenceController from '../modules/reference/controller/ReferenceC
 import * as QuestionController from '../modules/question/controller/QuestionController.js';
 import * as OptionController from '../modules/option/controller/OptionController.js';
 import * as ExerciseController from '../modules/exercise/controller/ExerciseController.js';
+import * as ImageController from '../modules/image/controller/ImageController.js';
+import * as CloudinaryController from '../modules/image/controller/CloudinaryController.js';
 
 const router = express.Router();
 
@@ -34,5 +36,13 @@ router.delete('/api/option/:id', OptionController.destroy);
 router.post('/api/exercise', ExerciseController.post);
 router.get('/api/exercises', ExerciseController.get);
 router.delete('/api/exercise/:id', ExerciseController.destroy);
+
+router.post('/api/image', ImageController.post);
+router.get('/api/images', ImageController.get);
+router.get('/api/image/:id', ImageController.getOneById);
+router.put('/api/image/:id', ImageController.put);
+router.delete('/api/image/:id', ImageController.destroy);
+
+router.post('/api/image/webhook', CloudinaryController.webhook);
 
 export default router;

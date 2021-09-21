@@ -4,6 +4,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import Exercises from '../../../views/contents/exercises/';
 import Home from '../../../views/contents/home/';
 import Tests from '../../../views/contents/tests/';
+import Admin from '../../../views/contents/admin/';
 import NotFound from '../../../views/contents/not-found/';
 
 const Content = () => (
@@ -20,6 +21,9 @@ const Content = () => (
 			</Route>
 			<Route path="/provas">
 				<Tests />
+			</Route>
+			<Route path="/admin">
+				<Admin />
 			</Route>
 			<Route path="*">
 				<NotFound />
