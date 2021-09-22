@@ -6,8 +6,8 @@ export const post = async (exercises) => {
 	const insertQuestion = 'INSERT INTO question (text, subject, topic, test_id) VALUES (?, ?, ?, ?)';
 	const insertReferenceQuestion =
 		'INSERT INTO reference_question (reference_id, question_id) VALUES (?, ?)';
-	const insertOption = `INSERT INTO \`option\` (text, correct_answer, question_id)
-  VALUES (?, ?, ?)`;
+	const insertOption = `INSERT INTO \`option\` (text, correct_answer, question_id, image_id)
+  VALUES (?, ?, ?, ?)`;
 
 	try {
 		await conn.beginTransaction();
