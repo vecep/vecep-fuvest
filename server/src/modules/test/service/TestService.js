@@ -2,7 +2,10 @@ import * as model from '../model/TestModel.js';
 
 export const post = async (test) => {
 	try {
-		await model.post(test);
+		const result = await model.post(test);
+		const { insertId } = result.shift();
+
+		return insertId;
 	} catch (err) {
 		throw new Error(err.message);
 	}

@@ -3,10 +3,13 @@ import * as cloudinaryService from '../service/CloudinaryService.js';
 
 export const post = async (data) => {
 	try {
-		const { description, image } = data;
+		const { description, file } = data;
 
-		const cloud_id = await cloudinaryService.post(image);
-		await model.post({ description, cloud_id });
+		const cloud_id = await cloudinaryService.post(file);
+		const result = await model.post({ description, cloud_id });
+		const { insertId } = result.shift();
+
+		return insertId;
 	} catch (err) {
 		throw new Error(err);
 	}
