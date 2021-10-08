@@ -3,12 +3,12 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 
 const StyledAutocomplete = withStyles({
 	root: {
-		backgroundColor: '#ECECEC',
-		borderRadius: '10px',
-		textAlign: 'center',
+		'& .MuiAutocomplete-inputRoot': {
+			backgroundColor: '#ECECEC',
+			borderRadius: '5px'
+		},
 
 		'& input': {
-			height: '15px',
 			color: '#4d4d4d',
 			fontWeight: 'bold'
 		},
@@ -17,16 +17,48 @@ const StyledAutocomplete = withStyles({
 			borderWidth: '0'
 		},
 
+		'& .Mui-error .MuiOutlinedInput-notchedOutline': {
+			borderWidth: '1px'
+		},
+
 		'&.Mui-focused': {
 			'& .MuiOutlinedInput-notchedOutline': {
 				borderWidth: '2px',
 				borderColor: '#bdbdbd',
-				borderRadius: '10px'
+				borderRadius: '5px'
 			},
 
 			'& label': {
 				color: 'grey'
 			}
+		}
+	},
+	paper: {
+		borderRadius: '5px',
+		padding: '10px 0',
+		minWidth: 'fit-content'
+	},
+	listbox: {
+		'& li:hover': {
+			color: 'white',
+			backgroundColor: '#48A7FF'
+		},
+
+		'&::-webkit-scrollbar': {
+			width: '7px'
+		},
+
+		'&::-webkit-scrollbar-thumb': {
+			background: '#b5b5b5',
+			borderRadius: '10px',
+
+			'&:hover': {
+				background: '#c5c5c5'
+			}
+		},
+
+		'&::-webkit-scrollbar-track': {
+			borderRadius: '20px'
 		}
 	}
 })(Autocomplete);
