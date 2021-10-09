@@ -17,7 +17,7 @@ const Exercises = () => {
 	const [selectedYear, setSelectedYear] = useState();
 	const [selectedTopic, setSelectedTopic] = useState();
 	const [filter, setFilter] = useState();
-	const [filteredTopics, setFilteredTopics] = useState();
+	const [filteredTopics, setFilteredTopics] = useState([]);
 	const [subjectTitle, setSubjectTitle] = useState();
 	const [filteredExercises, setFilteredExercises] = useState([]);
 

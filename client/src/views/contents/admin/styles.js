@@ -8,7 +8,7 @@ const Container = styled.div`
 
 const FormRow = styled.div`
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 50% auto;
   gap: ${props => props.large ? '3em' : '1em'};
 `;
 
