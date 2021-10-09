@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 import TextField from '../../../../../components/utils/textField';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
-import { FormRow, StyledButton } from '../../styles';
+import { FormRow } from '../../styles';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import IconButton from '@material-ui/core/IconButton';
+import Button from '../../../../../components/utils/button';
 
 const ImageSelect = ({ image, handleChange, index, disabled, showMessage }) => {
 	const [open, setOpen] = React.useState(false);
@@ -51,9 +52,9 @@ const ImageSelect = ({ image, handleChange, index, disabled, showMessage }) => {
 
 	return (
 		<div>
-			<StyledButton variant="outlined" color="primary" onClick={handleClickOpen}>
+			<Button variant="outlined" color="primary" onClick={handleClickOpen}>
 				Enviar imagem
-			</StyledButton>
+			</Button>
 			<Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
 				<DialogTitle id="form-dialog-title">Upload de imagem</DialogTitle>
 				<DialogContent>
@@ -88,21 +89,21 @@ const ImageSelect = ({ image, handleChange, index, disabled, showMessage }) => {
 							}
 						/>
 						<FormRow>
-							<StyledButton component="label" color="primary" disabled={disabled}>
+							<Button component="label" color="primary" disabled={disabled}>
 								<AddCircleOutlineIcon />
 								<input
 									type="file"
 									onChange={(e) => handleFileInputChange(e, image, index)}
 									hidden
 								/>
-							</StyledButton>
+							</Button>
 						</FormRow>
 					</FormRow>
 				</DialogContent>
 				<DialogActions>
-					<StyledButton onClick={handleClose} color="primary">
+					<Button onClick={handleClose} color="primary">
 						Ok
-					</StyledButton>
+					</Button>
 				</DialogActions>
 			</Dialog>
 			{image.file && (

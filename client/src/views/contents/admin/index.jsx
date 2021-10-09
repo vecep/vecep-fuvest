@@ -5,7 +5,8 @@ import QuestionSection from './components/questionSection';
 import OptionSection from './components/optionsSection';
 import { isEmpty } from 'lodash';
 import Popup from '../../../components/utils/popup';
-import { Container, FormRow, StyledButton } from './styles';
+import { Container, FormRow } from './styles';
+import Button from '../../../components/utils/button';
 import Axios from 'axios';
 
 const Admin = () => {
@@ -13,6 +14,7 @@ const Admin = () => {
 	const [question, setQuestion] = useState({});
 	const [options, setOptions] = useState([{}, {}, {}, {}, {}]);
 	const [references, setReferences] = useState([]);
+	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(false);
 	const [message, setMessage] = useState({
 		error: false,
@@ -50,6 +52,8 @@ const Admin = () => {
 
 	const handleSubmit = async () => {
 		try {
+			setLoading(true);
+
 			const exercise = JSON.stringify({
 				test,
 				references,
@@ -58,11 +62,9 @@ const Admin = () => {
 			});
 
 			if (validate(exercise)) {
-				const config = {
+				await Axios.post('http://localhost:3001/api/exercise', exercise, {
 					headers: { 'Content-Type': 'application/json' }
-				};
-				await Axios.post('http://localhost:3001/api/exercise', exercise, config);
-
+				});
 				setMessage({ ...message, success: true });
 			} else {
 				setMessage({ ...message, error: true });
@@ -70,6 +72,8 @@ const Admin = () => {
 			}
 		} catch (err) {
 			console.error(err);
+		} finally {
+			setLoading(false);
 		}
 	};
 
@@ -98,20 +102,12 @@ const Admin = () => {
 					<TestSection setTest={setTest} showMessage={error} />
 					<QuestionSection setQuestion={setQuestion} showMessage={error} />
 				</div>
-				<OptionSection
-					options={options}
-					setOptions={setOptions}
-					showMessage={error}
-				/>
+				<OptionSection options={options} setOptions={setOptions} showMessage={error} />
 			</FormRow>
-			<ReferenceSection
-				references={references}
-				setReferences={setReferences}
-				showMessage={error}
-			/>
-			<StyledButton onClick={handleSubmit} variant="contained" color="primary">
+			<ReferenceSection references={references} setReferences={setReferences} showMessage={error} />
+			<Button onClick={handleSubmit} variant="contained" color="primary" loading={loading}>
 				Enviar
-			</StyledButton>
+			</Button>
 		</>
 	);
 
