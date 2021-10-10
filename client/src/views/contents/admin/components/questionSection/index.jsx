@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import TextField from '../../../../../components/utils/textField';
 import Autocomplete from '../../../../../components/utils/autocomplete';
@@ -11,15 +11,7 @@ const AVAILABLE_SUBJECTS = [
 	'História', 'Física', 'Conhecimentos Gerais'
 ].sort();
 
-const QuestionSection = ({ setQuestion, showMessage }) => {
-	const [text, setText] = useState();
-	const [subject, setSubject] = useState();
-	const [topic, setTopic] = useState();
-
-	useEffect(() => {
-		setQuestion({ text, subject, topic });
-	}, [text, subject, topic]);
-
+const QuestionSection = ({ question, setQuestion, showMessage }) => {
 	return (
 		<div>
 			<FormHeader title="Questão" />
@@ -27,21 +19,21 @@ const QuestionSection = ({ setQuestion, showMessage }) => {
 				<FormRow>
 					<Autocomplete
 						options={AVAILABLE_SUBJECTS}
-						onChange={(_, value) => setSubject(value)}
+						onChange={(_, value) => setQuestion({ ...question, subject: value })}
 						label="Matéria"
-						value={subject || null}
+						value={question.subject || null}
 						disableClearable
 						required
-						error={showMessage && !subject}
-						helperText={(showMessage && !subject) ? 'Preencha o campo.' : ''}
+						error={showMessage && !question.subject}
+						helperText={(showMessage && !question.subject) ? 'Preencha o campo.' : ''}
 					/>
 					<TextField
 						required
 						label="Tema"
-						value={topic || ''}
-						onChange={e => setTopic(e.target.value)}
-						error={showMessage && !topic}
-						helperText={(showMessage && !topic) && 'Preencha o campo.'}
+						value={question.topic || ''}
+						onChange={e => setQuestion({ ...question, topic: e.target.value })}
+						error={showMessage && !question.topic}
+						helperText={(showMessage && !question.topic) && 'Preencha o campo.'}
 					/>
 				</FormRow>
 				<TextField
@@ -49,10 +41,10 @@ const QuestionSection = ({ setQuestion, showMessage }) => {
 					multiline
 					maxRows={5}
 					label="Texto"
-					value={text || ''}
-					onChange={e => setText(e.target.value)}
-					error={showMessage && !text}
-					helperText={(showMessage && !text) && 'Preencha o campo.'}
+					value={question.text || ''}
+					onChange={e => setQuestion({ ...question, text: e.target.value })}
+					error={showMessage && !question.text}
+					helperText={(showMessage && !question.text) && 'Preencha o campo.'}
 				/>
 			</FormColumn>
 		</div>
@@ -60,6 +52,7 @@ const QuestionSection = ({ setQuestion, showMessage }) => {
 };
 
 QuestionSection.propTypes = {
+	question: PropTypes.object.isRequired,
 	setQuestion: PropTypes.func.isRequired,
 	showMessage: PropTypes.bool.isRequired
 };

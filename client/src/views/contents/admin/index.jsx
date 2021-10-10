@@ -9,11 +9,33 @@ import { Container, FormRow } from './styles';
 import Button from '../../../components/utils/button';
 import Axios from 'axios';
 
+const INITIAL_EXERCISES = {
+	test: {
+		year: null,
+		stage: null
+	},
+	question: {
+		text: null,
+		subject: null,
+		topic: null
+	},
+	options: new Array(5).fill({
+		text: null,
+		correctAnswer: false,
+		image: {
+			preview: null,
+			file: null,
+			description: null
+		}
+	}),
+	references: []
+};
+
 const Admin = () => {
-	const [test, setTest] = useState({});
-	const [question, setQuestion] = useState({});
-	const [options, setOptions] = useState([{}, {}, {}, {}, {}]);
-	const [references, setReferences] = useState([]);
+	const [test, setTest] = useState(INITIAL_EXERCISES.test);
+	const [question, setQuestion] = useState(INITIAL_EXERCISES.question);
+	const [options, setOptions] = useState(INITIAL_EXERCISES.options);
+	const [references, setReferences] = useState(INITIAL_EXERCISES.references);
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(false);
 	const [message, setMessage] = useState({
@@ -50,6 +72,13 @@ const Admin = () => {
 		setMessage({ error: false, success: false });
 	};
 
+	const clearForm = () => {
+		setQuestion({ ...question, topic: undefined, text: undefined });
+		setOptions(INITIAL_EXERCISES.options);
+		setReferences(INITIAL_EXERCISES.references);
+		setError(false);
+	};
+
 	const handleSubmit = async () => {
 		try {
 			setLoading(true);
@@ -65,6 +94,8 @@ const Admin = () => {
 				await Axios.post('http://localhost:3001/api/exercise', exercise, {
 					headers: { 'Content-Type': 'application/json' }
 				});
+
+				clearForm();
 				setMessage({ ...message, success: true });
 			} else {
 				setMessage({ ...message, error: true });
@@ -99,8 +130,8 @@ const Admin = () => {
 		<>
 			<FormRow large>
 				<div>
-					<TestSection setTest={setTest} showMessage={error} />
-					<QuestionSection setQuestion={setQuestion} showMessage={error} />
+					<TestSection test={test} setTest={setTest} showMessage={error} />
+					<QuestionSection question={question} setQuestion={setQuestion} showMessage={error} />
 				</div>
 				<OptionSection options={options} setOptions={setOptions} showMessage={error} />
 			</FormRow>

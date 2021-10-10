@@ -1,12 +1,11 @@
 import * as model from '../model/OptionModel.js';
 import * as imageService from '../../image/service/ImageService.js';
-import { isEmpty } from 'lodash-es';
 
 export const post = async (option) => {
 	try {
 		const { image } = option;
 
-		const image_id = !isEmpty(image) ? await imageService.post(image) : null;
+		const image_id = image.file ? await imageService.post(image) : null;
 
 		await model.post({ ...option, image_id });
 	} catch (err) {

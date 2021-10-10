@@ -12,7 +12,6 @@ import FormHeader from '../formHeader';
 import { Header } from './styles';
 
 const ReferenceSection = ({ references, setReferences, showMessage }) => {
-
 	const handleChange = (value, index) => {
 		setReferences([...references.map((reference, idx) =>
 			idx === index ?
@@ -23,7 +22,6 @@ const ReferenceSection = ({ references, setReferences, showMessage }) => {
 
 	const handleClear = (index) => {
 		const clearedReferences = references.filter((_, i) => i !== index);
-		console.log(references, clearedReferences);
 		setReferences(clearedReferences);
 	};
 

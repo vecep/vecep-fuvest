@@ -4,7 +4,7 @@ import { Container, StyledButton, StyledProgress } from './styles';
 
 const Button = ({ loading, children, ...props }) =>
 	<Container>
-		<StyledButton {...props} disabled={loading}>
+		<StyledButton {...props} disabled={loading || props.disabled}>
 			{children}
 		</StyledButton>
 
@@ -18,6 +18,7 @@ const Button = ({ loading, children, ...props }) =>
 
 Button.propTypes = {
 	loading: PropTypes.bool,
+	disabled: PropTypes.bool,
 	children: PropTypes.any,
 	props: PropTypes.any
 };

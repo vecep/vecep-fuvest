@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Switch from '@material-ui/core/Switch';
 import ImageSelect from '../imageSelect';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { get, isNil } from 'lodash';
+import { isNil } from 'lodash';
 import TextField from '../../../../../components/utils/textField';
 import { FormRow, FormColumn } from '../../styles';
 import FormHeader from '../formHeader';
@@ -13,23 +13,6 @@ const OPTIONS_AMOUNT = 5;
 
 const OptionSection = ({ options, setOptions, showMessage }) => {
 	const [page, setPage] = useState(1);
-
-	useEffect(() => {
-		setOptions([
-			...options.map(
-				(_, idx) =>
-					options[idx] && {
-						text: null,
-						correctAnswer: false,
-						image: {
-							preview: undefined,
-							file: undefined,
-							description: undefined
-						}
-					}
-			)
-		]);
-	}, []);
 
 	const handleChange = (value, index) => {
 		setOptions([
@@ -61,7 +44,7 @@ const OptionSection = ({ options, setOptions, showMessage }) => {
 									rows={4}
 									label="Description"
 									onChange={(e) =>
-										handleChange({ image: { ...image, description: e.target.value } }, i)
+										handleChange({ ...option, image: { description: e.target.value } }, i)
 									}
 									value={image.description || ''}
 									error={showMessage && image.file && !image.description}
@@ -89,13 +72,15 @@ const OptionSection = ({ options, setOptions, showMessage }) => {
 								image={image}
 								handleChange={handleChange}
 								index={i}
-								disabled={get(option, 'text', '')}
+								disabled={!!option.text}
 								showMessage={showMessage}
 							/>
 							<Label
 								control={
 									<Switch
-										onChange={(e) => handleChange({ correctAnswer: e.target.checked }, i)}
+										onChange={(e) =>
+											handleChange({ correctAnswer: e.target.checked }, i)
+										}
 										disabled={options.some((o) => o.correctAnswer) && !option.correctAnswer}
 										checked={option.correctAnswer}
 									/>
@@ -118,11 +103,7 @@ const OptionSection = ({ options, setOptions, showMessage }) => {
 			/>
 			<FormColumn>
 				{renderOptions()}
-				<StyledPagination
-					count={OPTIONS_AMOUNT}
-					page={page}
-					onChange={handleChangePage}
-				/>
+				<StyledPagination count={OPTIONS_AMOUNT} page={page} onChange={handleChangePage} />
 			</FormColumn>
 		</div>
 	);
