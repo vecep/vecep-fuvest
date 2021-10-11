@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Switch from '@material-ui/core/Switch';
 import ImageSelect from '../imageSelect';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { isNil } from 'lodash';
 import TextField from '../../../../../components/utils/textField';
 import { FormRow, FormColumn } from '../../styles';
 import FormHeader from '../formHeader';
-import { Label, StyledPagination } from './styles';
+import { Label, StyledSwitch, StyledPagination } from './styles';
 
 const OPTIONS_AMOUNT = 5;
 
@@ -77,12 +76,13 @@ const OptionSection = ({ options, setOptions, showMessage }) => {
 							/>
 							<Label
 								control={
-									<Switch
+									<StyledSwitch
 										onChange={(e) =>
 											handleChange({ correctAnswer: e.target.checked }, i)
 										}
 										disabled={options.some((o) => o.correctAnswer) && !option.correctAnswer}
 										checked={option.correctAnswer}
+										color="primary"
 									/>
 								}
 								label="Resposta correta"
