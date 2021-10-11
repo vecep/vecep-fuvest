@@ -13,6 +13,10 @@ const Store = props => {
 	const [context, setContext] = useState(initialContext);
 
 	useEffect(async () => {
+		refreshContext();
+	}, []);
+
+	const refreshContext = async () => {
 		const { data: tests } = await Axios.get('http://localhost:3001/api/tests');
 		const { data: questions } = await Axios.get('http://localhost:3001/api/questions');
 
@@ -23,12 +27,13 @@ const Store = props => {
 			contextYears: distinctYears,
 			contextSubjects: distinctSubjects
 		});
-	}, []);
+	};
 
 	return (
 		<AppContext.Provider value={{
 			contextYears: context.contextYears,
-			contextSubjects: context.contextSubjects
+			contextSubjects: context.contextSubjects,
+			refreshContext: refreshContext
 		}}>
 			{props.children}
 		</AppContext.Provider>

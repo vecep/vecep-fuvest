@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import ReferenceSection from './components/referenceSection';
 import TestSection from './components/testSection';
 import QuestionSection from './components/questionSection';
@@ -7,6 +7,7 @@ import { isEmpty } from 'lodash';
 import Popup from '../../../components/utils/popup';
 import { Container, FormRow } from './styles';
 import Button from '../../../components/utils/button';
+import { AppContext } from '../../../contexts/store';
 import Axios from 'axios';
 
 const INITIAL_EXERCISES = {
@@ -32,6 +33,8 @@ const INITIAL_EXERCISES = {
 };
 
 const Admin = () => {
+	const { refreshContext } = useContext(AppContext);
+
 	const [test, setTest] = useState(INITIAL_EXERCISES.test);
 	const [question, setQuestion] = useState(INITIAL_EXERCISES.question);
 	const [options, setOptions] = useState(INITIAL_EXERCISES.options);
@@ -96,6 +99,7 @@ const Admin = () => {
 				});
 
 				clearForm();
+				await refreshContext();
 				setMessage({ ...message, success: true });
 			} else {
 				setMessage({ ...message, error: true });
