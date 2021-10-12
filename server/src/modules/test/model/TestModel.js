@@ -1,10 +1,14 @@
 import db from '../../../database/connection.js';
 
 export const post = async (test) => {
-	const sql = 'INSERT INTO test (year, stage) VALUES (?, ?)';
 	const { year, stage } = test;
+	const addTest = `INSERT INTO test (year, stage) VALUES (?, ?) ON DUPLICATE KEY UPDATE stage=stage`;
+	const selectTest = `SELECT id FROM test WHERE year = ? AND stage = ?`;
 
-	return db.promise().query(sql, [year, stage]);
+	await db.promise().query(addTest, [year, stage]);
+	const [id] = await db.promise().query(selectTest, [year, stage]);
+
+	return id;
 };
 
 export const get = async () => {

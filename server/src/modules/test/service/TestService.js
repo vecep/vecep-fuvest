@@ -2,7 +2,9 @@ import * as model from '../model/TestModel.js';
 
 export const post = async (test) => {
 	try {
-		await model.post(test);
+		const [data] = await model.post(test);
+
+		return data.id;
 	} catch (err) {
 		throw new Error(err.message);
 	}

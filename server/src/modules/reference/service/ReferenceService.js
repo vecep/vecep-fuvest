@@ -1,8 +1,16 @@
 import * as model from '../model/ReferenceModel.js';
+import * as imageService from '../../image/service/ImageService.js';
+import { isEmpty } from 'lodash-es';
 
 export const post = async (reference) => {
 	try {
-		await model.post(reference);
+		const { image } = reference;
+
+		const image_id = !isEmpty(image) ? await imageService.post(image) : null;
+		const result = await model.post({ ...reference, image_id });
+		const { insertId } = result.shift();
+
+		return insertId;
 	} catch (err) {
 		throw new Error(err.message);
 	}

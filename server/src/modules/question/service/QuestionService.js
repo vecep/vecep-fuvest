@@ -2,7 +2,10 @@ import * as model from '../model/QuestionModel.js';
 
 export const post = async (question) => {
 	try {
-		await model.post(question);
+		const result = await model.post(question);
+		const { insertId } = result.shift();
+
+		return insertId;
 	} catch (err) {
 		throw new Error(err.message);
 	}

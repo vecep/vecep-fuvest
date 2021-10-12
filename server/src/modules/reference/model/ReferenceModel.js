@@ -1,10 +1,10 @@
 import db from '../../../database/connection.js';
 
 export const post = async (reference) => {
-	const sql = 'INSERT INTO reference (text, author, source, image_path) VALUES (?, ?, ?, ?)';
-	const { text, author, source, image_path } = reference;
+	const sql = 'INSERT INTO reference (text, author, source, image_id) VALUES (?, ?, ?, ?)';
+	const { text, author, source, image_id } = reference;
 
-	return db.promise().query(sql, [text, author, source, image_path]);
+	return db.promise().query(sql, [text, author, source, image_id]);
 };
 
 export const get = async () => {
@@ -23,12 +23,12 @@ export const getOneById = async (id) => {
 
 export const put = async (id, data) => {
 	const sql = `UPDATE reference SET
-    text = ?, author = ?, source = ?, image_path = ?
+    text = ?, author = ?, source = ?, image_id = ?
     WHERE id = ?`;
 
-	const { text, author, source, image_path } = data;
+	const { text, author, source, image_id } = data;
 
-	return db.promise().query(sql, [text, author, source, image_path, id]);
+	return db.promise().query(sql, [text, author, source, image_id, id]);
 };
 
 export const destroy = async (id) => {
