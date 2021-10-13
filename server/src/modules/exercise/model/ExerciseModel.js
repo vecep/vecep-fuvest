@@ -53,8 +53,8 @@ export const get = async () => {
     LEFT JOIN reference r
     ON r.id = rq.reference_id
     LEFT JOIN image
-    ON image.id = r.image_id OR image.id = o.image_id 
-    GROUP BY q.id, image.id;
+    ON image.id = r.image_id OR image.id = o.image_id
+    GROUP BY q.id;
   `;
 	await db.promise().execute('SET SESSION group_concat_max_len = 60000');
 
