@@ -43,7 +43,10 @@ const OptionSection = ({ options, setOptions, showMessage }) => {
 									rows={4}
 									label="Description"
 									onChange={(e) =>
-										handleChange({ ...option, image: { description: e.target.value } }, i)
+										handleChange(
+											{ ...option, image: { ...option.image, description: e.target.value } },
+											i
+										)
 									}
 									value={image.description || ''}
 									error={showMessage && image.file && !image.description}
@@ -77,9 +80,7 @@ const OptionSection = ({ options, setOptions, showMessage }) => {
 							<Label
 								control={
 									<StyledSwitch
-										onChange={(e) =>
-											handleChange({ correctAnswer: e.target.checked }, i)
-										}
+										onChange={(e) => handleChange({ correctAnswer: e.target.checked }, i)}
 										disabled={options.some((o) => o.correctAnswer) && !option.correctAnswer}
 										checked={option.correctAnswer}
 										color="primary"
