@@ -44,7 +44,7 @@ const Card = ({ question, options, references, test }) => {
 Card.propTypes = {
 	question: PropTypes.object.isRequired,
 	options: PropTypes.array.isRequired,
-	references: PropTypes.array.isRequired,
+	references: PropTypes.array,
 	test: PropTypes.object.isRequired
 };
 

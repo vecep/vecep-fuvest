@@ -8,14 +8,23 @@ export const post = async (image) => {
 };
 
 export const get = async () => {
-	const sql = 'SELECT * FROM image';
+	const sql = `SELECT
+		i.id,
+		i.description,
+		i.cloud_id as 'cloudId'
+		FROM image i`;
 	const [rows] = await db.promise().query(sql);
 
 	return rows;
 };
 
 export const getOneById = async (id) => {
-	const sql = 'SELECT * FROM image WHERE id = ?';
+	const sql = `SELECT
+	i.id,
+	i.description,
+	i.cloud_id as 'cloudId'
+	FROM image i
+	WHERE id = ?`;
 	const [row] = await db.promise().query(sql, id);
 
 	return row;

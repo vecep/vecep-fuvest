@@ -23,7 +23,8 @@ export const get = async () => {
 
 export const getOneById = async (id) => {
 	try {
-		return await model.getOneById(id);
+		const [result] = await model.getOneById(id);
+		return result;
 	} catch (err) {
 		throw new Error(err.message);
 	}

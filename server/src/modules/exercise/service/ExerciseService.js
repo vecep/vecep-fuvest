@@ -29,15 +29,23 @@ export const get = async () => {
 	try {
 		const data = await model.get();
 
-		const parsedData = data.map((d) => {
+		const exercises = await data.map(async (d) => {
+			const getOptions = async () =>
+				Promise.all(JSON.parse(d.options).map(async (id) => await optionService.getOneById(id)));
+			const getReferences = async () =>
+				d.references &&
+				Promise.all(
+					JSON.parse(d.references).map(async (id) => await referenceService.getOneById(id))
+				);
+
 			return {
 				...d,
-				options: JSON.parse(d.options),
-				references: JSON.parse(d.references)
+				options: await getOptions(),
+				references: await getReferences()
 			};
 		});
 
-		return parsedData;
+		return await Promise.all(exercises);
 	} catch (err) {
 		throw new Error(err.message);
 	}

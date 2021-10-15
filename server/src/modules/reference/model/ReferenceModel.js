@@ -8,14 +8,37 @@ export const post = async (reference) => {
 };
 
 export const get = async () => {
-	const sql = 'SELECT * FROM reference';
+	const sql = `
+	SELECT
+	r.id,
+	r.text,
+	r.author,
+	r.source,
+	JSON_OBJECT(
+		'description', image.description,
+		'cloudId', image.cloud_id
+	) as image
+	FROM reference r
+	LEFT JOIN image ON image.id = r.image_id`;
 	const [rows] = await db.promise().query(sql);
 
 	return rows;
 };
 
 export const getOneById = async (id) => {
-	const sql = 'SELECT * FROM reference WHERE id = ?';
+	const sql = `
+		SELECT
+		r.id,
+		r.text,
+		r.author,
+		r.source,
+		JSON_OBJECT(
+			'description', image.description,
+			'cloudId', image.cloud_id
+		) as image
+		FROM reference r
+		LEFT JOIN image ON image.id = r.image_id
+		WHERE r.id = ?`;
 	const [row] = await db.promise().query(sql, id);
 
 	return row;

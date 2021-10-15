@@ -1,11 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Container, Reference, Text, Label } from './styles';
+import CloudImage from '../../../utils/image';
 
 const CardReferences = ({ references }) => {
 	const renderReferences = () =>
 		references.map((r, index) => {
-			const renderImage = r.image_path && <img src={r.image_path} alt="" />;
+			const renderImage = r.image.cloudId && (
+				<CloudImage cloudId={r.image.cloudId} alt={r.image.description} />
+			);
 			const renderText = r.text && <Text>{r.text}</Text>;
 			const renderSource = r.source && <Label className="source">{r.source}</Label>;
 			const renderAuthor = r.author && <Label>{r.author}</Label>;
@@ -24,11 +27,11 @@ const CardReferences = ({ references }) => {
 			);
 		});
 
-	return <Container>{renderReferences()}</Container>;
+	return <Container>{references && renderReferences()}</Container>;
 };
 
 CardReferences.propTypes = {
-	references: PropTypes.array.isRequired
+	references: PropTypes.array
 };
 
 export default CardReferences;
