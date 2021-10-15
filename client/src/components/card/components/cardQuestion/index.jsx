@@ -47,7 +47,7 @@ const CardQuestion = ({ text, options, selectedAnswer, setSelectedAnswer, answer
 								{o.text && <Label answerColor={answerColor(o)}>{o.text}</Label>}
 								{o.image.cloudId && (
 									<ImageLabel answerColor={answerColor(o)}>
-										<CloudImage cloudId={o.image.cloudId} />
+										<CloudImage cloudId={o.image.cloudId} alt={o.image.description}/>
 									</ImageLabel>
 								)}
 							</OptionsContainer>

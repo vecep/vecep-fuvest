@@ -10,6 +10,7 @@ const CloudImage = ({ cloudId, ...props }) => (
 
 CloudImage.propTypes = {
 	cloudId: PropTypes.string.isRequired,
+	alt: PropTypes.string.isRequired,
 	props: PropTypes.any
 };
 
