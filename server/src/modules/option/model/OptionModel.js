@@ -9,14 +9,36 @@ export const post = async (option) => {
 };
 
 export const get = async () => {
-	const sql = 'SELECT * FROM `option`';
+	const sql = `SELECT
+		o.id,
+		o.text,
+		o.correct_answer as 'correctAnswer',
+		o.question_id as 'questionId',
+		JSON_OBJECT(
+			'description', image.description,
+			'cloudId', image.cloud_id
+		) as image
+		FROM \`option\` o
+		LEFT JOIN image ON image.id = o.image_id`;
 	const [rows] = await db.promise().query(sql);
 
 	return rows;
 };
 
 export const getOneById = async (id) => {
-	const sql = 'SELECT * FROM `option` WHERE id = ?';
+	const sql = `
+		SELECT
+		o.id,
+		o.text,
+		o.correct_answer as 'correctAnswer',
+		o.question_id as 'questionId',
+		JSON_OBJECT(
+			'description', image.description,
+			'cloudId', image.cloud_id
+		) as image
+		FROM \`option\` o
+		LEFT JOIN image ON image.id = o.image_id
+		WHERE o.id = ?`;
 	const [row] = await db.promise().query(sql, id);
 
 	return row;

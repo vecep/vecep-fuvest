@@ -8,14 +8,27 @@ export const post = async (question) => {
 };
 
 export const get = async () => {
-	const sql = 'SELECT * FROM question';
+	const sql = `SELECT
+	q.id,
+	q.text,
+	q.subject,
+	q.topic,
+	q.test_id as 'testId'
+	FROM question q`;
 	const [rows] = await db.promise().query(sql);
 
 	return rows;
 };
 
 export const getOneById = async (id) => {
-	const sql = 'SELECT * FROM question WHERE id = ?';
+	const sql = `SELECT
+		q.id,
+		q.text,
+		q.subject,
+		q.topic,
+		q.test_id as 'testId'
+		FROM question q 
+		WHERE id = ?`;
 	const [row] = await db.promise().query(sql, id);
 
 	return row;
