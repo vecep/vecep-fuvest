@@ -20,29 +20,8 @@ export const get = async () => {
       'subject', q.subject,
       'topic', q.topic
     ) AS question,
-    CONCAT('[', GROUP_CONCAT(DISTINCT
-      JSON_OBJECT(
-        'id', o.id,
-        'text', o.\`text\`,
-        'correctAnswer', o.correct_answer,
-        'image', JSON_OBJECT(
-          'description', (SELECT image.description WHERE image.id = o.image_id),
-          'cloudId', (SELECT image.cloud_id WHERE image.id = o.image_id)
-        )
-      )
-    ), ']') as \`options\`, 
-    CONCAT('[', GROUP_CONCAT(DISTINCT
-      JSON_OBJECT(
-        'id', r.id,
-        'text', r.\`text\`,
-        'author', r.author,
-        'source', r.source,
-        'image', JSON_OBJECT(
-          'description', (SELECT image.description WHERE image.id = r.image_id),
-          'cloudId', (SELECT image.cloud_id WHERE image.id = r.image_id)
-        )
-      )
-    ), ']') as \`references\`
+    CONCAT('[', GROUP_CONCAT(DISTINCT o.id), ']') as \`options\`, 
+    CONCAT('[', GROUP_CONCAT(DISTINCT r.id), ']') as \`references\`
     FROM question q
     INNER JOIN test t
     ON t.id = q.test_id 
