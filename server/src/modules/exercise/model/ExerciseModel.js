@@ -6,8 +6,36 @@ export const postReferenceQuestion = async (question_id, reference_id) => {
 	return db.promise().query(sql, [reference_id, question_id]);
 };
 
-export const get = async () => {
-	const sql = `
+export const get = async (params) => {
+	const buildConditions = () => {
+		var conditions = [];
+		var values = [];
+
+		if (params.subject) {
+			conditions.push('q.subject = ?');
+			values.push(params.subject);
+		}
+
+		if (params.topic) {
+			conditions.push('q.topic = ?');
+			values.push(params.topic);
+		}
+
+		if (params.year) {
+			conditions.push('t.year = ?');
+			values.push(parseInt(params.year));
+		}
+
+		return {
+			where: conditions.length ? conditions.join(' AND ') : '1',
+			values: values
+		};
+	};
+
+	var conditions = buildConditions();
+
+	const sql =
+		`
     SELECT
     JSON_OBJECT(
       'id', t.id,
@@ -33,11 +61,14 @@ export const get = async () => {
     ON r.id = rq.reference_id
     LEFT JOIN image
     ON image.id = r.image_id OR image.id = o.image_id
-    GROUP BY q.id;
+		WHERE ` +
+		conditions.where +
+		`
+		GROUP BY q.id
   `;
 	await db.promise().execute('SET SESSION group_concat_max_len = 60000');
 
-	const [data] = await db.promise().query(sql);
+	const [data] = await db.promise().query(sql, conditions.values);
 
 	return data;
 };

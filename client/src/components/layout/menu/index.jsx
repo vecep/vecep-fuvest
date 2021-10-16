@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, DropdownContainer, DropdownItem, DropdownContent } from './styles';
-import { normalizeWord } from '../../../utils/normalizeWord';
 import { AppContext } from '../../../contexts/store';
 import './styles.js';
 
@@ -9,10 +8,13 @@ const Menu = () => {
 	const { contextYears } = useContext(AppContext);
 	const { contextSubjects } = useContext(AppContext);
 
-	const renderDropdownItems = (items, root_path) => {
+	const renderDropdownItems = (items, rootPath, searchBase) => {
 		return items.map((i) => (
 			<Link
-				to={`${root_path}/${normalizeWord(i.toString().toLowerCase())}`}
+				to={{
+					pathname: rootPath,
+					search: `?${searchBase}=${i}`
+				}}
 				key={i}
 				draggable="false"
 			>
@@ -33,7 +35,9 @@ const Menu = () => {
 						Exercícios
 					</Link>
 
-					<DropdownContent>{renderDropdownItems(contextSubjects, '/exercicios')}</DropdownContent>
+					<DropdownContent>
+						{renderDropdownItems(contextSubjects, '/exercicios', 'subject')}
+					</DropdownContent>
 				</DropdownItem>
 
 				<DropdownItem>
@@ -41,7 +45,7 @@ const Menu = () => {
 						Provas
 					</Link>
 
-					<DropdownContent>{renderDropdownItems(contextYears, '/provas')}</DropdownContent>
+					<DropdownContent>{renderDropdownItems(contextYears, '/provas', 'year')}</DropdownContent>
 				</DropdownItem>
 
 				<DropdownItem>

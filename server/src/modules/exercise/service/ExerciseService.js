@@ -25,9 +25,9 @@ export const post = async (exercise) => {
 	}
 };
 
-export const get = async () => {
+export const get = async (params) => {
 	try {
-		const data = await model.get();
+		const data = await model.get(params);
 
 		const exercises = await data.map(async (d) => {
 			const getOptions = async () =>

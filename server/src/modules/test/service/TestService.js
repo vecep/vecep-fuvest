@@ -10,9 +10,9 @@ export const post = async (test) => {
 	}
 };
 
-export const get = async () => {
+export const get = async (params) => {
 	try {
-		return await model.get();
+		return await model.get(params);
 	} catch (err) {
 		throw new Error(err.message);
 	}

@@ -4,12 +4,13 @@ import Axios from 'axios';
 
 const initialContext = {
 	contextYears: [],
-	contextSubjects: []
+	contextSubjects: [],
+	params: null
 };
 
 export const AppContext = createContext(initialContext);
 
-const Store = props => {
+const Store = (props) => {
 	const [context, setContext] = useState(initialContext);
 
 	useEffect(async () => {
@@ -20,21 +21,27 @@ const Store = props => {
 		const { data: tests } = await Axios.get('http://localhost:3001/api/tests');
 		const { data: questions } = await Axios.get('http://localhost:3001/api/questions');
 
-		const distinctYears = [...new Set(tests.map(t => t.year))];
+		const distinctYears = [...new Set(tests.map((t) => t.year))];
 		const distinctSubjects = [...new Set(questions.map((q) => q.subject))];
 
 		setContext({
+			...context,
 			contextYears: distinctYears,
 			contextSubjects: distinctSubjects
 		});
 	};
 
 	return (
-		<AppContext.Provider value={{
-			contextYears: context.contextYears,
-			contextSubjects: context.contextSubjects,
-			refreshContext: refreshContext
-		}}>
+		<AppContext.Provider
+			value={{
+				contextYears: context.contextYears,
+				contextSubjects: context.contextSubjects,
+				refreshContext: refreshContext,
+				params: context.params,
+				setParams: (newParams) =>
+					setContext({ ...context, params: { ...context.params, ...newParams } })
+			}}
+		>
 			{props.children}
 		</AppContext.Provider>
 	);

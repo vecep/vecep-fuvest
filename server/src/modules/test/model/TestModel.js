@@ -11,9 +11,31 @@ export const post = async (test) => {
 	return id;
 };
 
-export const get = async () => {
-	const sql = 'SELECT * FROM test';
-	const [rows] = await db.promise().query(sql);
+export const get = async (params) => {
+	const buildConditions = () => {
+		var conditions = [];
+		var values = [];
+
+		if (params.year) {
+			conditions.push('t.year = ?');
+			values.push(parseInt(params.year));
+		}
+
+		if (params.stage) {
+			conditions.push('t.stage = ?');
+			values.push(parseInt(params.stage));
+		}
+
+		return {
+			where: conditions.length ? conditions.join(' AND ') : '1',
+			values: values
+		};
+	};
+
+	var conditions = buildConditions();
+
+	const sql = 'SELECT * FROM test t WHERE ' + conditions.where;
+	const [rows] = await db.promise().query(sql, conditions.values);
 
 	return rows;
 };

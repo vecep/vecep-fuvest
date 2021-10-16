@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect, useContext } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import {
 	TestsContainer,
@@ -15,21 +15,33 @@ import { StyledAutocomplete } from '../../../components/utils/autocomplete/style
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import Axios from 'axios';
+import { AppContext } from '../../../contexts/store';
+import useQuery from '../../../hooks/useQuery';
 
 const Tests = () => {
+	const location = useLocation();
+	const query = useQuery();
+	const { setParams } = useContext(AppContext);
+
 	const [tests, setTests] = useState([]);
-	const [selectedStage, setSelectedStage] = useState();
 	const [sortType, setSortType] = useState('desc');
 
 	useEffect(async () => {
-		const { data: tests } = await Axios.get('http://localhost:3001/api/tests');
+		await getTests();
+	}, [location]);
 
-		setTests(tests);
-	}, []);
+	const getTests = async () => {
+		try {
+			const { data } = await Axios.get('http://localhost:3001/api/tests', {
+				params: { year: query.get('year'), stage: query.get('stage') }
+			});
+			setTests(data);
+		} catch (err) {
+			console.error(err);
+		}
+	};
 
-	const filteredTests = tests.filter((p) => (selectedStage ? p.stage === selectedStage : true));
-
-	const orderedTests = filteredTests.sort((a, b) =>
+	const orderedTests = tests.sort((a, b) =>
 		sortType === 'desc' ? b.year - a.year : a.year - b.year
 	);
 
@@ -81,7 +93,7 @@ const Tests = () => {
 					className="filter"
 					options={[1, 2]}
 					getOptionLabel={(o) => `${o.toString()}ª Fase`}
-					onChange={(_, value) => setSelectedStage(value)}
+					onChange={(_, value) => setParams({ stage: value })}
 					renderInput={(params) => (
 						<TextField {...params} label="Pesquise por fase..." variant="outlined" />
 					)}
