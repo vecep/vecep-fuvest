@@ -12,9 +12,11 @@ export const post = async (req, res, next) => {
 	}
 };
 
-export const get = async (_, res, next) => {
+export const get = async (req, res, next) => {
 	try {
-		const data = await service.get();
+		const params = req.query;
+
+		const data = await service.get(params);
 		res.status(200).json(data);
 		next();
 	} catch (err) {

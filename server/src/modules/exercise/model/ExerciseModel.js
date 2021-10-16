@@ -7,22 +7,32 @@ export const postReferenceQuestion = async (question_id, reference_id) => {
 };
 
 export const get = async (params) => {
-	function buildConditions(params) {
+	const buildConditions = () => {
 		var conditions = [];
 		var values = [];
 
-		if (typeof params.subject !== 'undefined') {
-			conditions.push(' WHERE q.subject = ?');
+		if (params.subject) {
+			conditions.push('q.subject = ?');
 			values.push(params.subject);
 		}
 
+		if (params.topic) {
+			conditions.push('q.topic = ?');
+			values.push(params.topic);
+		}
+
+		if (params.year) {
+			conditions.push('t.year = ?');
+			values.push(parseInt(params.year));
+		}
+
 		return {
-			where: conditions.length ? conditions.join(' AND ') : '',
+			where: conditions.length ? conditions.join(' AND ') : '1',
 			values: values
 		};
-	}
+	};
 
-	var conditions = buildConditions(params);
+	var conditions = buildConditions();
 
 	const sql =
 		`
@@ -50,10 +60,11 @@ export const get = async (params) => {
     LEFT JOIN reference r
     ON r.id = rq.reference_id
     LEFT JOIN image
-    ON image.id = r.image_id OR image.id = o.image_id` +
+    ON image.id = r.image_id OR image.id = o.image_id
+		WHERE ` +
 		conditions.where +
 		`
-    GROUP BY q.id
+		GROUP BY q.id
   `;
 	await db.promise().execute('SET SESSION group_concat_max_len = 60000');
 
