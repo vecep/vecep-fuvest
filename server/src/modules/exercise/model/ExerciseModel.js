@@ -6,8 +6,26 @@ export const postReferenceQuestion = async (question_id, reference_id) => {
 	return db.promise().query(sql, [reference_id, question_id]);
 };
 
-export const get = async () => {
-	const sql = `
+export const get = async (params) => {
+	function buildConditions(params) {
+		var conditions = [];
+		var values = [];
+
+		if (typeof params.subject !== 'undefined') {
+			conditions.push(' WHERE q.subject = ?');
+			values.push(params.subject);
+		}
+
+		return {
+			where: conditions.length ? conditions.join(' AND ') : '',
+			values: values
+		};
+	}
+
+	var conditions = buildConditions(params);
+
+	const sql =
+		`
     SELECT
     JSON_OBJECT(
       'id', t.id,
@@ -32,12 +50,14 @@ export const get = async () => {
     LEFT JOIN reference r
     ON r.id = rq.reference_id
     LEFT JOIN image
-    ON image.id = r.image_id OR image.id = o.image_id
-    GROUP BY q.id;
+    ON image.id = r.image_id OR image.id = o.image_id` +
+		conditions.where +
+		`
+    GROUP BY q.id
   `;
 	await db.promise().execute('SET SESSION group_concat_max_len = 60000');
 
-	const [data] = await db.promise().query(sql);
+	const [data] = await db.promise().query(sql, conditions.values);
 
 	return data;
 };

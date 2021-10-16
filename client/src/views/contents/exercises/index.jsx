@@ -4,7 +4,6 @@ import Card from '../../../components/card';
 import TextField from '@material-ui/core/TextField';
 import { ExercisesContainer, Header, FilterContainer, SubjectTitle } from './styles';
 import { StyledAutocomplete } from '../../../components/utils/autocomplete/style';
-import { normalizeWord } from '../../../utils/normalizeWord';
 import { AppContext } from '../../../contexts/store';
 import Axios from 'axios';
 
@@ -16,49 +15,44 @@ const Exercises = () => {
 	const [exercises, setExercises] = useState([]);
 	const [selectedYear, setSelectedYear] = useState();
 	const [selectedTopic, setSelectedTopic] = useState();
-	const [filter, setFilter] = useState();
 	const [filteredTopics, setFilteredTopics] = useState([]);
 	const [subjectTitle, setSubjectTitle] = useState();
 	const [filteredExercises, setFilteredExercises] = useState([]);
 
 	useEffect(async () => {
-		const { data: exercises } = await Axios.get('http://localhost:3001/api/exercises');
+		const { data: exercises } = await Axios.get('http://localhost:3001/api/exercises', {
+			params: { subject: location.pathname.split('/').pop() }
+		});
 
 		setExercises(exercises);
 		setFilteredExercises(exercises);
-	}, []);
-
-	useEffect(() => {
-		const filter = location.pathname.split('/').pop();
-		setFilter(filter);
 	}, [location]);
 
 	useEffect(() => {
-		const filteredExercises = exercises.filter(exercise => {
+		const filteredExercises = exercises.filter((exercise) => {
 			const { test, question } = exercise;
 
-			const filterBySubject = filter === normalizeWord(question.subject) || filter === 'exercicios';
 			const filterByTopic = selectedTopic
 				? question.topic.toLowerCase() === selectedTopic.toLowerCase()
 				: true;
 			const filterByYear = selectedYear ? test.year === selectedYear : true;
 
-			return filterBySubject && filterByTopic && filterByYear;
+			return filterByTopic && filterByYear;
 		});
 
 		setFilteredExercises(filteredExercises);
-	}, [selectedYear, selectedTopic, filter]);
+	}, [selectedYear, selectedTopic]);
 
 	useEffect(() => {
-		const filteredSubjects = [...new Set(filteredExercises.map(fe => fe.question.subject))];
+		const filteredSubjects = [...new Set(filteredExercises.map((fe) => fe.question.subject))];
 		const subjectTitle = filteredSubjects.some((c) => c !== filteredSubjects[0])
 			? null
 			: filteredSubjects.shift();
 
-		const sameSubjectExercises = exercises.filter(e =>
+		const sameSubjectExercises = exercises.filter((e) =>
 			subjectTitle ? e.question.subject === subjectTitle : true
 		);
-		const filteredTopics = [...new Set(sameSubjectExercises.map(e => e.question.topic))];
+		const filteredTopics = [...new Set(sameSubjectExercises.map((e) => e.question.topic))];
 
 		setFilteredTopics(filteredTopics);
 		setSubjectTitle(subjectTitle);
