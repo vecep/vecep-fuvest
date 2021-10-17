@@ -7,6 +7,7 @@ import Admin from '../../../views/contents/admin/';
 import NotFound from '../../../views/contents/not-found/';
 import ContentContainer from './styles.js';
 import { AppContext } from '../../../contexts/store';
+import 'katex/dist/katex.min.css';
 
 const Content = () => {
 	const history = useHistory();

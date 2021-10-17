@@ -7,7 +7,7 @@ const Latext = ({ label, answerColor, children, ...props }) => {
 	return (
 		<StyledTeX
 			math={mhchemParser.toTex(children, 'tex')}
-			answerColor={answerColor}
+			answercolor={answerColor}
 			label={label}
 			{...props}
 		/>

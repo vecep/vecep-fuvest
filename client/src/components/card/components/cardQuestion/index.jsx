@@ -1,20 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-	QuestionContainer,
-	Text,
-	OptionsContainer,
-	Option,
-	Label,
-	Grid,
-	ImageLabel
-} from './styles';
+import { QuestionContainer, OptionsContainer, Option, Grid, ImageLabel } from './styles';
 import CloudImage from '../../../utils/image';
+import Latext from '../../../utils/latext';
 
 const CardQuestion = ({ text, options, selectedAnswer, setSelectedAnswer, answered }) => {
 	const correctAnswer = options.find((o) => o.correctAnswer === 1);
 
-	const answerColor = (option) => {
+	const getAnswerColor = (option) => {
 		if (answered) {
 			if (option.id === correctAnswer.id) {
 				return 'green';
@@ -44,10 +37,14 @@ const CardQuestion = ({ text, options, selectedAnswer, setSelectedAnswer, answer
 									value={o.id}
 									disabled={answered}
 								/>
-								{o.text && <Label answerColor={answerColor(o)}>{o.text}</Label>}
+								{o.text && (
+									<Latext label answerColor={getAnswerColor(o)}>
+										{o.text}
+									</Latext>
+								)}
 								{o.image.cloudId && (
-									<ImageLabel answerColor={answerColor(o)}>
-										<CloudImage cloudId={o.image.cloudId} alt={o.image.description}/>
+									<ImageLabel answerColor={getAnswerColor(o)}>
+										<CloudImage cloudId={o.image.cloudId} alt={o.image.description} />
 									</ImageLabel>
 								)}
 							</OptionsContainer>
@@ -59,7 +56,9 @@ const CardQuestion = ({ text, options, selectedAnswer, setSelectedAnswer, answer
 
 	return (
 		<QuestionContainer>
-			<Text>{text}</Text>
+			<Latext>
+				{text}
+			</Latext>
 			{renderOptions()}
 		</QuestionContainer>
 	);
