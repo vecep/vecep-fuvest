@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import AnswerButton from './styles';
 
-const CardAnswerButton = ({ selectedAnswer, setAnswered, answered }) => {
+const CardAnswerButton = ({ selectedAnswer, setAnswered, answered, readOnly }) => {
 	const handleAnswers = () => {
 		if (selectedAnswer) {
 			setAnswered(true);
@@ -12,7 +12,7 @@ const CardAnswerButton = ({ selectedAnswer, setAnswered, answered }) => {
 	};
 
 	return (
-		<AnswerButton onClick={handleAnswers} disabled={answered}>
+		<AnswerButton onClick={handleAnswers} disabled={answered || readOnly}>
 			Responder
 		</AnswerButton>
 	);
@@ -21,7 +21,8 @@ const CardAnswerButton = ({ selectedAnswer, setAnswered, answered }) => {
 CardAnswerButton.propTypes = {
 	selectedAnswer: PropTypes.number,
 	setAnswered: PropTypes.func.isRequired,
-	answered: PropTypes.bool.isRequired
+	answered: PropTypes.bool.isRequired,
+	readOnly: PropTypes.bool
 };
 
 export default CardAnswerButton;
