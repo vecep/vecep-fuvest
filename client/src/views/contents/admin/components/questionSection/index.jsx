@@ -45,6 +45,7 @@ const QuestionSection = ({ question, setQuestion, showMessage }) => {
 					onChange={e => setQuestion({ ...question, text: e.target.value })}
 					error={showMessage && !question.text}
 					helperText={(showMessage && !question.text) && 'Preencha o campo.'}
+					latex
 				/>
 			</FormColumn>
 		</div>
