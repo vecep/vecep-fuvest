@@ -42,23 +42,6 @@ const StyledAutocomplete = withStyles({
 		'& li:hover': {
 			color: 'white',
 			backgroundColor: '#48A7FF'
-		},
-
-		'&::-webkit-scrollbar': {
-			width: '7px'
-		},
-
-		'&::-webkit-scrollbar-thumb': {
-			background: '#b5b5b5',
-			borderRadius: '10px',
-
-			'&:hover': {
-				background: '#c5c5c5'
-			}
-		},
-
-		'&::-webkit-scrollbar-track': {
-			borderRadius: '20px'
 		}
 	}
 })(Autocomplete);

@@ -6,23 +6,6 @@ const Container = styled.div`
 	overflow-y: auto;
 	height: 50vh;
 	width: 50%;
-
-	&::-webkit-scrollbar {
-		width: 7px;
-	}
-
-	&::-webkit-scrollbar-thumb {
-		background: #b5b5b5;
-		border-radius: 10px;
-
-		&:hover {
-			background: #c5c5c5;
-		}
-	}
-
-	&::-webkit-scrollbar-track {
-		border-radius: 20px;
-	}
 `;
 
 const Reference = styled.div`
