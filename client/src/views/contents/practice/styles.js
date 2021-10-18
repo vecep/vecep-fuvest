@@ -9,7 +9,7 @@ const Container = styled.div`
 const Header = styled.h1`
   font-size: 2em;
 	font-weight: 500;
-  margin-bottom: 0;
+  margin: 0;
 `;
 
 const Info = styled.h2`
