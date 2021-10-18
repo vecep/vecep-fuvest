@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const Container = styled.div`
   height: 100%;
 	width: 65vw;
-	margin-bottom: 50px;
+  margin-bottom: 30px;
 `;
 
 const Header = styled.h1`
@@ -18,4 +18,11 @@ const Info = styled.h2`
   margin-top: 10px;
 `;
 
-export { Container, Header, Info };
+const TimerContainer = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding-top: 60px;
+`;
+
+export { Container, Header, Info, TimerContainer };

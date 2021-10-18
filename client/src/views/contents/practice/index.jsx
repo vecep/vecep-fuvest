@@ -3,7 +3,8 @@ import { useLocation } from 'react-router-dom';
 import useQuery from '../../../hooks/useQuery';
 import Card from '../../../components/card';
 import Axios from 'axios';
-import { Container, Header, Info } from './styles';
+import { Container, Header, Info, TimerContainer } from './styles';
+import Timer from './components/timer';
 
 const Practice = () => {
 	const location = useLocation();
@@ -60,11 +61,16 @@ const Practice = () => {
 		});
 
 	return (
-		<Container>
-			<Header>{readOnly ? 'Visualizar' : 'Simulado'}</Header>
-			<Info>Fuvest {year} - {stage}ª fase</Info>
-			{exercises.length > 0 ? renderCards() : 'Nothing found.'}
-		</Container>
+		<>
+			<Container>
+				<Header>{readOnly ? 'Visualizar' : 'Simulado'}</Header>
+				<Info>Fuvest {year} - {stage}ª fase</Info>
+				{exercises.length > 0 ? renderCards() : 'Nothing found.'}
+			</Container>
+			<TimerContainer>
+				{!readOnly && <Timer stage={stage} />}
+			</TimerContainer>
+		</>
 	);
 };
 
