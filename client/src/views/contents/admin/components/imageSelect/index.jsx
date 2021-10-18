@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import TextField from '../../../../../components/utils/textField';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
@@ -14,7 +14,7 @@ import Button from '../../../../../components/utils/button';
 import { Container } from './styles';
 
 const ImageSelect = ({ image, handleChange, index, disabled, showMessage }) => {
-	const [open, setOpen] = React.useState(false);
+	const [open, setOpen] = useState(false);
 
 	const handleClickOpen = () => {
 		setOpen(true);

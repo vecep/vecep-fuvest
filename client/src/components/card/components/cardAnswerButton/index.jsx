@@ -19,7 +19,7 @@ const CardAnswerButton = ({ selectedAnswer, setAnswered, answered }) => {
 };
 
 CardAnswerButton.propTypes = {
-	selectedAnswer: PropTypes.func,
+	selectedAnswer: PropTypes.number,
 	setAnswered: PropTypes.func.isRequired,
 	answered: PropTypes.bool.isRequired
 };

@@ -67,6 +67,7 @@ const OptionSection = ({ options, setOptions, showMessage }) => {
 								error={showMessage && !option.text}
 								helperText={showMessage && !option.text && 'Preencha o campo.'}
 								value={option.text || ''}
+								latex
 							/>
 						)}
 						<FormRow>

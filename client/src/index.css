@@ -4,3 +4,20 @@ body {
 	margin: 0;
 	font-family: 'Roboto Condensed';
 }
+
+::-webkit-scrollbar {
+	width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #b5b5b5;
+	border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #c5c5c5;
+}
+
+::-webkit-scrollbar-track {
+	border-radius: 20px;
+}

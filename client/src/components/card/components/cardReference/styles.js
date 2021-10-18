@@ -6,23 +6,6 @@ const Container = styled.div`
 	overflow-y: auto;
 	height: 50vh;
 	width: 50%;
-
-	&::-webkit-scrollbar {
-		width: 7px;
-	}
-
-	&::-webkit-scrollbar-thumb {
-		background: #b5b5b5;
-		border-radius: 10px;
-
-		&:hover {
-			background: #c5c5c5;
-		}
-	}
-
-	&::-webkit-scrollbar-track {
-		border-radius: 20px;
-	}
 `;
 
 const Reference = styled.div`
@@ -39,13 +22,6 @@ const Reference = styled.div`
 	}
 `;
 
-const Text = styled.p`
-	font-size: 0.5em;
-	text-align: justify;
-	word-break: break-word;
-	line-height: 1.3em;
-`;
-
 const Label = styled.span`
 	font-size: 0.5em;
 
@@ -60,4 +36,4 @@ const Label = styled.span`
 	}
 `;
 
-export { Container, Reference, Text, Label };
+export { Container, Reference, Label };

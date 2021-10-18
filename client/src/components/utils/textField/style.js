@@ -1,3 +1,4 @@
+import styled from 'styled-components';
 import { withStyles } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 
@@ -39,4 +40,23 @@ const StyledTextField = withStyles({
 	}
 })(TextField);
 
-export { StyledTextField };
+const DialogContainer = styled.div`
+	display: grid;
+	grid-template-rows: auto auto;
+	gap: 2.5rem;
+
+	> * {
+		display: flex;
+		justify-content: center;
+	}
+
+	> :first-child {
+		word-break: break-all;
+		height: 100%;
+		max-height: 30vh;
+		overflow-y: auto;
+		margin: 0;
+	}
+`;
+
+export { StyledTextField, DialogContainer };

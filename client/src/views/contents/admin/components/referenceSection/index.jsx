@@ -50,6 +50,7 @@ const ReferenceSection = ({ references, setReferences, showMessage }) => {
 							label="Texto"
 							onChange={e => handleChange({ text: e.target.value }, i)}
 							value={reference.text || ''}
+							latex
 						/>
 						<FormRow>
 							<TextField
