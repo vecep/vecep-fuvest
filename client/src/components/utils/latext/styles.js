@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 const StyledLatex = styled.div`
-  line-height: 1rem;
   ${({ label, answerColor }) =>
 		label ? `
       margin-bottom: 0;
