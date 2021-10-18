@@ -8,7 +8,7 @@ const Latext = ({ label, answerColor, children, ...props }) => {
 	return (
 		<StyledLatex
 			answerColor={answerColor}
-			label={label}
+			label={label ? 1 : 0}
 		>
 			<Latex
 				{...props}
