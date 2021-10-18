@@ -1,16 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { mhchemParser } from 'mhchemparser';
-import { StyledTeX } from './styles';
+import { StyledLatex } from './styles';
+import Latex from 'react-latex-next';
 
 const Latext = ({ label, answerColor, children, ...props }) => {
 	return (
-		<StyledTeX
-			math={mhchemParser.toTex(children, 'tex')}
-			answercolor={answerColor}
+		<StyledLatex
+			answerColor={answerColor}
 			label={label}
-			{...props}
-		/>
+		>
+			<Latex
+				{...props}
+			>
+				{mhchemParser.toTex(children, 'tex')}
+			</Latex>
+		</StyledLatex>
 	);
 };
 

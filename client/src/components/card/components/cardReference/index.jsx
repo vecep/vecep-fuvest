@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, Reference, Text, Label } from './styles';
+import { Container, Reference, Label } from './styles';
 import CloudImage from '../../../utils/image';
+import Latext from '../../../utils/latext';
 
 const CardReferences = ({ references }) => {
 	const renderReferences = () =>
@@ -9,7 +10,7 @@ const CardReferences = ({ references }) => {
 			const renderImage = r.image.cloudId && (
 				<CloudImage cloudId={r.image.cloudId} alt={r.image.description} />
 			);
-			const renderText = r.text && <Text>{r.text}</Text>;
+			const renderText = r.text && <Latext>{r.text}</Latext>;
 			const renderSource = r.source && <Label className="source">{r.source}</Label>;
 			const renderAuthor = r.author && <Label>{r.author}</Label>;
 			const renderSeparator = references.length > 0 && index !== references.length - 1 && (

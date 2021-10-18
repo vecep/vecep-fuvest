@@ -39,13 +39,6 @@ const Reference = styled.div`
 	}
 `;
 
-const Text = styled.p`
-	font-size: 0.5em;
-	text-align: justify;
-	word-break: break-word;
-	line-height: 1.3em;
-`;
-
 const Label = styled.span`
 	font-size: 0.5em;
 
@@ -60,4 +53,4 @@ const Label = styled.span`
 	}
 `;
 
-export { Container, Reference, Text, Label };
+export { Container, Reference, Label };
