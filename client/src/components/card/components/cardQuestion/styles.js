@@ -10,11 +10,6 @@ const QuestionContainer = styled.div`
 	width: fit-content;
 `;
 
-const Text = styled.p`
-	font-size: 0.5em;
-	margin-bottom: 50px;
-`;
-
 const OptionsContainer = styled.div`
 	display: flex;
 	align-items: center;
@@ -41,12 +36,6 @@ const Option = withStyles({
 	checked: {}
 })(Radio);
 
-const Label = styled.span`
-	font-size: 1rem;
-	margin-left: 10px;
-	color: ${(props) => props.answerColor};
-`;
-
 const Grid = styled.div`
 	display: grid;
 	grid-template-columns: auto auto auto;
@@ -60,4 +49,4 @@ const ImageLabel = styled.div`
 	box-shadow: 0 0 15px 0 ${(props) => get(props, 'answerColor', 'transparent')};
 `;
 
-export { QuestionContainer, Text, OptionsContainer, Option, Label, Grid, ImageLabel };
+export { QuestionContainer, OptionsContainer, Option, Grid, ImageLabel };
