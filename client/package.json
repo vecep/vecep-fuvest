@@ -14,7 +14,6 @@
 		"mhchemparser": "^4.1.1",
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2",
-		"react-katex": "^2.0.2",
 		"react-latex-next": "^2.1.0",
 		"react-router-dom": "^5.2.0",
 		"react-scripts": "4.0.3",
