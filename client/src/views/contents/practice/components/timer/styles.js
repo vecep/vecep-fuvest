@@ -13,6 +13,7 @@ const CardContainer = withStyles({
 		bottom: '25px',
 		left: '25px',
 		fontFamily: 'Trebuchet MS',
+		pointerEvents: 'all',
 
 		'& > *': {
 			display: 'flex',
