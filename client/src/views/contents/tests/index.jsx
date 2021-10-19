@@ -53,13 +53,25 @@ const Tests = () => {
 				</Label>
 
 				<ViewButton>
-					<Link to="#" draggable={false}>
+					<Link
+						to={{
+							pathname: 'simulado/visualizar',
+							search: `?year=${p.year}&stage=${p.stage}`
+						}}
+						draggable={false}
+					>
 						Visualizar Prova
 					</Link>
 				</ViewButton>
 
 				<SimulationButton>
-					<Link to="#" draggable={false}>
+					<Link
+						to={{
+							pathname: 'simulado',
+							search: `?year=${p.year}&stage=${p.stage}`
+						}}
+						draggable={false}
+					>
 						Fazer Simulado
 					</Link>
 				</SimulationButton>

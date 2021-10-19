@@ -4,7 +4,7 @@ import { QuestionContainer, OptionsContainer, Option, Grid, ImageLabel } from '.
 import CloudImage from '../../../utils/image';
 import Latext from '../../../utils/latext';
 
-const CardQuestion = ({ text, options, selectedAnswer, setSelectedAnswer, answered }) => {
+const CardQuestion = ({ text, options, selectedAnswer, setSelectedAnswer, answered, readOnly }) => {
 	const correctAnswer = options.find((o) => o.correctAnswer === 1);
 
 	const getAnswerColor = (option) => {
@@ -35,7 +35,7 @@ const CardQuestion = ({ text, options, selectedAnswer, setSelectedAnswer, answer
 									checked={selectedAnswer === o.id}
 									onChange={handleChange}
 									value={o.id}
-									disabled={answered}
+									disabled={answered || readOnly}
 								/>
 								{o.text && (
 									<Latext label answerColor={getAnswerColor(o)}>
@@ -70,7 +70,8 @@ CardQuestion.propTypes = {
 	selectedAnswer: PropTypes.number,
 	setSelectedAnswer: PropTypes.func.isRequired,
 	answered: PropTypes.bool.isRequired,
-	showAnswer: PropTypes.func
+	showAnswer: PropTypes.func,
+	readOnly: PropTypes.bool
 };
 
 export default CardQuestion;

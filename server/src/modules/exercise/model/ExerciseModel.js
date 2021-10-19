@@ -26,6 +26,11 @@ export const get = async (params) => {
 			values.push(parseInt(params.year));
 		}
 
+		if (params.stage) {
+			conditions.push('t.stage = ?');
+			values.push(parseInt(params.stage));
+		}
+
 		return {
 			where: conditions.length ? conditions.join(' AND ') : '1',
 			values: values

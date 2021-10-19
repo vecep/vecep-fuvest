@@ -8,6 +8,7 @@ import NotFound from '../../../views/contents/not-found/';
 import ContentContainer from './styles.js';
 import { AppContext } from '../../../contexts/store';
 import 'katex/dist/katex.min.css';
+import Practice from '../../../views/contents/practice';
 
 const Content = () => {
 	const history = useHistory();
@@ -43,6 +44,9 @@ const Content = () => {
 				</Route>
 				<Route path="/provas">
 					<Tests />
+				</Route>
+				<Route path="/simulado">
+					<Practice />
 				</Route>
 				<Route path="/admin">
 					<Admin />

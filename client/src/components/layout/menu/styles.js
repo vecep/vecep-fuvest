@@ -9,7 +9,6 @@ const Navbar = styled.nav`
 	background-color: #282727;
 	top: 0;
 	width: 100%;
-	margin-bottom: 45px;
 	z-index: 9999;
 
 	& > a {

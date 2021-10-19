@@ -36,7 +36,7 @@ const Menu = () => {
 					</Link>
 
 					<DropdownContent>
-						{renderDropdownItems(contextSubjects, '/exercicios', 'subject')}
+						{renderDropdownItems(contextSubjects.sort(), '/exercicios', 'subject')}
 					</DropdownContent>
 				</DropdownItem>
 
@@ -45,7 +45,9 @@ const Menu = () => {
 						Provas
 					</Link>
 
-					<DropdownContent>{renderDropdownItems(contextYears, '/provas', 'year')}</DropdownContent>
+					<DropdownContent>
+						{renderDropdownItems(contextYears.sort().reverse(), '/provas', 'year')}
+					</DropdownContent>
 				</DropdownItem>
 
 				<DropdownItem>
