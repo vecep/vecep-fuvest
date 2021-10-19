@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import Skeleton from '@material-ui/lab/Skeleton';
+import { withStyles } from '@material-ui/core/styles';
 
 const Container = styled.div`
 	display: flex;
@@ -47,4 +49,13 @@ const Footer = styled.div`
 	}
 `;
 
-export { Container, InfoContainer, Info, Content, Footer };
+const CardSkeleton = withStyles({
+	root: {
+		width: '65vw',
+		height: '50vh',
+		borderRadius: '20px',
+		marginTop: '40px'
+	}
+})(Skeleton);
+
+export { Container, InfoContainer, Info, Content, Footer, CardSkeleton };

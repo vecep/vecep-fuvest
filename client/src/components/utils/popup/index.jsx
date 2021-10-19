@@ -5,7 +5,10 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Alert from '@material-ui/lab/Alert';
 
-const Popup = ({ open, handleClose, message, severity, props }) => (
+/***
+ * @param {string} severity Can be: `"error"`, `"warning"`, `"info"` or `"success"`.
+*/
+const Popup = ({ open, handleClose, message, severity, ...props }) => (
 	<Snackbar
 		anchorOrigin={{
 			vertical: 'bottom',
