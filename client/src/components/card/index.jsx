@@ -25,6 +25,7 @@ const Card = ({ question, options, references, test, readOnly }) => {
 					selectedAnswer={selectedAnswer}
 					setSelectedAnswer={setSelectedAnswer}
 					answered={answered}
+					readOnly={readOnly}
 				/>
 
 				<CardReferences references={references} />

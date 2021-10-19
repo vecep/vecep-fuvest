@@ -13,7 +13,8 @@ const Practice = () => {
 	const [exercises, setExercises] = useState([]);
 	const [year, setYear] = useState();
 	const [stage, setStage] = useState();
-	const [readOnly, setReadOnly] = useState();
+	const [readOnly, setReadOnly] = useState(true);
+	const [paused, setPaused] = useState(true);
 
 	useEffect(async () => {
 		const year = query.get('year');
@@ -55,7 +56,7 @@ const Practice = () => {
 					references={references}
 					test={test}
 					key={question.id}
-					readOnly={readOnly}
+					readOnly={readOnly || paused}
 				/>
 			);
 		});
@@ -68,7 +69,7 @@ const Practice = () => {
 				{exercises.length > 0 ? renderCards() : 'Nothing found.'}
 			</Container>
 			<TimerContainer>
-				{!readOnly && <Timer stage={stage} />}
+				{!readOnly && <Timer stage={stage} paused={paused} setPaused={setPaused} />}
 			</TimerContainer>
 		</>
 	);
