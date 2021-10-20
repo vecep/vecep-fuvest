@@ -1,12 +1,12 @@
 import { withStyles } from '@material-ui/core/styles';
-import { Button } from '@material-ui/core';
+import Button from '../../../components/utils/button';
 import styled from 'styled-components';
 import IconButton from '@material-ui/core/IconButton';
 
 const TestsContainer = styled.div`
 	a {
 		text-decoration: none;
-		color: black;
+		color: #ECECEC;
 	}
 `;
 
@@ -16,6 +16,10 @@ const Filter = styled.div`
 
 	.filter {
 		width: 100%;
+	}
+
+	& .MuiAutocomplete-inputRoot .MuiAutocomplete-input {
+		min-width: fit-content;
 	}
 `;
 
@@ -31,7 +35,10 @@ const Sort = styled.div`
 `;
 
 const Row = styled.div`
-	margin: 25px 0 25px 0;
+	display: grid;
+	grid-template-columns: auto auto auto;
+	gap: 1rem;
+	margin: 25px 0;
 `;
 
 const Label = styled.span`
@@ -52,11 +59,9 @@ const SortButton = withStyles({
 const ViewButton = withStyles({
 	root: {
 		background: '#F3F3F3',
-		borderRadius: 5,
 		color: '#707070',
 		width: 205,
 		fontWeight: 'bold',
-		margin: '0 20px',
 
 		'&:hover': {
 			background: '#ECECEC'
@@ -68,34 +73,20 @@ const ViewButton = withStyles({
 			color: '#707070',
 			fontSize: '1rem'
 		}
-	},
-	label: {
-		textTransform: 'capitalize'
 	}
 })(Button);
 
-const SimulationButton = withStyles({
+const PracticeButton = withStyles({
 	root: {
-		background: '#48A7FF',
-		borderRadius: 5,
-		color: '#ECECEC',
 		width: 205,
 		fontWeight: 'bold',
-
-		'&:hover': {
-			background: '#488eff'
-		},
 
 		'& span, a': {
 			width: '100%',
 			lineHeight: 2,
-			color: '#ECECEC',
 			fontSize: '1rem'
 		}
-	},
-	label: {
-		textTransform: 'capitalize'
 	}
 })(Button);
 
-export { TestsContainer, Filter, Sort, Row, Label, SortButton, ViewButton, SimulationButton };
+export { TestsContainer, Filter, Sort, Row, Label, SortButton, ViewButton, PracticeButton };

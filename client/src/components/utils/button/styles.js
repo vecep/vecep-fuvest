@@ -11,8 +11,9 @@ const Container = styled.div`
 `;
 
 const StyledButton = withStyles({
-	contained: {
+	containedPrimary: {
 		background: '#48A7FF',
+		color: 'white',
 
 		'&:hover': {
 			background: '#48A7FF',
@@ -30,6 +31,9 @@ const StyledButton = withStyles({
 			borderColor: '#48A7FF',
 			filter: 'brightness(1.2)'
 		}
+	},
+	label: {
+		textTransform: props => props.case
 	}
 })(Button);
 

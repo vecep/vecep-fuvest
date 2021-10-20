@@ -9,7 +9,7 @@ import {
 	Label,
 	SortButton,
 	ViewButton,
-	SimulationButton
+	PracticeButton
 } from './styles';
 import { StyledAutocomplete } from '../../../components/utils/autocomplete/style';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
@@ -52,7 +52,7 @@ const Tests = () => {
 					{p.year} - {p.stage}ª Fase
 				</Label>
 
-				<ViewButton>
+				<ViewButton case="capitalize">
 					<Link
 						to={{
 							pathname: 'simulado/visualizar',
@@ -64,7 +64,7 @@ const Tests = () => {
 					</Link>
 				</ViewButton>
 
-				<SimulationButton>
+				<PracticeButton variant="contained" color="primary" case="capitalize">
 					<Link
 						to={{
 							pathname: 'simulado',
@@ -74,7 +74,7 @@ const Tests = () => {
 					>
 						Fazer Simulado
 					</Link>
-				</SimulationButton>
+				</PracticeButton>
 			</Row>
 		));
 

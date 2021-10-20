@@ -8,6 +8,7 @@ import { StyledAutocomplete } from '../../../components/utils/autocomplete/style
 import { AppContext } from '../../../contexts/store';
 import Axios from 'axios';
 import { toTitleCase } from '../../../utils/toTitleCase';
+import { CardSkeleton } from '../../../components/card/styles';
 
 const Exercises = () => {
 	const location = useLocation();
@@ -85,7 +86,7 @@ const Exercises = () => {
 				</FilterContainer>
 			</Header>
 
-			{renderCards()}
+			{exercises.length <= 0 ? <CardSkeleton variant="rect" /> : renderCards()}
 		</ExercisesContainer>
 	);
 };

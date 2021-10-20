@@ -4,7 +4,7 @@ import AnswerButton from './styles';
 import Popup from '../../../utils/popup';
 
 const CardAnswerButton = ({ selectedAnswer, setAnswered, answered, readOnly }) => {
-	const [openPopup, setOpenPopup] = useState();
+	const [openPopup, setOpenPopup] = useState(false);
 
 	const handleAnswers = () => {
 		if (selectedAnswer) {
