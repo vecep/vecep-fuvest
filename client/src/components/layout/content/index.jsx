@@ -9,6 +9,8 @@ import ContentContainer from './styles.js';
 import { AppContext } from '../../../contexts/store';
 import 'katex/dist/katex.min.css';
 import Practice from '../../../views/contents/practice';
+import Login from '../../../views/contents/login';
+import Register from '../../../views/contents/register';
 
 const Content = () => {
 	const history = useHistory();
@@ -50,6 +52,12 @@ const Content = () => {
 				</Route>
 				<Route path="/admin">
 					<Admin />
+				</Route>
+				<Route path="/registrar">
+					<Register />
+				</Route>
+				<Route path="/login">
+					<Login />
 				</Route>
 				<Route path="*">
 					<NotFound />
