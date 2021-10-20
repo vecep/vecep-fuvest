@@ -1,4 +1,5 @@
 import express from 'express';
+import verifySignUp from '../middleware/verifySignUp.js';
 import * as TestController from '../modules/test/controller/TestController.js';
 import * as ReferenceController from '../modules/reference/controller/ReferenceController.js';
 import * as QuestionController from '../modules/question/controller/QuestionController.js';
@@ -6,8 +7,14 @@ import * as OptionController from '../modules/option/controller/OptionController
 import * as ExerciseController from '../modules/exercise/controller/ExerciseController.js';
 import * as ImageController from '../modules/image/controller/ImageController.js';
 import * as CloudinaryController from '../modules/image/controller/CloudinaryController.js';
+import * as AuthenticationController from '../modules/authentication/controller/AuthenticationController.js';
 
 const router = express.Router();
+
+router.use((_req, res, next) => {
+	res.set('Access-Control-Allow-Headers', 'x-access-token, Origin, Content-Type, Accept');
+	next();
+});
 
 router.post('/api/test', TestController.post);
 router.get('/api/tests', TestController.get);
@@ -44,5 +51,12 @@ router.put('/api/image/:id', ImageController.put);
 router.delete('/api/image/:id', ImageController.destroy);
 
 router.post('/api/image/webhook', CloudinaryController.webhook);
+
+router.post(
+	'/api/auth/signup',
+	[verifySignUp.checkDuplicateUsernameAndEmail],
+	AuthenticationController.signup
+);
+router.post('/api/auth/signin', AuthenticationController.signin);
 
 export default router;
