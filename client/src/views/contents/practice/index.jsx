@@ -64,6 +64,7 @@ const Practice = () => {
 					test={test}
 					key={question.id}
 					readOnly={readOnly || paused}
+					baseCard
 				/>
 			);
 		});

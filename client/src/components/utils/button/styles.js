@@ -11,6 +11,7 @@ const Container = styled.div`
 `;
 
 const StyledButton = withStyles({
+	root: {},
 	containedPrimary: {
 		background: '#48A7FF',
 		color: 'white',

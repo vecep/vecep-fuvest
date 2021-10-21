@@ -1,13 +1,25 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container, InfoContainer, Info, Content, Footer } from './styles';
 import PropTypes from 'prop-types';
 import CardAnswerButton from './components/cardAnswerButton';
 import CardReferences from './components/cardReference';
 import CardQuestion from './components/cardQuestion';
+import UserService from '../../services/user.service';
 
-const Card = ({ question, options, references, test, readOnly }) => {
+const Card = ({ question, options, references, test, baseCard, readOnly }) => {
 	const [selectedAnswer, setSelectedAnswer] = useState();
 	const [answered, setAnswered] = useState(false);
+
+	useEffect(async () => {
+		if(!baseCard) {
+			const userAnswers = await UserService.getAnswers();
+			const [selectedAnswer] = options.filter((o) => userAnswers.includes(o.id));
+			const answered = !!selectedAnswer;
+
+			setSelectedAnswer(selectedAnswer?.id);
+			setAnswered(answered);
+		}
+	}, []);
 
 	return (
 		<Container>
@@ -48,6 +60,7 @@ Card.propTypes = {
 	options: PropTypes.array.isRequired,
 	references: PropTypes.array,
 	test: PropTypes.object.isRequired,
+	baseCard: PropTypes.bool,
 	readOnly: PropTypes.bool
 };
 

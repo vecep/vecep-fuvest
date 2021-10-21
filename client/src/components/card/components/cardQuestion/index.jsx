@@ -5,7 +5,7 @@ import CloudImage from '../../../utils/image';
 import Latext from '../../../utils/latext';
 
 const CardQuestion = ({ text, options, selectedAnswer, setSelectedAnswer, answered, readOnly }) => {
-	const correctAnswer = options.find((o) => o.correctAnswer === 1);
+	const correctAnswer = options.find((o) => o.correctAnswer);
 
 	const getAnswerColor = (option) => {
 		if (answered) {
