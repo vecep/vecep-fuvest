@@ -40,3 +40,19 @@ export const getOne = async (params) => {
 
 	return row;
 };
+
+export const answer = async (userId, selectedAnswer) => {
+	const sql = `INSERT INTO user_option (user_id, option_id) VALUES (?, ?)`;
+
+	return await db.promise().query(sql, [userId, selectedAnswer]);
+};
+
+export const getAnswers = async (id) => {
+	const sql = `SELECT 
+	JSON_ARRAYAGG(user_option.option_id) as \`answers\`
+	FROM user_option WHERE user_option.user_id = ?`;
+
+	const [row] = await db.promise().query(sql, [id]);
+
+	return row;
+};

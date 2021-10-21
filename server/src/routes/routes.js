@@ -8,6 +8,8 @@ import * as ExerciseController from '../modules/exercise/controller/ExerciseCont
 import * as ImageController from '../modules/image/controller/ImageController.js';
 import * as CloudinaryController from '../modules/image/controller/CloudinaryController.js';
 import * as AuthenticationController from '../modules/authentication/controller/AuthenticationController.js';
+import * as UserController from '../modules/user/controller/UserController.js';
+import authJwt from '../middleware/authJwt.js';
 
 const router = express.Router();
 
@@ -58,5 +60,8 @@ router.post(
 	AuthenticationController.signup
 );
 router.post('/api/auth/signin', AuthenticationController.signin);
+
+router.post('/api/user/answer', [authJwt.verifyToken], UserController.answer);
+router.get('/api/user/answers', [authJwt.verifyToken], UserController.getAnswers);
 
 export default router;
