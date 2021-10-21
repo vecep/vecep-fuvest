@@ -6,7 +6,7 @@ import Tests from '../../../views/contents/tests/';
 import Admin from '../../../views/contents/admin/';
 import NotFound from '../../../views/contents/not-found/';
 import ContentContainer from './styles.js';
-import { AppContext } from '../../../contexts/store';
+import { AppContext } from '../../../contexts/StoreContext';
 import 'katex/dist/katex.min.css';
 import Practice from '../../../views/contents/practice';
 import Login from '../../../views/contents/login';

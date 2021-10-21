@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import Popup from '../../../components/utils/popup';
 import TextField from '../../../components/utils/textField';
 import Button from '../../../components/utils/button';
-
+import { AuthContext } from '../../../contexts/AuthContext';
 import AuthService from '../../../services/auth.service';
 
 const Login = () => {
 	const history = useHistory();
+
+	const { setIsLoggedIn } = useContext(AuthContext);
 
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
@@ -33,6 +35,7 @@ const Login = () => {
 		if (username && password) {
 			try {
 				await AuthService.login(username, password);
+				setIsLoggedIn(true);
 				history.push('/exercicios');
 			} catch (err) {
 				console.error(err);

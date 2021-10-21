@@ -3,17 +3,20 @@ import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Menu from '../components/layout/menu/';
 import Content from '../components/layout/content/';
-import Store from '../contexts/store';
+import Store from '../contexts/StoreContext';
+import Auth from '../contexts/AuthContext';
 
 const App = () => (
-	<Store>
-		<div className="app">
-			<Router>
-				<Menu />
-				<Content />
-			</Router>
-		</div>
-	</Store>
+	<Auth>
+		<Store>
+			<div className="app">
+				<Router>
+					<Menu />
+					<Content />
+				</Router>
+			</div>
+		</Store>
+	</Auth>
 );
 
 export default App;

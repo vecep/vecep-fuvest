@@ -15,7 +15,7 @@ import { StyledAutocomplete } from '../../../components/utils/autocomplete/style
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import Axios from 'axios';
-import { AppContext } from '../../../contexts/store';
+import { AppContext } from '../../../contexts/StoreContext';
 import useQuery from '../../../hooks/useQuery';
 
 const Tests = () => {

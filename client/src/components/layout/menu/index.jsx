@@ -1,12 +1,21 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, DropdownContainer, DropdownItem, DropdownContent } from './styles';
-import { AppContext } from '../../../contexts/store';
+import { AppContext } from '../../../contexts/StoreContext';
+import { AuthContext } from '../../../contexts/AuthContext';
+import AuthService from '../../../services/auth.service';
+import Avatar from '@material-ui/core/Avatar';
 import './styles.js';
 
 const Menu = () => {
 	const { contextYears } = useContext(AppContext);
 	const { contextSubjects } = useContext(AppContext);
+	const { currentUser, isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
+
+	const handleLogout = () => {
+		AuthService.logout();
+		setIsLoggedIn(false);
+	};
 
 	const renderDropdownItems = (items, rootPath, searchBase) => {
 		return items.map((i) => (
@@ -50,10 +59,45 @@ const Menu = () => {
 					</DropdownContent>
 				</DropdownItem>
 
-				<DropdownItem>
-					<Link to="/resultados" draggable="false">
+				{isLoggedIn ? (
+					<DropdownItem>
+						<Link to="/resultados" draggable="false">
 						Seus resultados
-					</Link>
+						</Link>
+					</DropdownItem>
+				) : '' }
+				<DropdownItem>
+					{isLoggedIn ? (
+						<Avatar alt={currentUser?.username}>
+							{currentUser?.username.charAt(0)}
+						</Avatar>
+					) : (
+						<Avatar alt="Imagem de perfil genérica" />
+					)}
+					<DropdownContent>
+						{!isLoggedIn ? (
+							<>
+								{currentUser?.isAdmin ? (
+									<Link to="/admin" onClick={handleLogout} draggable="false">
+									Admin
+									</Link>
+								) : (
+									''
+								)}
+								<Link to="/login" draggable="false">
+									Login
+								</Link>
+								<Link to="/registrar" draggable="false">
+									Registrar
+								</Link>
+							</>
+						) : (
+							<Link to="/home" onClick={handleLogout} draggable="false">
+								Sair
+							</Link>
+						)}
+
+					</DropdownContent>
 				</DropdownItem>
 			</DropdownContainer>
 		</Navbar>

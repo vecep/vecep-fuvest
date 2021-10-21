@@ -7,7 +7,7 @@ import { isEmpty } from 'lodash';
 import Popup from '../../../components/utils/popup';
 import { Container, FormRow } from './styles';
 import Button from '../../../components/utils/button';
-import { AppContext } from '../../../contexts/store';
+import { AppContext } from '../../../contexts/StoreContext';
 import Axios from 'axios';
 
 const INITIAL_EXERCISES = {

@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Popup from '../../../components/utils/popup';
 import TextField from '../../../components/utils/textField';
 import Button from '../../../components/utils/button';
 import { isEmail } from 'validator';
-
+import { AuthContext } from '../../../contexts/AuthContext';
 import AuthService from '../../../services/auth.service';
+import { useHistory } from 'react-router';
 
 const USERNAME_VALIDATION = {
 	MIN: 3,
@@ -22,6 +23,10 @@ const PASSWORD_VALIDATION = {
 };
 
 const Register = () => {
+	const { setIsLoggedIn } = useContext(AuthContext);
+
+	const history = useHistory();
+
 	const [username, setUsername] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -79,6 +84,12 @@ const Register = () => {
 		}
 	};
 
+	const autoLogin = async () => {
+		await AuthService.login(username, password);
+		setIsLoggedIn(true);
+		history.push('/exercicios');
+	};
+
 	const handleRegister = async (e) => {
 		e.preventDefault();
 
@@ -95,6 +106,7 @@ const Register = () => {
 					data: { message }
 				} = await AuthService.register(username, email, password);
 				setMessage({ message, severity: 'success' });
+				autoLogin();
 			} catch (err) {
 				console.error(err);
 
