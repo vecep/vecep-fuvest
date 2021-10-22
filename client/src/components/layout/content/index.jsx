@@ -11,6 +11,7 @@ import 'katex/dist/katex.min.css';
 import Practice from '../../../views/contents/practice';
 import Login from '../../../views/contents/login';
 import Register from '../../../views/contents/register';
+import PrivateRoute from '../../utils/privateRoute';
 
 const Content = () => {
 	const history = useHistory();
@@ -28,7 +29,7 @@ const Content = () => {
 				}
 			}
 
-			history.push( { search: newParams.toString() });
+			history.push({ search: newParams.toString() });
 		}
 	}, [params, history]);
 
@@ -50,9 +51,9 @@ const Content = () => {
 				<Route path="/simulado">
 					<Practice />
 				</Route>
-				<Route path="/admin">
+				<PrivateRoute path="/admin">
 					<Admin />
-				</Route>
+				</PrivateRoute>
 				<Route path="/registrar">
 					<Register />
 				</Route>
