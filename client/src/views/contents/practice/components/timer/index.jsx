@@ -32,6 +32,17 @@ const MINUTES_TO_OR_FROM_SECONDS = 60;
 const ONE_DIGIT_LIMIT = 9;
 const TIME_BASE = 60;
 
+const GET_TIME_LIMIT = (stage) => {
+	switch (stage) {
+	case '1':
+		return STAGE_ONE_MAXHOURS * HOURS_TO_OR_FROM_SECONDS;
+	case '2':
+		return STAGE_TWO_MAXHOURS * HOURS_TO_OR_FROM_SECONDS;
+	default:
+		return 0;
+	}
+};
+
 const Timer = ({ stage, paused, setPaused }) => {
 	const [seconds, setSeconds] = useState(0);
 	const [activeDrags, setActiveDrags] = useState();
@@ -40,25 +51,21 @@ const Timer = ({ stage, paused, setPaused }) => {
 	const [showMessage, setShowMessage] = useState(false);
 
 	useEffect(() => {
-		setTimeLimit();
-	}, [stage]);
+		const timeLimit = GET_TIME_LIMIT(stage);
+		setSeconds(timeLimit);
+	}, []);
 
 	useEffect(() => {
-		started && !paused && seconds > 0 && setTimeout(() => setSeconds(seconds - 1), 1000);
-	}, [seconds, started, paused]);
+		const timer = setTimeout(() => {
+			if (started && !paused && seconds > 0) {
+				return setSeconds(seconds - 1);
+			}
+		}, 1000);
 
-	const setTimeLimit = () => {
-		switch (stage) {
-		case '1':
-			setSeconds(STAGE_ONE_MAXHOURS * HOURS_TO_OR_FROM_SECONDS);
-			break;
-		case '2':
-			setSeconds(STAGE_TWO_MAXHOURS * HOURS_TO_OR_FROM_SECONDS);
-			break;
-		default:
-			break;
-		}
-	};
+		return () => {
+			clearTimeout(timer);
+		};
+	}, [seconds, started, paused]);
 
 	const displayTime = () => {
 		const hours = Math.floor(seconds / HOURS_TO_OR_FROM_SECONDS);
@@ -107,7 +114,7 @@ const Timer = ({ stage, paused, setPaused }) => {
 			setShowMessage(true);
 			break;
 		case false:
-			setTimeLimit();
+			setSeconds(GET_TIME_LIMIT(stage));
 			break;
 		default:
 			localStorage.setItem('showResetTimerAlert', true);
@@ -121,7 +128,7 @@ const Timer = ({ stage, paused, setPaused }) => {
 	};
 
 	const handleReset = () => {
-		setTimeLimit();
+		setSeconds(GET_TIME_LIMIT(stage));
 		handleClose();
 	};
 

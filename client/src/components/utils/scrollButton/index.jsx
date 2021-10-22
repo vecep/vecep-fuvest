@@ -1,18 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import Button from './style';
 
 const ScrollButton = () => {
-	const [visible, setVisible] = useState(false);
+	const [scrollPosition, setScrollPosition] = useState(0);
 
-	const toggleVisible = () => {
-		const scrolled = document.documentElement.scrollTop;
-		if (scrolled > 300) {
-			setVisible(true);
-		} else if (scrolled <= 300) {
-			setVisible(false);
-		}
+	const handleScroll = () => {
+		const position = window.pageYOffset;
+		setScrollPosition(position);
 	};
+
+	useEffect(() => {
+		window.addEventListener('scroll', handleScroll, { passive: true });
+
+		return () => {
+			window.removeEventListener('scroll', handleScroll, true);
+		};
+	}, []);
 
 	const scrollToTop = () => {
 		window.scrollTo({
@@ -21,10 +25,8 @@ const ScrollButton = () => {
 		});
 	};
 
-	window.addEventListener('scroll', toggleVisible);
-
 	return (
-		<Button style={{ display: visible ? 'inline' : 'none' }} onClick={scrollToTop}>
+		<Button style={{ display: scrollPosition > 300 ? 'inline' : 'none' }} onClick={scrollToTop}>
 			<KeyboardArrowUpIcon />
 		</Button>
 	);
