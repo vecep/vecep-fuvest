@@ -77,13 +77,6 @@ const Menu = () => {
 					<DropdownContent>
 						{!isLoggedIn ? (
 							<>
-								{currentUser?.isAdmin ? (
-									<Link to="/admin" onClick={handleLogout} draggable="false">
-									Admin
-									</Link>
-								) : (
-									''
-								)}
 								<Link to="/login" draggable="false">
 									Login
 								</Link>
@@ -92,9 +85,18 @@ const Menu = () => {
 								</Link>
 							</>
 						) : (
-							<Link to="/home" onClick={handleLogout} draggable="false">
+							<>
+								{currentUser?.isAdmin ? (
+									<Link to="/admin" draggable="false">
+								Admin
+									</Link>
+								) : (
+									''
+								)}
+								<Link to="/home" onClick={handleLogout} draggable="false">
 								Sair
-							</Link>
+								</Link>
+							</>
 						)}
 
 					</DropdownContent>
