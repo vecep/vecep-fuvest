@@ -1,11 +1,12 @@
 import React, { useContext, useState } from 'react';
 import Popup from '../../../components/utils/popup';
 import TextField from '../../../components/utils/textField';
-import Button from '../../../components/utils/button';
 import { isEmail } from 'validator';
 import { AuthContext } from '../../../contexts/AuthContext';
 import AuthService from '../../../services/auth.service';
 import { useHistory } from 'react-router';
+import { Container, FormContainer, PasswordContainer, RegisterButton, LoginLink } from './styles';
+import { Typography } from '@material-ui/core';
 
 const USERNAME_VALIDATION = {
 	MIN: 3,
@@ -30,6 +31,7 @@ const Register = () => {
 	const [username, setUsername] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const [passwordConfirmation, setPasswordConfirmation] = useState('');
 	const [loading, setLoading] = useState(false);
 	const [showMessage, setShowMessage] = useState(false);
 	const [message, setMessage] = useState({ message: '', severity: '' });
@@ -47,6 +49,10 @@ const Register = () => {
 		setPassword(e.target.value);
 	};
 
+	const onChangePasswordConfirmation = (e) => {
+		setPasswordConfirmation(e.target.value);
+	};
+
 	const validate = (field) => {
 		switch (field) {
 		case 'username':
@@ -59,8 +65,7 @@ const Register = () => {
 						message: `Seu nome deve conter entre
 							${USERNAME_VALIDATION.MIN} e ${USERNAME_VALIDATION.MAX}`,
 						severity: 'error'
-					}
-					)
+					})
 			};
 		case 'email':
 			return {
@@ -78,6 +83,12 @@ const Register = () => {
 							${PASSWORD_VALIDATION.MIN} e ${PASSWORD_VALIDATION.MAX}`,
 						severity: 'error'
 					})
+			};
+		case 'passwordConfirmation':
+			return {
+				validation: () => passwordConfirmation === password,
+				setMessage: () =>
+					setMessage({ message: 'A confirmação de senha não corresponde.', severity: 'error' })
 			};
 		default:
 			break;
@@ -99,7 +110,8 @@ const Register = () => {
 		if (
 			validate('username').validation() &&
 			validate('email').validation() &&
-			validate('password').validation()
+			validate('password').validation() &&
+			validate('passwordConfirmation').validation()
 		) {
 			try {
 				const {
@@ -123,6 +135,8 @@ const Register = () => {
 			!validate('username').validation() && validate('username').setMessage();
 			!validate('email').validation() && validate('email').setMessage();
 			!validate('password').validation() && validate('password').setMessage();
+			!validate('passwordConfirmation').validation() &&
+				validate('passwordConfirmation').setMessage();
 		}
 		setOpenPopup(true);
 	};
@@ -137,48 +151,76 @@ const Register = () => {
 	);
 
 	return (
-		<div>
+		<Container>
 			{renderPopup()}
-
-			<TextField
-				required
-				label="Username"
-				onChange={onChangeUsername}
-				value={username}
-				error={!username ? showMessage : !validate('username').validation()}
-				helperText={
-					username
-						? username.length + '/' + USERNAME_VALIDATION.MAX
-						: showMessage && 'Preencha o campo.'
-				}
-			/>
-			<TextField
-				required
-				label="Email"
-				onChange={onChangeEmail}
-				value={email}
-				error={!email ? showMessage : !validate('email').validation()}
-				helperText={
-					email ? email.length + '/' + EMAIL_VALIDATION.MAX : showMessage && 'Preencha o campo.'
-				}
-			/>
-			<TextField
-				required
-				label="Senha"
-				onChange={onChangePassword}
-				value={password}
-				error={!password ? showMessage : !validate('password').validation()}
-				helperText={
-					password
-						? password.length + '/' + PASSWORD_VALIDATION.MAX
-						: showMessage && 'Preencha o campo.'
-				}
-			/>
-
-			<Button onClick={handleRegister} loading={loading} color="primary" variant="contained">
+			<FormContainer>
+				<Typography variant="h4">Cadastre-se gratuitamente!</Typography>
+				<TextField
+					required
+					label="Username"
+					onChange={onChangeUsername}
+					value={username}
+					error={!username ? showMessage : !validate('username').validation()}
+					helperText={
+						username
+							? username.length + '/' + USERNAME_VALIDATION.MAX
+							: showMessage && 'Preencha o campo.'
+					}
+					placeholder="Fulano Beltrano"
+				/>
+				<TextField
+					required
+					label="Email"
+					onChange={onChangeEmail}
+					value={email}
+					error={!email ? showMessage : !validate('email').validation()}
+					helperText={
+						email ? email.length + '/' + EMAIL_VALIDATION.MAX : showMessage && 'Preencha o campo.'
+					}
+					placeholder="exemplo@email.com"
+				/>
+				<PasswordContainer>
+					<TextField
+						required
+						label="Senha"
+						onChange={onChangePassword}
+						value={password}
+						error={!password ? showMessage : !validate('password').validation()}
+						helperText={
+							password
+								? password.length + '/' + PASSWORD_VALIDATION.MAX
+								: showMessage && 'Preencha o campo.'
+						}
+						type="password"
+					/>
+					<TextField
+						required
+						label="Confirme sua senha"
+						onChange={onChangePasswordConfirmation}
+						value={passwordConfirmation}
+						error={
+							!passwordConfirmation ? showMessage : !validate('passwordConfirmation').validation()
+						}
+						helperText={showMessage && 'Preencha o campo.'}
+						type="password"
+					/>
+				</PasswordContainer>
+			</FormContainer>
+			<RegisterButton
+				onClick={handleRegister}
+				loading={loading}
+				color="primary"
+				variant="contained"
+			>
 				Registrar
-			</Button>
-		</div>
+			</RegisterButton>
+			<LoginLink
+				to="/login"
+				draggable="false"
+			>
+				Já possui uma conta? Faça login.
+			</LoginLink>
+		</Container>
 	);
 };
 

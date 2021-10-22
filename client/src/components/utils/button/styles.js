@@ -7,7 +7,6 @@ const Container = styled.div`
   position: relative;
   display: flex;
   place-items: center;
-  width: fit-content;
 `;
 
 const StyledButton = withStyles({
@@ -18,7 +17,7 @@ const StyledButton = withStyles({
 
 		'&:hover': {
 			background: '#48A7FF',
-			filter: 'brightness(1.2)'
+			filter: 'brightness(1.1)'
 		}
 	},
 	textPrimary: {
