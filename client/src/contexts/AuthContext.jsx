@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import AuthService from '../services/auth.service';
+import * as AuthService from '../services/auth';
 
 const initialContext = {
 	isLoggedIn: false

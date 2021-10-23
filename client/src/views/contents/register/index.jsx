@@ -3,7 +3,7 @@ import Popup from '../../../components/utils/popup';
 import TextField from '../../../components/utils/textField';
 import { isEmail } from 'validator';
 import { AuthContext } from '../../../contexts/AuthContext';
-import AuthService from '../../../services/auth.service';
+import * as AuthService from '../../../services/auth';
 import { useHistory } from 'react-router';
 import { Container, FormContainer, PasswordContainer, RegisterButton, LoginLink } from './styles';
 import { Typography } from '@material-ui/core';

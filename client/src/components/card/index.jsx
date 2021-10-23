@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import CardAnswerButton from './components/cardAnswerButton';
 import CardReferences from './components/cardReference';
 import CardQuestion from './components/cardQuestion';
-import UserService from '../../services/user.service';
+import * as UserService from '../../services/user';
 
 const Card = ({ question, options, references, test, baseCard, readOnly }) => {
 	const [selectedAnswer, setSelectedAnswer] = useState();

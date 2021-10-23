@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Navbar, DropdownContainer, DropdownItem, DropdownContent } from './styles';
 import { AppContext } from '../../../contexts/StoreContext';
 import { AuthContext } from '../../../contexts/AuthContext';
-import AuthService from '../../../services/auth.service';
+import * as AuthService from '../../../services/auth';
 import Avatar from '@material-ui/core/Avatar';
 import './styles.js';
 

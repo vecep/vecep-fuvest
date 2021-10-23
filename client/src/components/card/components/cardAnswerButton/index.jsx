@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import AnswerButton from './styles';
 import Popup from '../../../utils/popup';
-import UserService from '../../../../services/user.service';
+import * as UserService from '../../../../services/user';
 
 const CardAnswerButton = ({ selectedAnswer, setAnswered, answered, readOnly }) => {
 	const [openPopup, setOpenPopup] = useState(false);
