@@ -28,7 +28,7 @@ export const getOne = async (params) => {
 		}
 
 		return {
-			where: conditions.length ? conditions.join(' AND ') : '1',
+			where: conditions.length ? conditions.join(' AND ') : '0',
 			values: values
 		};
 	};

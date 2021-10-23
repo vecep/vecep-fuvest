@@ -25,7 +25,7 @@ const verifyToken = (req, res, next) => {
 const isAdmin = async (req, res, next) => {
 	const { userId } = req;
 
-	const [user] = await userService.getOne(userId);
+	const [user] = await userService.getOne({ id: userId });
 
 	if (user.isAdmin) {
 		next();
