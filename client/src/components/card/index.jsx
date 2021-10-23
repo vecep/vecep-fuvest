@@ -10,15 +10,24 @@ const Card = ({ question, options, references, test, baseCard, readOnly }) => {
 	const [selectedAnswer, setSelectedAnswer] = useState();
 	const [answered, setAnswered] = useState(false);
 
-	useEffect(async () => {
-		if(!baseCard) {
-			const userAnswers = await UserService.getAnswers();
-			const [selectedAnswer] = options.filter((o) => userAnswers.includes(o.id));
-			const answered = !!selectedAnswer;
+	useEffect(() => {
+		let mounted = true;
+		(async () => {
+			if(!baseCard) {
+				const userAnswers = await UserService.getAnswers();
+				const [selectedAnswer] = options.filter((o) => userAnswers.includes(o.id));
+				const answered = !!selectedAnswer;
 
-			setSelectedAnswer(selectedAnswer?.id);
-			setAnswered(answered);
-		}
+				if (mounted) {
+					setSelectedAnswer(selectedAnswer?.id);
+					setAnswered(answered);
+				}
+			}
+		})();
+
+		return () => {
+			mounted = false;
+		};
 	}, []);
 
 	return (

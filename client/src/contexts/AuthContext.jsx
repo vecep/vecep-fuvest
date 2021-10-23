@@ -11,8 +11,10 @@ export const AuthContext = createContext(initialContext);
 const Auth = (props) => {
 	const [context, setContext] = useState(initialContext);
 
-	useEffect(async () => {
-		refreshContext();
+	useEffect(() => {
+		(async () => {
+			await refreshContext();
+		})();
 	}, [context.isLoggedIn]);
 
 	const refreshContext = async () => {

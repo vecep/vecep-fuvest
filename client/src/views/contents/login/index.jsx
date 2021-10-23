@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Popup from '../../../components/utils/popup';
 import TextField from '../../../components/utils/textField';
@@ -10,7 +10,7 @@ import { Typography } from '@material-ui/core';
 const Login = () => {
 	const history = useHistory();
 
-	const { setIsLoggedIn } = useContext(AuthContext);
+	const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
 
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
@@ -18,6 +18,12 @@ const Login = () => {
 	const [showMessage, setShowMessage] = useState(false);
 	const [message, setMessage] = useState('');
 	const [openPopup, setOpenPopup] = useState(false);
+
+	useEffect(() => {
+		if (isLoggedIn && !loading) {
+			history.push('/exercicios');
+		}
+	}, [isLoggedIn, loading]);
 
 	const onChangeUsername = (e) => {
 		setUsername(e.target.value);
@@ -37,7 +43,6 @@ const Login = () => {
 			try {
 				await AuthService.login(username, password);
 				setIsLoggedIn(true);
-				history.push('/exercicios');
 			} catch (err) {
 				console.error(err);
 
@@ -46,12 +51,11 @@ const Login = () => {
 					err.message ||
 					err.toString();
 				setMessage(resMessage);
+			} finally {
+				setOpenPopup(true);
 				setLoading(false);
 			}
-		} else {
-			setLoading(false);
 		}
-		setOpenPopup(true);
 	};
 
 	const renderPopup = () => (

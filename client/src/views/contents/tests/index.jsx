@@ -26,8 +26,10 @@ const Tests = () => {
 	const [tests, setTests] = useState([]);
 	const [sortType, setSortType] = useState('desc');
 
-	useEffect(async () => {
-		await getTests();
+	useEffect(() => {
+		(async () => {
+			await getTests();
+		})();
 	}, [location]);
 
 	const getTests = async () => {

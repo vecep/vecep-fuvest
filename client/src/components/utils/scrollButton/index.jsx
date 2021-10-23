@@ -11,12 +11,12 @@ const ScrollButton = () => {
 	};
 
 	useEffect(() => {
-		window.addEventListener('scroll', handleScroll, { passive: true });
+		window.addEventListener('scroll', handleScroll);
 
 		return () => {
-			window.removeEventListener('scroll', handleScroll, true);
+			window.removeEventListener('scroll', handleScroll);
 		};
-	}, []);
+	});
 
 	const scrollToTop = () => {
 		window.scrollTo({

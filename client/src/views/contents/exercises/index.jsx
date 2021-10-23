@@ -19,8 +19,10 @@ const Exercises = () => {
 	const [filteredTopics, setFilteredTopics] = useState([]);
 	const [subjectTitle, setSubjectTitle] = useState('');
 
-	useEffect(async () => {
-		await getExercises();
+	useEffect(() => {
+		(async () => {
+			await getExercises();
+		})();
 	}, [location]);
 
 	useEffect(() => {

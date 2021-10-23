@@ -17,20 +17,22 @@ const Content = () => {
 	const history = useHistory();
 	const { params } = useContext(AppContext);
 
-	useEffect(async () => {
-		if (params) {
-			const newParams = new URLSearchParams();
+	useEffect(() => {
+		(async () => {
+			if (params) {
+				const newParams = new URLSearchParams();
 
-			for (const [key, value] of Object.entries(params)) {
-				if (value) {
-					newParams.append(key, value);
-				} else {
-					newParams.delete(key);
+				for (const [key, value] of Object.entries(params)) {
+					if (value) {
+						newParams.append(key, value);
+					} else {
+						newParams.delete(key);
+					}
 				}
-			}
 
-			history.push({ search: newParams.toString() });
-		}
+				history.push({ search: newParams.toString() });
+			}
+		})();
 	}, [params, history]);
 
 	return (
