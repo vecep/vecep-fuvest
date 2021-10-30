@@ -1,9 +1,10 @@
 import Axios from 'axios';
+import getApiUrl from '../utils/getApiUrl';
 
-const API_URL = 'http://localhost:3001/api/auth/';
+const API_URL = getApiUrl();
 
 export const login = async (username, password) => {
-	const { data } = await Axios.post(API_URL + 'signin', {
+	const { data } = await Axios.post(API_URL + '/auth/signin', {
 		username,
 		password
 	});
@@ -17,7 +18,7 @@ export const logout = async () => {
 };
 
 export const register = async (username, email, password) => {
-	return Axios.post(API_URL + 'signup', {
+	return Axios.post(API_URL + '/auth/signup', {
 		username,
 		email,
 		password
