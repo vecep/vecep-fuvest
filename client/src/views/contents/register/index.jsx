@@ -55,41 +55,46 @@ const Register = () => {
 
 	const validate = (field) => {
 		switch (field) {
-		case 'username':
-			return {
-				validation: () =>
-					username.length >= USERNAME_VALIDATION.MIN &&
-						username.length <= USERNAME_VALIDATION.MAX,
-				setMessage: () =>
-					setMessage({
-						message: `Seu nome deve conter entre
-							${USERNAME_VALIDATION.MIN} e ${USERNAME_VALIDATION.MAX}`,
-						severity: 'error'
-					})
-			};
-		case 'email':
-			return {
-				validation: () => isEmail(email),
-				setMessage: () => setMessage({ message: 'Insira um email válido.', severity: 'error' })
-			};
-		case 'password':
-			return {
-				validation: () =>
-					password.length >= PASSWORD_VALIDATION.MIN &&
-						password.length <= PASSWORD_VALIDATION.MAX,
-				setMessage: () =>
-					setMessage({
-						message: `Sua senha deve conter entre
-							${PASSWORD_VALIDATION.MIN} e ${PASSWORD_VALIDATION.MAX}`,
-						severity: 'error'
-					})
-			};
-		case 'passwordConfirmation':
-			return {
-				validation: () => passwordConfirmation === password,
-				setMessage: () =>
-					setMessage({ message: 'A confirmação de senha não corresponde.', severity: 'error' })
-			};
+		case 'username': {
+			return username && username.length >= USERNAME_VALIDATION.MIN &&
+				username.length <= USERNAME_VALIDATION.MAX;
+		}
+		case 'email': {
+			return email && isEmail(email);
+		}
+		case 'password': {
+			return password &&
+				password.length >= PASSWORD_VALIDATION.MIN && password.length <= PASSWORD_VALIDATION.MAX;
+		}
+		case 'passwordConfirmation': {
+			return passwordConfirmation && passwordConfirmation === password;
+		}
+		case 'all': {
+			if (!validate('username')) {
+				setMessage({
+					message: `Seu nome deve conter entre
+						${USERNAME_VALIDATION.MIN} e ${USERNAME_VALIDATION.MAX}`,
+					severity: 'error'
+				});
+			} else if (!validate('email')) {
+				setMessage({ message: 'Insira um email válido.', severity: 'error' });
+			} else if (!validate('password')) {
+				setMessage({
+					message: `Sua senha deve conter entre
+						${PASSWORD_VALIDATION.MIN} e ${PASSWORD_VALIDATION.MAX}`,
+					severity: 'error'
+				});
+			} else if (!validate('passwordConfirmation')) {
+				setMessage({ message: 'A confirmação de senha não corresponde.', severity: 'error' });
+			}
+
+			return (
+				validate('username') &&
+					validate('email') &&
+					validate('password') &&
+					validate('passwordConfirmation')
+			);
+		}
 		default:
 			break;
 		}
@@ -107,12 +112,7 @@ const Register = () => {
 		setShowMessage(true);
 		setLoading(true);
 
-		if (
-			validate('username').validation() &&
-			validate('email').validation() &&
-			validate('password').validation() &&
-			validate('passwordConfirmation').validation()
-		) {
+		if (validate('all')) {
 			try {
 				const {
 					data: { message }
@@ -127,17 +127,9 @@ const Register = () => {
 					err.message ||
 					err.toString();
 				setMessage({ message: resMessage, severity: 'error' });
-			} finally {
-				setLoading(false);
 			}
-		} else {
-			setLoading(false);
-			!validate('username').validation() && validate('username').setMessage();
-			!validate('email').validation() && validate('email').setMessage();
-			!validate('password').validation() && validate('password').setMessage();
-			!validate('passwordConfirmation').validation() &&
-				validate('passwordConfirmation').setMessage();
 		}
+		setLoading(false);
 		setOpenPopup(true);
 	};
 
@@ -146,7 +138,7 @@ const Register = () => {
 			open={openPopup}
 			handleClose={() => setOpenPopup(false)}
 			message={message.message || 'Preencha os campos obrigatórios.'}
-			severity={message.severity}
+			severity={message.severity || 'error'}
 		/>
 	);
 
@@ -160,7 +152,7 @@ const Register = () => {
 					label="Username"
 					onChange={onChangeUsername}
 					value={username}
-					error={!username ? showMessage : !validate('username').validation()}
+					error={!username ? showMessage : !validate('username')}
 					helperText={
 						username
 							? username.length + '/' + USERNAME_VALIDATION.MAX
@@ -173,7 +165,7 @@ const Register = () => {
 					label="Email"
 					onChange={onChangeEmail}
 					value={email}
-					error={!email ? showMessage : !validate('email').validation()}
+					error={!email ? showMessage : !validate('email')}
 					helperText={
 						email ? email.length + '/' + EMAIL_VALIDATION.MAX : showMessage && 'Preencha o campo.'
 					}
@@ -185,7 +177,7 @@ const Register = () => {
 						label="Senha"
 						onChange={onChangePassword}
 						value={password}
-						error={!password ? showMessage : !validate('password').validation()}
+						error={!password ? showMessage : !validate('password')}
 						helperText={
 							password
 								? password.length + '/' + PASSWORD_VALIDATION.MAX
@@ -199,7 +191,7 @@ const Register = () => {
 						onChange={onChangePasswordConfirmation}
 						value={passwordConfirmation}
 						error={
-							!passwordConfirmation ? showMessage : !validate('passwordConfirmation').validation()
+							!passwordConfirmation ? showMessage : !validate('passwordConfirmation')
 						}
 						helperText={showMessage && 'Preencha o campo.'}
 						type="password"
@@ -214,10 +206,7 @@ const Register = () => {
 			>
 				Registrar
 			</RegisterButton>
-			<LoginLink
-				to="/login"
-				draggable="false"
-			>
+			<LoginLink to="/login" draggable="false">
 				Já possui uma conta? Faça login.
 			</LoginLink>
 		</Container>

@@ -51,11 +51,10 @@ const Login = () => {
 					err.message ||
 					err.toString();
 				setMessage(resMessage);
-			} finally {
-				setOpenPopup(true);
-				setLoading(false);
 			}
 		}
+		setLoading(false);
+		setOpenPopup(true);
 	};
 
 	const renderPopup = () => (
@@ -79,9 +78,7 @@ const Login = () => {
 					onChange={onChangeUsername}
 					value={username}
 					error={showMessage && !username}
-					helperText={
-						showMessage && !username ? 'Preencha o campo.' : ''
-					}
+					helperText={showMessage && !username ? 'Preencha o campo.' : ''}
 				/>
 
 				<TextField
@@ -90,15 +87,13 @@ const Login = () => {
 					onChange={onChangePassword}
 					value={password}
 					error={showMessage && !password}
-					helperText={
-						showMessage && !password ? 'Preencha o campo.' : ''
-					}
+					helperText={showMessage && !password ? 'Preencha o campo.' : ''}
 					type="password"
 				/>
 			</FormContainer>
 
 			<LoginButton onClick={handleLogin} loading={loading} color="primary" variant="contained">
-						Login
+				Login
 			</LoginButton>
 
 			<StyledLink to="/registrar" draggable="false">
