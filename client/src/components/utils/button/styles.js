@@ -7,17 +7,17 @@ const Container = styled.div`
   position: relative;
   display: flex;
   place-items: center;
-  width: fit-content;
 `;
 
 const StyledButton = withStyles({
+	root: {},
 	containedPrimary: {
 		background: '#48A7FF',
 		color: 'white',
 
 		'&:hover': {
 			background: '#48A7FF',
-			filter: 'brightness(1.2)'
+			filter: 'brightness(1.1)'
 		}
 	},
 	textPrimary: {

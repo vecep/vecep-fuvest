@@ -5,7 +5,7 @@ import Card from '../../../components/card';
 import TextField from '@material-ui/core/TextField';
 import { ExercisesContainer, Header, FilterContainer, SubjectTitle } from './styles';
 import { StyledAutocomplete } from '../../../components/utils/autocomplete/style';
-import { AppContext } from '../../../contexts/store';
+import { AppContext } from '../../../contexts/StoreContext';
 import Axios from 'axios';
 import { toTitleCase } from '../../../utils/toTitleCase';
 import { CardSkeleton } from '../../../components/card/styles';
@@ -19,8 +19,10 @@ const Exercises = () => {
 	const [filteredTopics, setFilteredTopics] = useState([]);
 	const [subjectTitle, setSubjectTitle] = useState('');
 
-	useEffect(async () => {
-		await getExercises();
+	useEffect(() => {
+		(async () => {
+			await getExercises();
+		})();
 	}, [location]);
 
 	useEffect(() => {

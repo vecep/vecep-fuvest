@@ -13,8 +13,10 @@ export const AppContext = createContext(initialContext);
 const Store = (props) => {
 	const [context, setContext] = useState(initialContext);
 
-	useEffect(async () => {
-		refreshContext();
+	useEffect(() => {
+		(async () => {
+			await refreshContext();
+		})();
 	}, []);
 
 	const refreshContext = async () => {

@@ -1,5 +1,5 @@
 import { createPool } from 'mysql2';
-import dbConfig from './db.config.js';
+import dbConfig from '../config/db.config.js';
 
 const connectionPool = createPool({
 	host: dbConfig.HOST,

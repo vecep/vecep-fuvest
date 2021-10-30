@@ -21,16 +21,18 @@ const Practice = () => {
 	const [paused, setPaused] = useState(true);
 	const [openPopup, setOpenPopup] = useState(false);
 
-	useEffect(async () => {
-		const year = query.get('year');
-		const stage = query.get('stage');
-		const readOnly = location.pathname.split('/').pop() === 'visualizar';
+	useEffect(() => {
+		(async () => {
+			const year = query.get('year');
+			const stage = query.get('stage');
+			const readOnly = location.pathname.split('/').pop() === 'visualizar';
 
-		await getExercises(year, stage);
+			await getExercises(year, stage);
 
-		setYear(year);
-		setStage(stage);
-		setReadOnly(readOnly);
+			setYear(year);
+			setStage(stage);
+			setReadOnly(readOnly);
+		})();
 	}, [location]);
 
 	const getExercises = async (year, stage) => {
@@ -42,7 +44,6 @@ const Practice = () => {
 						stage
 					}
 				});
-
 				setExercises(data);
 			} else {
 				setOpenPopup(true);
@@ -64,6 +65,7 @@ const Practice = () => {
 					test={test}
 					key={question.id}
 					readOnly={readOnly || paused}
+					baseCard
 				/>
 			);
 		});

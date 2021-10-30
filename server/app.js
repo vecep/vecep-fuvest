@@ -10,10 +10,4 @@ app.use(express.urlencoded({ limit: '1050mb', extended: true }));
 app.use(cors());
 app.use(router);
 
-app.listen(3001, () => {
-	console.log('Hello VECEP!');
-});
-
-app.get('/', (_req, _res) => {
-	console.log('Hello VECEP!');
-});
+export default app;

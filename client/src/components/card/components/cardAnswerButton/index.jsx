@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import AnswerButton from './styles';
 import Popup from '../../../utils/popup';
+import * as UserService from '../../../../services/user';
 
 const CardAnswerButton = ({ selectedAnswer, setAnswered, answered, readOnly }) => {
 	const [openPopup, setOpenPopup] = useState(false);
 
-	const handleAnswers = () => {
+	const handleAnswer = () => {
 		if (selectedAnswer) {
 			setAnswered(true);
+			UserService.answer(selectedAnswer);
 		} else {
 			setOpenPopup(true);
 		}
@@ -26,7 +28,7 @@ const CardAnswerButton = ({ selectedAnswer, setAnswered, answered, readOnly }) =
 	return (
 		<>
 			{renderPopup()}
-			<AnswerButton onClick={handleAnswers} disabled={answered || readOnly}>
+			<AnswerButton onClick={handleAnswer} disabled={answered || readOnly}>
 				Responder
 			</AnswerButton>
 		</>
