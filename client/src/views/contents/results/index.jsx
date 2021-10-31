@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Stats from './components/stats';
 import SubjectRate from './components/subjectRate';
-import TimerIcon from '@material-ui/icons/Timer';
 import DescriptionOutlinedIcon from '@material-ui/icons/DescriptionOutlined';
 import AssignmentTurnedInOutlinedIcon from '@material-ui/icons/AssignmentTurnedInOutlined';
 import WhatshotIcon from '@material-ui/icons/Whatshot';
@@ -11,6 +10,7 @@ import getColorRange from '../../../utils/getColorRange';
 import * as UserService from '../../../services/user';
 import * as ExerciseService from '../../../services/exercise';
 import { AppContext } from '../../../contexts/StoreContext';
+import Button from '../../../components/utils/button';
 
 const Results = () => {
 	const { contextYears: tests } = useContext(AppContext);
@@ -19,6 +19,7 @@ const Results = () => {
 	const [generalHitRate, setGeneralHitRate] = useState();
 	const [totalExercises, setTotalExercises] = useState();
 	const [wrongAnswers, setWrongAnswers] = useState();
+	const [showAbsoluteRate, setShowAbsoluteRate] = useState(false);
 
 	const totalAvailableTests = tests.length;
 
@@ -44,7 +45,14 @@ const Results = () => {
 
 	const renderRateBySubject = () => {
 		return stats.statsBySubject.map(({ name, totalAnswered, rightAnswers }) => (
-			<SubjectRate key={name} title={name} rate={getHitRate(totalAnswered, rightAnswers)} />
+			<SubjectRate
+				key={name}
+				title={name}
+				rate={getHitRate(totalAnswered, rightAnswers)}
+				total={totalAnswered}
+				correct={rightAnswers}
+				absolute={showAbsoluteRate}
+			/>
 		));
 	};
 
@@ -54,11 +62,25 @@ const Results = () => {
 				<Span>Taxa de acerto</Span>
 				<Span color={getColorRange(generalHitRate)}>{generalHitRate}%</Span>
 				<StyledDivider />
-				{stats?.statsBySubject.length> 0 ? <Subjects>{renderRateBySubject()}</Subjects> :
-					<Message>Ei, não temos nada para analisar no momento. Vai praticar!</Message>}
+				{stats?.statsBySubject.length > 0 ? (
+					<>
+						<Subjects>{renderRateBySubject()}</Subjects>
+
+						{showAbsoluteRate ? (
+							<Button onClick={() => setShowAbsoluteRate(false)} variant="outlined">
+							Ver valores relativos
+							</Button>
+						) : (
+							<Button onClick={() => setShowAbsoluteRate(true)} variant="outlined">
+							Ver valores absolutos
+							</Button>
+						)}
+					</>
+				) : (
+					<Message>Ei, não temos nada para analisar no momento. Vai praticar!</Message>
+				)}
 			</Summary>
 			<Details>
-				<Stats icon={<TimerIcon fontSize="large" />} value={20} label="Tempo médio" />
 				<Stats
 					icon={<DescriptionOutlinedIcon fontSize="large" />}
 					value={stats?.totalTests}

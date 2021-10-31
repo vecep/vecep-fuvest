@@ -34,6 +34,7 @@ export const Label = styled.span`
 	font-size: 1.3em;
 	color: #282727;
 	text-align: center;
+	white-space: pre;
 `;
 
 export const StyledDivider = withStyles({
