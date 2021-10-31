@@ -35,3 +35,13 @@ export const destroy = async (req, res, next) => {
 		res.status(500) && next(err);
 	}
 };
+
+export const getTotal = async (_, res, next) => {
+	try {
+		const total = await service.getTotal();
+		res.status(200).json(total);
+		next();
+	} catch (err) {
+		res.status(500) && next(err);
+	}
+};
