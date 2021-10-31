@@ -88,3 +88,11 @@ export const destroy = async (id) => {
 		db.promise().query(deleteReferenceRelation, id)
 	]).then(() => db.promise().query(deleteQuestion, id));
 };
+
+export const getTotal = async () => {
+	const sql = "SELECT COUNT(q.id) as 'total' FROM question q";
+
+	const [data] = await db.promise().query(sql);
+
+	return data;
+};

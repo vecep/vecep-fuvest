@@ -25,12 +25,12 @@ export const answer = async (userId, selectedAnswer) => {
 		if (answersIds) {
 			const alreadyAnsweredOption = await Promise.all(
 				answersIds.map(async (answerId) => await optionService.getOneById(answerId))
-			).then((a) =>
-				a.find(
+			).then((options) => {
+				options.find(
 					({ questionId, id }) =>
 						questionId === selectedAnswerOption.questionId && answersIds.includes(id)
-				)
-			);
+				);
+			});
 
 			if (alreadyAnsweredOption) {
 				await destroyAnswer(alreadyAnsweredOption.id, userId);
@@ -58,6 +58,21 @@ export const getAnswers = async (id) => {
 export const destroyAnswer = async (optionId, userId) => {
 	try {
 		await model.destroyAnswer(optionId, userId);
+	} catch (err) {
+		throw new Error(err.message);
+	}
+};
+
+export const getStatistics = async (userId) => {
+	try {
+		const [generalStatistics] = await model.getGeneralStatistics(userId);
+		const statsBySubject = await model.getStatsBySubject(userId);
+
+		return {
+			...generalStatistics,
+			totalRightAnswers: generalStatistics.totalRightAnswers || 0,
+			statsBySubject
+		};
 	} catch (err) {
 		throw new Error(err.message);
 	}

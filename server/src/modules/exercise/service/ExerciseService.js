@@ -58,3 +58,12 @@ export const destroy = async (id) => {
 		throw new Error(err.message);
 	}
 };
+
+export const getTotal = async () => {
+	try {
+		const [data] = await model.getTotal();
+		return data;
+	} catch (err) {
+		throw new Error(err.message);
+	}
+};

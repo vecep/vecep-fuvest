@@ -57,6 +57,7 @@ router.delete(
 	[authJwt.verifyToken, authJwt.isAdmin],
 	ExerciseController.destroy
 );
+router.get('/api/exercises/total', ExerciseController.getTotal);
 
 router.post('/api/image', [authJwt.verifyToken, authJwt.isAdmin], ImageController.post);
 router.get('/api/images', ImageController.get);
@@ -79,5 +80,6 @@ router.post('/api/auth/signin', AuthenticationController.signin);
 
 router.post('/api/user/answer', [authJwt.verifyToken], UserController.answer);
 router.get('/api/user/answers', [authJwt.verifyToken], UserController.getAnswers);
+router.get('/api/user/statistics', [authJwt.verifyToken], UserController.getStatistics);
 
 export default router;

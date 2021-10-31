@@ -19,3 +19,13 @@ export const getAnswers = async (req, res, next) => {
 		res.status(500).send({ message: err.message });
 	}
 };
+
+export const getStatistics = async (req, res, next) => {
+	try {
+		const userStatistics = await userService.getStatistics(req.userId);
+		res.status(200).send(userStatistics);
+		next();
+	} catch (err) {
+		res.status(500).send({ message: err.message });
+	}
+};
