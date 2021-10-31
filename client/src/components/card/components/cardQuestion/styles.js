@@ -15,11 +15,6 @@ const OptionsContainer = styled.div`
 	align-items: center;
 	margin-left: 10px;
 	margin-bottom: 15px;
-
-	svg {
-		width: 1.1rem;
-		height: 1.1rem;
-	}
 `;
 
 const Option = withStyles({
@@ -31,6 +26,11 @@ const Option = withStyles({
 
 		'&$checked': {
 			color: '#48A7FF'
+		},
+
+		'& svg': {
+			width: '1.1rem',
+			height: '1.1rem'
 		}
 	},
 	checked: {}
