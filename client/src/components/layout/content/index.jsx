@@ -12,6 +12,7 @@ import Practice from '../../../views/contents/practice';
 import Login from '../../../views/contents/login';
 import Register from '../../../views/contents/register';
 import PrivateRoute from '../../utils/privateRoute';
+import Results from '../../../views/contents/results';
 
 const Content = () => {
 	const history = useHistory();
@@ -52,6 +53,9 @@ const Content = () => {
 				</Route>
 				<Route path="/simulado">
 					<Practice />
+				</Route>
+				<Route path="/resultados">
+					<Results />
 				</Route>
 				<PrivateRoute path="/admin">
 					<Admin />
