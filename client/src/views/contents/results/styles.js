@@ -61,3 +61,8 @@ export const StyledDivider = withStyles({
 		background: '#B2B2B2'
 	}
 })(Divider);
+
+export const Message = styled.span`
+	font-size: 0.9rem;
+	text-align: center;
+`;

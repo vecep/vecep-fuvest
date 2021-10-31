@@ -13,9 +13,21 @@ export const Container = styled.div`
 	}
 `;
 
+export const ValueContainer = styled.div`
+	display: flex;
+	align-items: flex-end;
+`;
+
 export const Value = styled.span`
 	font-size: 2.5em;
 	font-weight: bold;
+`;
+
+export const Total = styled.span`
+	font-size: 1.2em;
+	font-weight: bold;
+	color: grey;
+	white-space: pre;
 `;
 
 export const Label = styled.span`
