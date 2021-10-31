@@ -23,7 +23,7 @@ exports.up = function (db) {
 			\`password\` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
 			\`isAdmin\` tinyint(1) NOT NULL,
 			PRIMARY KEY (\`id\`)
-		) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+		) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci
 	`);
 };
 

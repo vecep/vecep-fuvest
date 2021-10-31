@@ -22,7 +22,7 @@ exports.up = function (db) {
 			\`stage\` int NOT NULL,
 			PRIMARY KEY (\`id\`),
 			UNIQUE KEY \`test_year_IDX\` (\`year\`,\`stage\`) USING BTREE
-		) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+		) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 	`);
 };
 

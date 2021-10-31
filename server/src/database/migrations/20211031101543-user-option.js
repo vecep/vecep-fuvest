@@ -23,7 +23,7 @@ exports.up = function (db) {
 			KEY \`option_id\` (\`option_id\`),
 			CONSTRAINT \`user_option_ibfk_1\` FOREIGN KEY (\`user_id\`) REFERENCES \`user\` (\`id\`),
 			CONSTRAINT \`user_option_ibfk_2\` FOREIGN KEY (\`option_id\`) REFERENCES \`option\` (\`id\`)
-		) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+		) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci
 	`);
 };
 

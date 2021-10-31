@@ -25,7 +25,7 @@ exports.up = function (db) {
 			PRIMARY KEY (\`id\`),
 			KEY \`reference_FK\` (\`image_id\`),
 			CONSTRAINT \`reference_FK\` FOREIGN KEY (\`image_id\`) REFERENCES \`image\` (\`id\`) ON DELETE RESTRICT ON UPDATE RESTRICT
-		) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+		) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci
 	`);
 };
 

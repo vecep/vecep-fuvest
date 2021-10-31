@@ -25,7 +25,7 @@ exports.up = function (db) {
 			PRIMARY KEY (\`id\`),
 			KEY \`test_id\` (\`test_id\`),
 			CONSTRAINT \`question_ibfk_1\` FOREIGN KEY (\`test_id\`) REFERENCES \`test\` (\`id\`)
-		) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+		) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci
 	`);
 };
 
