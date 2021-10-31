@@ -9,6 +9,7 @@ import { Container, FormRow } from './styles';
 import Button from '../../../components/utils/button';
 import { AppContext } from '../../../contexts/StoreContext';
 import Axios from 'axios';
+import authHeader from '../../../services/authHeader';
 
 const INITIAL_EXERCISES = {
 	test: {
@@ -49,6 +50,8 @@ const Admin = () => {
 	const validate = (exercise) => {
 		const { test, question, references, options } = JSON.parse(exercise);
 
+		const isTestEmpty = Object.values(test).some(t => !t);
+		const isQuestionEmpty = Object.values(question).some(q => !q);
 		const isReferencesEmpty = references.some(
 			(r) => !r.text && !r.author && !r.source && isEmpty(r.image)
 		);
@@ -60,8 +63,8 @@ const Admin = () => {
 			options.some((o) => o.image.file && !o.image.description);
 
 		if (
-			isEmpty(test) ||
-			isEmpty(question) ||
+			isTestEmpty ||
+			isQuestionEmpty ||
 			isOptionsEmpty ||
 			isReferencesEmpty ||
 			isDescriptionEmpty
@@ -95,7 +98,7 @@ const Admin = () => {
 
 			if (validate(exercise)) {
 				await Axios.post('http://localhost:3001/api/exercise', exercise, {
-					headers: { 'Content-Type': 'application/json' }
+					headers: { 'Content-Type': 'application/json', ...authHeader() }
 				});
 
 				clearForm();
