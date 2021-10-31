@@ -1,0 +1,10 @@
+{
+	"dev": {
+		"host": "localhost",
+		"user": "root",
+		"password": "password",
+		"database": "vecep-test",
+		"driver": "mysql",
+		"multipleStatements": true
+	}
+}

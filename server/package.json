@@ -7,7 +7,9 @@
   "scripts": {
     "start": "node server.js",
     "devStart": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "redo-db": "cd src/database && db-migrate db:drop vecep-test && db-migrate db:create vecep-test && db-migrate up",
+    "db:reset": "cd src/database && db-migrate reset"
   },
   "author": "Victor Yodono",
   "license": "ISC",
@@ -15,6 +17,8 @@
     "bcryptjs": "^2.4.3",
     "cloudinary": "^1.27.0",
     "cors": "^2.8.5",
+    "db-migrate": "^1.0.0-beta.16",
+    "db-migrate-mysql": "^2.2.0",
     "dotenv": "^10.0.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
