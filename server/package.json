@@ -6,9 +6,9 @@
   "type": "module",
   "scripts": {
     "start": "node server.js",
-    "devStart": "nodemon server.js",
+    "startDev": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "redo-db": "cd src/database && db-migrate db:drop vecep-test && db-migrate db:create vecep-test && db-migrate up",
+    "redo-db": "cd src/database && db-migrate db:drop vecep_test && db-migrate db:create vecep_test && db-migrate up",
     "db:reset": "cd src/database && db-migrate reset"
   },
   "author": "Victor Yodono",
@@ -23,6 +23,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "express": "^4.17.1",
+    "fs": "^0.0.1-security",
     "jsonwebtoken": "^8.5.1",
     "lodash-es": "^4.17.21",
     "mysql2": "^2.3.0",
