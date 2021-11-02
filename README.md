@@ -1,8 +1,8 @@
 # Vecep - Fuvest
 
 ![GitHub language count](https://img.shields.io/github/languages/count/vecep/vecep-fuvest?style=for-the-badge)
-![GitHub commit activity](https://img.shields.io/github/commit-activity/w/vecep/vecep-fuvest?style=for-the-badge)
-![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr/vecep/vecep-fuvest?style=for-the-badge)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/vecep/vecep-fuvest?style=for-the-badge)
+![GitHub last commit](https://img.shields.io/github/last-commit/vecep/vecep-fuvest?style=for-the-badge)
 ![GitHub Repo stars](https://img.shields.io/github/stars/vecep/vecep-fuvest?style=for-the-badge)
 
 > 2021 web project for our 'TCC': Vecep - Fuvest
@@ -21,10 +21,10 @@ The project is still under the development stage and its future updates will be 
 - [x] Frontend main pages
 - [x] Database structure
 - [x] Backend core
-- [ ] Client/Server integration
-- [ ] Populate database
-- [ ] Carry out front
-- [ ] User/login feature
+- [x] Client/Server integration
+- [x] Populate database
+- [x] Carry out front
+- [x] User/login feature
 
 ## 💻 Technologies
 This project runs on:
