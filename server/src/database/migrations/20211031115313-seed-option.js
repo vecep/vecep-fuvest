@@ -24,7 +24,7 @@ exports.up = function (db) {
 };
 
 exports.down = function (db) {
-	return db.runSql('DELETE FROM option');
+	return db.runSql('DELETE FROM `option`');
 };
 
 exports._meta = {
