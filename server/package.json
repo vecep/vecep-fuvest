@@ -8,7 +8,7 @@
     "start": "node server.js",
     "startDev": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "redo-db": "cd src/database && db-migrate db:drop vecep_test && db-migrate db:create vecep_test && db-migrate up",
+    "redo-db": "cd src/database && db-migrate db:drop vecep_fuvest && db-migrate db:create vecep_fuvest && db-migrate up",
     "db:reset": "cd src/database && db-migrate reset"
   },
   "author": "Victor Yodono",
