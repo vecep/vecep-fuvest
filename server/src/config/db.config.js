@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-const { dev: config } = JSON.parse(fs.readFileSync('src/database/database.json'));
+const { dev: config } = JSON.parse(fs.readFileSync('.keys/database/database.json'));
 
 export default {
 	HOST: config.host,
