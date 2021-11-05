@@ -2,20 +2,19 @@ import styled from 'styled-components';
 
 const Container = styled.div`
 	display: grid;
-	justify-items: stretch;
-	align-items: stretch;
-	grid-template-rows: 17em 17em;
-	grid-template-columns: 1fr 1fr 1fr;
+	width: 80%;
+	grid-template-rows: repeat(2, auto);
+	grid-template-columns: repeat(3, auto);
 	grid-template-areas:
-		'side results practice'
-		'side filter filter';
-	gap: 5em;
+		'side results filter'
+		'side practice practice';
+	gap: 4em;
 	margin-bottom: 100px;
 `;
 
 const Title = styled.span`
 	display: block;
-	font-size: 1.2em;
+	font-size: 1.5em;
 	margin-block-end: 0.83em;
 	font-weight: bold;
 `;
@@ -34,4 +33,16 @@ const Section = styled.div`
 	}
 `;
 
-export { Container, Title, Section };
+const Image = styled.img`
+	width: 100%;
+	height: 100%;
+	border: 5px solid #282727;
+	border-radius: 5px;
+	transition: 1s;
+
+	&:hover {
+		transform: scale(101%);
+	}
+`;
+
+export { Container, Title, Section, Image };

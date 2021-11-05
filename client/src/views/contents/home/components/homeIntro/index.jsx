@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import HumaaanPNG from '../../../../../images/humaaan.png';
+import HumaaanPNG from '../../../../../images/home/humaaan.png';
 import { Link } from 'react-router-dom';
 import { Container, Intro, Text, Title, Image, StyledButton } from './styles';
 import { AuthContext } from '../../../../../contexts/AuthContext';
