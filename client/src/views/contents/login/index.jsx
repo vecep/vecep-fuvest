@@ -51,10 +51,10 @@ const Login = () => {
 					err.message ||
 					err.toString();
 				setMessage(resMessage);
+				setOpenPopup(true);
 			}
 		}
 		setLoading(false);
-		setOpenPopup(true);
 	};
 
 	const renderPopup = () => (

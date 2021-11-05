@@ -121,31 +121,31 @@ const options = [
 	},
 	{
 		question_id: 5,
-		text: '$\\\\ce{limoneno\\\\rightleftharpoons p‐cimeno -> α‐terpineno}$',
+		text: '$\\\\ce{limoneno\\\\rightleftharpoons p‐cimeno -> \\\\alpha‐terpineno}$',
 		correct_answer: false,
 		image_id: null
 	},
 	{
 		question_id: 5,
-		text: '$\\\\ce{limoneno ->[{p-cimeno (catalisador)}] α‐terpineno}$',
+		text: '$\\\\ce{limoneno ->[{p-cimeno (catalisador)}] \\\\alpha‐terpineno}$',
 		correct_answer: false,
 		image_id: null
 	},
 	{
 		question_id: 5,
-		text: '$\\\\ce{limoneno + p‐cimeno\\\\rightleftharpoons α‐terpineno}$',
+		text: '$\\\\ce{limoneno + p‐cimeno\\\\rightleftharpoons \\\\alpha‐terpineno}$',
 		correct_answer: false,
 		image_id: null
 	},
 	{
 		question_id: 5,
-		text: '$\\\\ce{limoneno ->[{α‐terpineno (catalisador)}] p-cimeno}$',
+		text: '$\\\\ce{limoneno ->[{\\\\alpha‐terpineno (catalisador)}] p-cimeno}$',
 		correct_answer: false,
 		image_id: null
 	},
 	{
 		question_id: 5,
-		text: '$\\\\ce{limoneno -> α‐terpineno -> p‐cimeno}$',
+		text: '$\\\\ce{limoneno -> \\\\alpha‐terpineno -> p‐cimeno}$',
 		correct_answer: true,
 		image_id: null
 	},
