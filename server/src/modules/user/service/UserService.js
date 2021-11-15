@@ -25,12 +25,12 @@ export const answer = async (userId, selectedAnswer) => {
 		if (answersIds) {
 			const alreadyAnsweredOption = await Promise.all(
 				answersIds.map(async (answerId) => await optionService.getOneById(answerId))
-			).then((options) => {
+			).then((options) =>
 				options.find(
 					({ questionId, id }) =>
 						questionId === selectedAnswerOption.questionId && answersIds.includes(id)
-				);
-			});
+				)
+			);
 
 			if (alreadyAnsweredOption) {
 				await destroyAnswer(alreadyAnsweredOption.id, userId);
