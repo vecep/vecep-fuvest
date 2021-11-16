@@ -90,7 +90,7 @@ export const getStatsBySubject = async (userId) => {
 	ON o.id = uo.option_id
 	INNER JOIN question q
 	ON q.id = o.question_id
-	WHERE uo.user_id = 1
+	WHERE uo.user_id = ?
 	GROUP BY q.subject;`;
 
 	const [row] = await db.promise().query(sql, [userId]);
