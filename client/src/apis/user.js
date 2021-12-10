@@ -1,6 +1,6 @@
 import Axios from 'axios';
-import authHeader from './authHeader';
-import getApiUrl from '../utils/getApiUrl';
+import authHeader from 'utils/authHeader';
+import getApiUrl from 'utils/getApiUrl';
 
 const API_URL = getApiUrl();
 

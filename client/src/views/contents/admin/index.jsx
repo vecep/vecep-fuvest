@@ -9,7 +9,7 @@ import { Container, FormRow } from './styles';
 import Button from '../../../components/utils/button';
 import { AppContext } from '../../../contexts/StoreContext';
 import Axios from 'axios';
-import authHeader from '../../../services/authHeader';
+import authHeader from 'utils/authHeader';
 
 const INITIAL_EXERCISES = {
 	test: {

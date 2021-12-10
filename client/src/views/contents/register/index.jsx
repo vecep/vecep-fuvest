@@ -3,7 +3,7 @@ import Popup from '../../../components/utils/popup';
 import TextField from '../../../components/utils/textField';
 import { isEmail } from 'validator';
 import { AuthContext } from '../../../contexts/AuthContext';
-import * as AuthService from '../../../services/auth';
+import * as authApi from 'apis/auth';
 import { useHistory } from 'react-router';
 import { Container, FormContainer, PasswordContainer, RegisterButton, LoginLink } from './styles';
 import { Typography } from '@material-ui/core';
@@ -101,7 +101,7 @@ const Register = () => {
 	};
 
 	const autoLogin = async () => {
-		await AuthService.login(username, password);
+		await authApi.login(username, password);
 		setIsLoggedIn(true);
 		history.push('/exercicios');
 	};
@@ -116,7 +116,7 @@ const Register = () => {
 			try {
 				const {
 					data: { message }
-				} = await AuthService.register(username, email, password);
+				} = await authApi.register(username, email, password);
 				setMessage({ message, severity: 'success' });
 				autoLogin();
 			} catch (err) {

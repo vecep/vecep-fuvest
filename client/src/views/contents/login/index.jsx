@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import Popup from '../../../components/utils/popup';
 import TextField from '../../../components/utils/textField';
 import { AuthContext } from '../../../contexts/AuthContext';
-import * as AuthService from '../../../services/auth';
+import * as authApi from 'apis/auth';
 import { Container, FormContainer, LoginButton, StyledLink } from './styles';
 import { Typography } from '@material-ui/core';
 
@@ -41,7 +41,7 @@ const Login = () => {
 
 		if (username && password) {
 			try {
-				await AuthService.login(username, password);
+				await authApi.login(username, password);
 				setIsLoggedIn(true);
 			} catch (err) {
 				console.error(err);

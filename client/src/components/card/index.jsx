@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import CardAnswerButton from './components/cardAnswerButton';
 import CardReferences from './components/cardReference';
 import CardQuestion from './components/cardQuestion';
-import * as UserService from '../../services/user';
+import * as userApi from 'apis/user';
 
 const Card = ({ question, options, references, test, baseCard, readOnly }) => {
 	const [selectedAnswer, setSelectedAnswer] = useState();
@@ -14,7 +14,7 @@ const Card = ({ question, options, references, test, baseCard, readOnly }) => {
 		let mounted = true;
 		(async () => {
 			if(!baseCard) {
-				const userAnswers = await UserService.getAnswers();
+				const userAnswers = await userApi.getAnswers();
 				const [selectedAnswer] = options.filter((o) => userAnswers.includes(o.id));
 				const answered = !!selectedAnswer;
 

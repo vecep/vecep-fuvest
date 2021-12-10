@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Redirect, Route } from 'react-router-dom';
-import * as AuthService from '../../../services/auth';
+import * as authApi from 'apis/auth';
 
 const PrivateRoute = ({ children, ...otherProps }) => {
-	const { accessToken, isAdmin } = AuthService.getCurrentUser() || '';
+	const { accessToken, isAdmin } = authApi.getCurrentUser() || '';
 
 	return (
 		<Route

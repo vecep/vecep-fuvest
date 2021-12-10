@@ -7,8 +7,8 @@ import WhatshotIcon from '@material-ui/icons/Whatshot';
 import ClearRoundedIcon from '@material-ui/icons/ClearRounded';
 import { Container, Summary, Subjects, Details, Span, StyledDivider, Message } from './styles';
 import getColorRange from '../../../utils/getColorRange';
-import * as UserService from '../../../services/user';
-import * as ExerciseService from '../../../services/exercise';
+import * as userApi from 'apis/user';
+import * as exerciseApi from 'apis/exercise';
 import { AppContext } from '../../../contexts/StoreContext';
 import Button from '../../../components/utils/button';
 
@@ -25,9 +25,9 @@ const Results = () => {
 
 	useEffect(() => {
 		(async () => {
-			const stats = await UserService.getStatistics();
+			const stats = await userApi.getStatistics();
 			const generalHitRate = getHitRate(stats.totalAnswers, stats.totalRightAnswers);
-			const { total: totalExercises } = await ExerciseService.getTotal();
+			const { total: totalExercises } = await exerciseApi.getTotal();
 			const wrongAnswers = stats.totalAnswers - stats.totalRightAnswers;
 
 			setStats(stats);

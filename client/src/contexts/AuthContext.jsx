@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import * as AuthService from '../services/auth';
+import * as authApi from 'apis/auth';
 
 const initialContext = {
 	isLoggedIn: false
@@ -18,7 +18,7 @@ const Auth = (props) => {
 	}, [context.isLoggedIn]);
 
 	const refreshContext = async () => {
-		const currentUser = AuthService.getCurrentUser();
+		const currentUser = authApi.getCurrentUser();
 
 		if (currentUser) {
 			setContext({
