@@ -1,10 +1,10 @@
 import React from 'react';
 import { Container, Title, Section, Image } from './styles';
 import { Skeleton } from '@material-ui/lab';
-import results from '../../../../../images/home/results.png';
-import practice from '../../../../../images/home/practice.png';
-import filter from '../../../../../images/home/filter.png';
-import side from '../../../../../images/home/side.png';
+import results from 'images/home/results.png';
+import practice from 'images/home/practice.png';
+import filter from 'images/home/filter.png';
+import side from 'images/home/side.png';
 
 const HomeFeature = () => (
 	<Container>

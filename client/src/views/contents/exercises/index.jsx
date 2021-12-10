@@ -1,14 +1,14 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
-import useQuery from '../../../hooks/useQuery';
-import Card from '../../../components/card';
+import useQuery from 'hooks/useQuery';
+import Card from 'components/card';
 import TextField from '@material-ui/core/TextField';
 import { ExercisesContainer, Header, FilterContainer, SubjectTitle } from './styles';
-import { StyledAutocomplete } from '../../../components/utils/autocomplete/style';
-import { AppContext } from '../../../contexts/StoreContext';
+import { StyledAutocomplete } from 'components/utils/autocomplete/style';
+import { AppContext } from 'contexts/StoreContext';
 import Axios from 'axios';
-import { toTitleCase } from '../../../utils/toTitleCase';
-import { CardSkeleton } from '../../../components/card/styles';
+import { toTitleCase } from 'utils/toTitleCase';
+import { CardSkeleton } from 'components/card/styles';
 
 const Exercises = () => {
 	const location = useLocation();

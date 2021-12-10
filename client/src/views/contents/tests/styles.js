@@ -1,5 +1,5 @@
 import { withStyles } from '@material-ui/core/styles';
-import Button from '../../../components/utils/button';
+import Button from 'components/utils/button';
 import styled from 'styled-components';
 import IconButton from '@material-ui/core/IconButton';
 

@@ -4,10 +4,10 @@ import TestSection from './components/testSection';
 import QuestionSection from './components/questionSection';
 import OptionSection from './components/optionsSection';
 import { isEmpty } from 'lodash';
-import Popup from '../../../components/utils/popup';
+import Popup from 'components/utils/popup';
 import { Container, FormRow } from './styles';
-import Button from '../../../components/utils/button';
-import { AppContext } from '../../../contexts/StoreContext';
+import Button from 'components/utils/button';
+import { AppContext } from 'contexts/StoreContext';
 import Axios from 'axios';
 import authHeader from 'utils/authHeader';
 

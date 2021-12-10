@@ -21,9 +21,9 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import Button from '../../../../../components/utils/button';
+import Button from 'components/utils/button';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import { StyledCheckbox } from '../../../../../components/utils/checkbox/styles';
+import { StyledCheckbox } from 'components/utils/checkbox/styles';
 
 const STAGE_ONE_MAXHOURS = 5;
 const STAGE_TWO_MAXHOURS = 4;

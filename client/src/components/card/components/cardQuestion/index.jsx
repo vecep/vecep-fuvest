@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { QuestionContainer, OptionsContainer, Option, Grid, ImageLabel } from './styles';
-import CloudImage from '../../../utils/image';
-import Latext from '../../../utils/latext';
+import CloudImage from 'components/utils/image';
+import Latext from 'components/utils/latext';
 
 const CardQuestion = ({ text, options, selectedAnswer, setSelectedAnswer, answered, readOnly }) => {
 	const correctAnswer = options.find((o) => o.correctAnswer);

@@ -1,8 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import Popup from '../../../components/utils/popup';
-import TextField from '../../../components/utils/textField';
-import { AuthContext } from '../../../contexts/AuthContext';
+import Popup from 'components/utils/popup';
+import TextField from 'components/utils/textField';
+import { AuthContext } from 'contexts/AuthContext';
 import * as authApi from 'apis/auth';
 import { Container, FormContainer, LoginButton, StyledLink } from './styles';
 import { Typography } from '@material-ui/core';

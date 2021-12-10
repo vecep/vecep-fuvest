@@ -6,11 +6,11 @@ import AssignmentTurnedInOutlinedIcon from '@material-ui/icons/AssignmentTurnedI
 import WhatshotIcon from '@material-ui/icons/Whatshot';
 import ClearRoundedIcon from '@material-ui/icons/ClearRounded';
 import { Container, Summary, Subjects, Details, Span, StyledDivider, Message } from './styles';
-import getColorRange from '../../../utils/getColorRange';
+import getColorRange from 'utils/getColorRange';
 import * as userApi from 'apis/user';
 import * as exerciseApi from 'apis/exercise';
-import { AppContext } from '../../../contexts/StoreContext';
-import Button from '../../../components/utils/button';
+import { AppContext } from 'contexts/StoreContext';
+import Button from 'components/utils/button';
 
 const Results = () => {
 	const { contextYears: tests } = useContext(AppContext);

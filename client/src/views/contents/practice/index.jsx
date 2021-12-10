@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import useQuery from '../../../hooks/useQuery';
-import Card from '../../../components/card';
+import useQuery from 'hooks/useQuery';
+import Card from 'components/card';
 import Axios from 'axios';
 import { Container, Header, Info, TimerContainer } from './styles';
 import Timer from './components/timer';
 import Typography from '@material-ui/core/Typography';
 import Skeleton from '@material-ui/lab/Skeleton';
-import { CardSkeleton } from '../../../components/card/styles';
-import Popup from '../../../components/utils/popup';
+import { CardSkeleton } from 'components/card/styles';
+import Popup from 'components/utils/popup';
 
 const Practice = () => {
 	const location = useLocation();

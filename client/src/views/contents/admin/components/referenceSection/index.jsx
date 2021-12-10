@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ImageSelect from '../imageSelect';
 import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
-import TextField from '../../../../../components/utils/textField';
+import TextField from 'components/utils/textField';
 import Button from '@material-ui/core/Button';
 import { isNil } from 'lodash';
 import { FormRow, FormColumn } from '../../styles';

@@ -10,8 +10,8 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import Button from '../button';
-import Latext from '../latext';
+import Button from 'components/utils/button';
+import Latext from 'components/utils/latext';
 
 const TextField = ({ latex, ...props }) => {
 	const [open, setOpen] = useState(false);

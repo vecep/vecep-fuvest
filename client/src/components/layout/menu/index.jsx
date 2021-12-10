@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, DropdownContainer, DropdownItem, DropdownContent } from './styles';
-import { AppContext } from '../../../contexts/StoreContext';
-import { AuthContext } from '../../../contexts/AuthContext';
+import { AppContext } from 'contexts/StoreContext';
+import { AuthContext } from 'contexts/AuthContext';
 import * as authApi from 'apis/auth';
 import Avatar from '@material-ui/core/Avatar';
 import './styles.js';

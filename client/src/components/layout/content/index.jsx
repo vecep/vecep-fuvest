@@ -1,18 +1,18 @@
 import React, { useContext, useEffect } from 'react';
 import { Switch, Route, Redirect, useHistory } from 'react-router-dom';
-import Exercises from '../../../views/contents/exercises/';
-import Home from '../../../views/contents/home/';
-import Tests from '../../../views/contents/tests/';
-import Admin from '../../../views/contents/admin/';
-import NotFound from '../../../views/contents/not-found/';
+import Exercises from 'views/contents/exercises/';
+import Home from 'views/contents/home/';
+import Tests from 'views/contents/tests/';
+import Admin from 'views/contents/admin/';
+import NotFound from 'views/contents/not-found/';
 import ContentContainer from './styles.js';
-import { AppContext } from '../../../contexts/StoreContext';
+import { AppContext } from 'contexts/StoreContext';
 import 'katex/dist/katex.min.css';
-import Practice from '../../../views/contents/practice';
-import Login from '../../../views/contents/login';
-import Register from '../../../views/contents/register';
-import PrivateRoute from '../../utils/privateRoute';
-import Results from '../../../views/contents/results';
+import Practice from 'views/contents/practice';
+import Login from 'views/contents/login';
+import Register from 'views/contents/register';
+import PrivateRoute from 'components/utils/privateRoute';
+import Results from 'views/contents/results';
 
 const Content = () => {
 	const history = useHistory();

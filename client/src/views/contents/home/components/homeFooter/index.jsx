@@ -2,7 +2,7 @@ import React from 'react';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import TwitterIcon from '@material-ui/icons/Twitter';
-import { DiscordIcon } from '../../../../../components/utils/discordIcon';
+import { DiscordIcon } from 'components/utils/discordIcon';
 import { Container, Title, Span, Content, Info, SocialMedia, IconsContainer } from './styles';
 
 const HomeFooter = () => (

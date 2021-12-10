@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
-import Popup from '../../../components/utils/popup';
-import TextField from '../../../components/utils/textField';
+import Popup from 'components/utils/popup';
+import TextField from 'components/utils/textField';
 import { isEmail } from 'validator';
-import { AuthContext } from '../../../contexts/AuthContext';
+import { AuthContext } from 'contexts/AuthContext';
 import * as authApi from 'apis/auth';
 import { useHistory } from 'react-router';
 import { Container, FormContainer, PasswordContainer, RegisterButton, LoginLink } from './styles';

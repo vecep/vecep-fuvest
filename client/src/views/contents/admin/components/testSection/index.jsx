@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Autocomplete from '../../../../../components/utils/autocomplete';
+import Autocomplete from 'components/utils/autocomplete';
 import { FormRow } from '../../styles';
 import FormHeader from '../formHeader';
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import TextField from '../../../../../components/utils/textField';
+import TextField from 'components/utils/textField';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import { FormRow } from '../../styles';
@@ -10,7 +10,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import IconButton from '@material-ui/core/IconButton';
-import Button from '../../../../../components/utils/button';
+import Button from 'components/utils/button';
 import { Container } from './styles';
 
 const ImageSelect = ({ image, handleChange, index, disabled, showMessage }) => {

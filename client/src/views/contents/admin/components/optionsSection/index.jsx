@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ImageSelect from '../imageSelect';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { isNil } from 'lodash';
-import TextField from '../../../../../components/utils/textField';
+import TextField from 'components/utils/textField';
 import { FormRow, FormColumn } from '../../styles';
 import FormHeader from '../formHeader';
 import { Label, StyledSwitch, StyledPagination } from './styles';

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Container, Title, StyledDivider, Span } from './styles';
-import getColorRange from '../../../../../utils/getColorRange';
+import getColorRange from 'utils/getColorRange';
 
 const SubjectRate = ({ title, rate, total, correct, absolute }) => {
 	return (

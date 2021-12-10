@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import TextField from '../../../../../components/utils/textField';
-import Autocomplete from '../../../../../components/utils/autocomplete';
+import TextField from 'components/utils/textField';
+import Autocomplete from 'components/utils/autocomplete';
 import { FormRow, FormColumn } from '../../styles';
 import FormHeader from '../formHeader';
 
