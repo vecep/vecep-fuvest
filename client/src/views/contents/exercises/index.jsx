@@ -6,9 +6,9 @@ import TextField from '@material-ui/core/TextField';
 import { ExercisesContainer, Header, FilterContainer, SubjectTitle } from './styles';
 import { StyledAutocomplete } from 'components/utils/autocomplete/style';
 import { AppContext } from 'contexts/StoreContext';
-import Axios from 'axios';
 import { toTitleCase } from 'utils/toTitleCase';
 import { CardSkeleton } from 'components/card/styles';
+import * as exerciseApi from 'apis/exercise';
 
 const Exercises = () => {
 	const location = useLocation();
@@ -20,9 +20,10 @@ const Exercises = () => {
 	const [subjectTitle, setSubjectTitle] = useState('');
 
 	useEffect(() => {
-		(async () => {
-			await getExercises();
-		})();
+		getExercises();
+		return () => {
+			setExercises();
+		};
 	}, [location]);
 
 	useEffect(() => {
@@ -35,15 +36,12 @@ const Exercises = () => {
 
 	const getExercises = async () => {
 		try {
-			const { data } = await Axios.get('http://localhost:3001/api/exercises', {
-				params: {
-					subject: query.get('subject'),
-					topic: query.get('topic'),
-					year: query.get('year')
-				}
+			const exercises = await exerciseApi.getAll({
+				subject: query.get('subject'),
+				topic: query.get('topic'),
+				year: query.get('year')
 			});
-
-			setExercises(data);
+			setExercises(exercises);
 		} catch (err) {
 			console.error(err);
 		}
@@ -88,7 +86,7 @@ const Exercises = () => {
 				</FilterContainer>
 			</Header>
 
-			{exercises.length <= 0 ? <CardSkeleton variant="rect" /> : renderCards()}
+			{exercises?.length <= 0 ? <CardSkeleton variant="rect" /> : renderCards()}
 		</ExercisesContainer>
 	);
 };

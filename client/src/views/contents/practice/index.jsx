@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import useQuery from 'hooks/useQuery';
 import Card from 'components/card';
-import Axios from 'axios';
 import { Container, Header, Info, TimerContainer } from './styles';
 import Timer from './components/timer';
 import Typography from '@material-ui/core/Typography';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { CardSkeleton } from 'components/card/styles';
 import Popup from 'components/utils/popup';
+import * as exerciseApi from 'apis/exercise';
 
 const Practice = () => {
 	const location = useLocation();
@@ -22,32 +22,31 @@ const Practice = () => {
 	const [openPopup, setOpenPopup] = useState(false);
 
 	useEffect(() => {
-		(async () => {
-			const year = query.get('year');
-			const stage = query.get('stage');
-			const readOnly = location.pathname.split('/').pop() === 'visualizar';
+		const year = query.get('year');
+		const stage = query.get('stage');
+		const readOnly = location.pathname.split('/').pop() === 'visualizar';
+		getExercises({ year, stage });
 
-			await getExercises(year, stage);
+		setYear(year);
+		setStage(stage);
+		setReadOnly(readOnly);
 
-			setYear(year);
-			setStage(stage);
-			setReadOnly(readOnly);
-		})();
+		return () => {
+			setYear();
+			setStage();
+			setReadOnly();
+		};
 	}, [location]);
 
-	const getExercises = async (year, stage) => {
+	const getExercises = query => {
 		try {
-			if (year && stage) {
-				const { data } = await Axios.get('http://localhost:3001/api/exercises', {
-					params: {
-						year,
-						stage
-					}
-				});
-				setExercises(data);
-			} else {
-				setOpenPopup(true);
-			}
+			exerciseApi.getAll(query).then(exercises => {
+				if (exercises.length === 0) {
+					setOpenPopup(true);
+				} else {
+					setExercises(exercises);
+				}
+			});
 		} catch (err) {
 			console.error(err);
 		}

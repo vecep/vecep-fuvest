@@ -14,9 +14,9 @@ import {
 import { StyledAutocomplete } from 'components/utils/autocomplete/style';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import Axios from 'axios';
 import { AppContext } from 'contexts/StoreContext';
 import useQuery from 'hooks/useQuery';
+import * as testApi from 'apis/test';
 
 const Tests = () => {
 	const location = useLocation();
@@ -25,25 +25,30 @@ const Tests = () => {
 
 	const [tests, setTests] = useState([]);
 	const [sortType, setSortType] = useState('desc');
+	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
-		(async () => {
-			await getTests();
-		})();
+		getTests();
+		return () => {
+			setTests();
+		};
 	}, [location]);
 
 	const getTests = async () => {
+		setLoading(true);
 		try {
-			const { data } = await Axios.get('http://localhost:3001/api/tests', {
-				params: { year: query.get('year'), stage: query.get('stage') }
+			const tests = await testApi.getAll({
+				year: query.get('year'),
+				stage: query.get('stage')
 			});
-			setTests(data);
+			setTests(tests);
 		} catch (err) {
 			console.error(err);
 		}
+		setLoading(false);
 	};
 
-	const orderedTests = tests.sort((a, b) =>
+	const orderedTests = tests?.sort((a, b) =>
 		sortType === 'desc' ? b.year - a.year : a.year - b.year
 	);
 
@@ -113,7 +118,7 @@ const Tests = () => {
 					)}
 				/>
 			</Filter>
-			{renderProvas()}
+			{!loading && renderProvas()}
 		</TestsContainer>
 	);
 };

@@ -1,6 +1,7 @@
 import React, { useState, createContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import Axios from 'axios';
+import * as testApi from 'apis/test';
+import * as questionApi from 'apis/question';
 
 const initialContext = {
 	contextYears: [],
@@ -19,9 +20,13 @@ const Store = (props) => {
 		})();
 	}, []);
 
+	const getTests = async () => testApi.getAll();
+
+	const getQuestions = async () => questionApi.getAll();
+
 	const refreshContext = async () => {
-		const { data: tests } = await Axios.get('http://localhost:3001/api/tests');
-		const { data: questions } = await Axios.get('http://localhost:3001/api/questions');
+		const tests = await getTests();
+		const questions = await getQuestions();
 
 		const distinctYears = [...new Set(tests.map((t) => t.year))];
 		const distinctSubjects = [...new Set(questions.map((q) => q.subject))];

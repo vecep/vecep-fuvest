@@ -24,17 +24,24 @@ const Results = () => {
 	const totalAvailableTests = tests.length;
 
 	useEffect(() => {
+		let mounted = true;
 		(async () => {
 			const stats = await userApi.getStatistics();
 			const generalHitRate = getHitRate(stats.totalAnswers, stats.totalRightAnswers);
 			const { total: totalExercises } = await exerciseApi.getTotal();
-			const wrongAnswers = stats.totalAnswers - stats.totalRightAnswers;
+			const wrongAnswers = stats?.totalAnswers - stats?.totalRightAnswers;
 
-			setStats(stats);
-			setGeneralHitRate(generalHitRate);
-			setTotalExercises(totalExercises);
-			setWrongAnswers(wrongAnswers);
+			if (mounted) {
+				setStats(stats);
+				setGeneralHitRate(generalHitRate);
+				setTotalExercises(totalExercises);
+				setWrongAnswers(wrongAnswers);
+			}
 		})();
+
+		return () => {
+			mounted = false;
+		};
 	}, []);
 
 	const getHitRate = (total, correct) => {

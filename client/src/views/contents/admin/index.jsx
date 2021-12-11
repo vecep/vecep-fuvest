@@ -8,8 +8,7 @@ import Popup from 'components/utils/popup';
 import { Container, FormRow } from './styles';
 import Button from 'components/utils/button';
 import { AppContext } from 'contexts/StoreContext';
-import Axios from 'axios';
-import authHeader from 'utils/authHeader';
+import * as exerciseApi from 'apis/exercise';
 
 const INITIAL_EXERCISES = {
 	test: {
@@ -97,10 +96,7 @@ const Admin = () => {
 			});
 
 			if (validate(exercise)) {
-				await Axios.post('http://localhost:3001/api/exercise', exercise, {
-					headers: { 'Content-Type': 'application/json', ...authHeader() }
-				});
-
+				await exerciseApi.post(exercise);
 				clearForm();
 				await refreshContext();
 				setMessage({ ...message, success: true });
