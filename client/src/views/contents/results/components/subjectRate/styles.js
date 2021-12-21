@@ -11,6 +11,7 @@ export const Container = styled.div`
 
 export const Title = styled.span`
 	font-size: 1.2rem;
+	text-align: center;
 `;
 
 export const StyledDivider = withStyles({
