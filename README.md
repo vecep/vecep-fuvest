@@ -50,26 +50,17 @@ Hey, check out our Github!
   <tr>
     <td align="center">
       <a href="https://github.com/01matheus10">
-        <img src="./client/src/images/team/sordi.jpeg" style="width: 135px; height: 135px;" alt="Foto do Matheus Siqueira Sordi"/><br />
-        <sub>
-          <b>Matheus Siqueira Sordi</b>
-        </sub>
+        <b>Matheus Siqueira Sordi</b>
       </a>
     </td>
     <td align="center">
       <a href="https://github.com/Hirasawa01">
-        <img src="./client/src/images/team/hirasawa.jpeg" style="width: 135px; height: 135px;" alt="Foto da Raphaella Akemi Hirasawa"/><br />
-        <sub>
-          <b>Raphaella Akemi Hirasawa</b>
-        </sub>
+        <b>Raphaella Akemi Hirasawa</b>
       </a>
     </td>
     <td align="center">
       <a href="https://github.com/yodono">
-        <img src="./client/src/images/team/yodono.png" style="width: 135px; height: 135px;" alt="Foto do Victor Yodono"/><br />
-        <sub>
-          <b>Victor Yodono</b>
-        </sub>
+        <b>Victor Yodono</b>
       </a>
     </td>
   </tr>
